@@ -7,6 +7,16 @@ olmap2 = app2.mapPanel.map;
 
 olmap1.events.on({"move":move1Listener});
 olmap2.events.on({"moveend":move2Listener});
+
+//You can't have two sets of radio buttons with the same name
+var layertreeBaselayers = Ext.query('input[type=radio]','tree2');
+
+for (var i = 0; i < layertreeBaselayers.length; i++) {
+    var radio = layertreeBaselayers[i];
+    radio.name = "background_checkbox2";
+}
+
+
  // afterrender(funtion(){ext.get(radio).attr(name,"new")
 /*
 app1.applyConfig({
