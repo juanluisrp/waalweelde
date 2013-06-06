@@ -1,10 +1,11 @@
+var client;
 $(document).ready(function() {
 var half = ($(document).width() - 230 ) /2;
 
 /* bind panel resize event to map resize function*/
 var eastResize = function(e,element) {
-  kaart1.updateSize();
-  kaart2.updateSize();
+  client.kaart1.updateSize();
+  client.kaart2.updateSize();
 }
 
 var layout_options = {
@@ -45,7 +46,25 @@ var map_options = {
 
 $('body').layout( layout_options );
 $('#center').layout( map_options );
-
-$('#layertree').urd();
+ 
+var matrixIds = new Array(26);
+  for (var i=0; i<26; ++i) {
+    matrixIds[i] = 'EPSG:28992'+':' + i;
+}     
+client = $('#layertree').urd({center: {zoom: 5,position: [5,52]
+  },
+  layers:[{
+     type: 'wmts',
+     name: 'BRT Achtergrondkaart (WMTS)',
+     url: 'http://geodata.nationaalgeoregister.nl/wmts/',
+     layer: 'brtachtergrondkaart',
+     style: null,
+     matrixSet: "EPSG:28992",
+     matrixIds:  matrixIds,
+     visibility: true,
+     attribution: '(c) OSM & Kadaster',
+     format: "image/png8"
+  }]
+}).data('urd');
 
 });
