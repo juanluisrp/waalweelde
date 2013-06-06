@@ -21,12 +21,12 @@
   
   <!-- custom scripts  -->  
   <script type="text/javascript" src="./script/layout.js"></script>
-  <script type="text/javascript" src="./script/kaarten.js"></script>
-  
+  <!--<script type="text/javascript" src="./script/kaarten.js"></script>-->
+  <script type="text/javascript" src="./script/urd.js"></script>
   
   </head>
 <body>
-<div id="header" class="ui-layout-north">North</div>
+<div id="header" class="ui-layout-north"></div>
 <div id="center" class="ui-layout-center">
   <div id="toolbar" class="ui-layout-north">toolbar</div>
   <div id="map1" class="ui-layout-center">
@@ -41,6 +41,14 @@
 </div>
 <div class="ui-layout-west">
   <div class="panel-header">Informatie bronnen</div>
+  <div id="search">
+  <input type="text" value="zoekuh"/>
+  </div>
+  <div id="layers">
+    <div class="panel-header">Lagen</div>
+    <div id="layertree">
+    </div>
+  </div>
 </div>
 </body>
 </html>  

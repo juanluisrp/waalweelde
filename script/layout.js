@@ -46,6 +46,6 @@ var map_options = {
 $('body').layout( layout_options );
 $('#center').layout( map_options );
 
-
+$('#layertree').urd();
 
 });
