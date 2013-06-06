@@ -1,0 +1,38 @@
+/* layout stuff*/
+#client {
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.ui-layout-resizer {
+background: #3892d3;
+}
+
+.ui-layout-toggler {
+  background: #69adde;
+}
+.panel-header {
+  height: 32px;
+  width: 100%;
+  background: #157fcc;
+  color: white;
+}
+.map-panel {
+  width: 100%;
+  height: 100%;
+}
+#header {
+background: url("img/header-west.png");
+background-position-y: 8px;
+background-repeat: no-repeat;
+}
+#toolbar { 
+ 
+ background: #157fcc;
+}

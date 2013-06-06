@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="nl">
+ <head>
+  <meta charset="utf-8">
+  <title>URD Delta Oost - dashboard</title>
+  
+   <!-- jquery -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <!--  jquery.layout from:  http://layout.jquery-dev.net/  -->
+  <script type="text/javascript" src="./libs/jquery.layout-latest.js"></script>
+  <!--<link rel="stylesheet" type="text/css" href="./style/layout-default-latest.css" />-->
+
+  <!-- openlayers -->
+  <link rel="stylesheet" type="text/css" href="./libs/openlayers/theme/default/style.css" />
+	<script type="text/javascript" src="./libs/openlayers/OpenLayers.js"></script>
+
+  <!-- custom styles -->  
+  <link rel="stylesheet" type="text/css" href="./style/client.css" />
+  
+  <!-- custom scripts  -->  
+  <script type="text/javascript" src="./script/layout.js"></script>
+  <script type="text/javascript" src="./script/kaarten.js"></script>
+  
+  
+  </head>
+<body>
+<div id="header" class="ui-layout-north">North</div>
+<div id="center" class="ui-layout-center">
+  <div id="toolbar" class="ui-layout-north">toolbar</div>
+  <div id="map1" class="ui-layout-center">
+    <div class="panel-header">kaart 1</div>
+    <div id="map1-map" class="map-panel"></div>
+  </div>
+  <div id="map2" class="ui-layout-east">
+    <div class="panel-header">kaart 2</div>
+    <div id="map2-map" class="map-panel"></div>
+  </div>
+  <div class="ui-layout-south"></div>
+</div>
+<div class="ui-layout-west">
+  <div class="panel-header">Informatie bronnen</div>
+</div>
+</body>
+</html>  
