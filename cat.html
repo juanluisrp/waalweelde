@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="nl">
+ <head>
+  <meta charset="utf-8">
+  <title>URD Delta Oost - dashboard</title>
+  <!-- styles -->
+  <link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.4.0/resources/css/ext-all.css" />
+  <link rel="stylesheet" type="text/css" href="style/xtheme-blue.css" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+  <!-- ext -->
+  <script src="http://extjs.cachefly.net/ext-3.4.0/adapter/ext/ext-base.js"></script>
+  <script src="http://extjs.cachefly.net/ext-3.4.0/ext-all.js"></script>
+        
+  <!-- openlayers -->
+  <link rel="stylesheet" type="text/css" href="./libs/openlayers/theme/default/style.css" />
+	<script type="text/javascript" src="./libs/openlayers/OpenLayers.js"></script>
+
+  <!-- geoext -->
+  <link rel="stylesheet" type="text/css" href="./libs/geoext/resources/css/geoext-all.css" />
+	<script type="text/javascript" src="./libs/geoext/GeoExt.js"></script>
+
+  <!-- gxp -->
+	<link rel="stylesheet" type="text/css" href="./libs/gxp/src/theme/all.css" />
+	<script type="text/javascript" src="./libs/gxp/gxp.js"></script>
+  
+    <script type="text/javascript" src="./script/ol-link-gxp.js"></script>
+	<script>
+	OpenLayers.ProxyHost = "proxy.php?url=";
+ 
+//WMTS uses TILEMATRIXes instead of Z, so we need to have an array of all the needed IDs  
+//For PDOK/BRT:
+var matrixIds2 = new Array(26);
+for (var i=0; i<26; ++i) {
+	matrixIds2[i] = 'EPSG:28992'+':' + i;
+}        
+
+//WMTS uses TILEMATRIXes instead of Z, so we need to have an array of all the needed IDs
+//For PDOK/luchtfoto:
+var matrixIds3 = new Array(26);
+for (var i=0; i<10; ++i) {
+	matrixIds3[i] = '0' + i;
+}  for (var i=10; i<26; ++i) {
+	matrixIds3[i] = '' + i;
+}
+		
+
+	var app1;
+Ext.onReady(function() {
+    app1 = new gxp.Viewer({
+        proxy: "proxy.php?url=",
+        portalConfig: {
+           
+            layout: "border",
+           
+            // by configuring items here, we don't need to configure portalItems
+            // and save a wrapping container
+            items: [{region:"north",height:75,id:"header"},
+			{
+                // a TabPanel with the map and a dummy tab
+                id: "centerpanel",
+				layout:"fit",
+                region: "center",
+                activeTab: 0, // map needs to be visible on initialization
+                border: true,
+                items: ["map1"]
+            },  {
+                // container for the queryform
+                id: "west",
+               
+                layout: "fit",
+                region: "west",
+                width: 200,
+				items:[{
+				id:"westtop",
+				 xtype: "container"
+				 },{
+				 id:"westbottom",
+				 xtype: "container"
+				 }
+				]
+            },{
+                // container for the queryform
+                id: "east",
+                xtype: "container",
+                layout: "fit",
+                region: "east",
+                width: "45%"
+            }
+			
+			]
+        },
+        
+        // configuration of all tool plugins for this application
+        tools: [{
+            ptype: "gxp_layertree",
+            outputConfig: {
+                id: "tree",
+                border: true,
+                tbar: [] // we will add buttons to "tree.bbar" later
+            },
+            outputTarget: "westtop"
+        }, {
+            ptype: "gxp_addlayers",
+            actionTarget: "tree.tbar",
+            search: {selectedSource: "ngr"}
+        }, {
+            ptype: "gxp_removelayer",
+            actionTarget: ["tree.tbar", "tree.contextMenu"]
+        },  {
+            ptype: "gxp_zoom",
+            actionTarget: "map.tbar"
+        },  {
+            ptype: "gxp_wmsgetfeatureinfo",
+            outputConfig: {
+                width: 400,
+                height: 200
+            },
+            actionTarget: "map.tbar", // this is the default, could be omitted
+            toggleGroup: "layertools"
+        }, {
+            // shared FeatureManager for feature editing, grid and querying
+            ptype: "gxp_featuremanager",
+            id: "featuremanager",
+            maxFeatures: 20
+        }, {
+            ptype: "gxp_featureeditor",
+            featureManager: "featuremanager",
+            autoLoadFeature: true, // no need to "check out" features
+            outputConfig: {panIn: false},
+            toggleGroup: "layertools"
+        }
+		],
+        
+        // layer sources
+        defaultSourceType: "gxp_wmssource",
+        sources: {
+           brt: {
+            ptype: "gxp_olsource"
+        },
+        lucht: {
+            ptype: "gxp_olsource"
+        },
+        waalweelde: {
+				ptype:"gxp_wmssource",
+                url: "http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/ecotopen/MapServer/WMSServer",
+                version: "1.3.0"
+            },
+            ngr: {
+                ptype: "gxp_cataloguesource",
+                url: "http://www.nationaalgeoregister.nl/geonetwork/srv/dut/csw",
+                title: "ngr"
+            }
+        },
+        
+        // map and layers
+        map: {
+        split: true, 
+        id: "map1",
+        region: "center",
+        projection: "EPSG:28992",
+        units: "m",
+        resolutions: [3440.64, 1720.32, 860.16, 430.08, 215.04, 107.52, 53.76,
+					26.88, 13.44, 6.72, 3.36, 1.68, 0.84, 0.42, 0.21],
+        maxExtent: [-285401.92,22598.08,595401.9199999999,903401.9199999999],
+        layers: [{
+            source: "brt" ,
+            type: "OpenLayers.Layer.WMTS",
+            args: [{name: 'Wegenkaart',
+        url: 'http://geodata.nationaalgeoregister.nl/wmts/',
+        layer: 'brtachtergrondkaart',
+        style: null,
+        matrixSet: "EPSG:28992",
+        matrixIds:  matrixIds2,
+		group:"background",
+        visibility: true,
+        attribution: '(c) OSM & Kadaster',
+        format: "image/png8"}]           
+        },{
+          source: "lucht" ,
+            type: "OpenLayers.Layer.WMTS",
+            args: [{
+        
+        name: 'Luchtfoto',
+        url: 'http://geodata1.nationaalgeoregister.nl/luchtfoto/wmts?style=&',
+        layer: 'luchtfoto',
+        style: null,
+        matrixSet: "nltilingschema",
+        matrixIds:  matrixIds3,
+        group:"background",
+		visibility: false,
+        attribution: '(c) OSM & Kadaster',
+        format: "image/jpeg"}]
+        }]
+		},
+		listeners: {
+			portalReady: function(){createMap2()}
+		}
+		
+    });
+});
+
+function createMap2(){
+
+ app2 = new gxp.Viewer({
+	proxy: "proxy.php?url=",
+    id:"viewer2",
+    portalConfig: {
+		id: "viewer2", xtype: "panel", renderTo:"east",height:800,layout:"fit"
+	},
+    portalItems: ["map2",{id:"westbottomnew"}],
+    mapItems: [
+        {
+            xtype: "gx_zoomslider",
+            vertical: true,
+            height: 100
+        }
+    ],
+    sources: {
+        brt: {
+            ptype: "gxp_olsource"
+        },
+        waalweelde: {
+				ptype:"gxp_wmssource",
+                url: "http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/ecotopen/MapServer/WMSServer?",
+                version: "1.3.0"
+            }
+    },
+    map: {
+        id: "map2",
+        region: "center",
+         projection: "EPSG:28992",
+        units: "m",
+        resolutions: [3440.64, 1720.32, 860.16, 430.08, 215.04, 107.52, 53.76,
+					26.88, 13.44, 6.72, 3.36, 1.68, 0.84, 0.42, 0.21],
+        maxExtent: [-285401.92,22598.08,595401.9199999999,903401.9199999999],
+        layers: [{
+            source: "brt",
+            type: "OpenLayers.Layer.WMTS",
+            args: [{name: 'BRT Achtergrondkaart (WMTS)',
+        url: 'http://geodata.nationaalgeoregister.nl/wmts/',
+        layer: 'brtachtergrondkaart',
+        style: null,
+        matrixSet: "EPSG:28992",
+        matrixIds:  matrixIds2,
+        visibility: true,
+		group:"background",
+        attribution: '(c) OSM & Kadaster',
+        format: "image/png8"}]
+        }]
+    },
+    tools: [{
+            
+            outputTarget: "westbottom",
+            ptype: "gxp_layermanager",
+            id: "lm2",
+            outputConfig: {
+                id: "map2toc",
+                title: "Kaartlagen kaart 2",
+                tbar: []  // we will add buttons to "tree.bbar" later
+            }
+        },  {
+            ptype: "gxp_zoom",
+            actionTarget: "map.tbar"
+        },  {
+            ptype: "gxp_wmsgetfeatureinfo",
+            outputConfig: {
+                width: 400,
+                height: 200
+            },
+            actionTarget: "map2.tbar", // this is the default, could be omitted
+            toggleGroup: "layertools",
+			format: "grid"
+        }
+		],
+		listeners: {
+			portalReady: function(){initialise()}
+		}
+});
+}
+
+	</script>
+	
+ 
+ </head>
+ <body>
+  
+ </body>
+</html>
