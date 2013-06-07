@@ -36,3 +36,24 @@ background-repeat: no-repeat;
  
  background: #157fcc;
 }
+
+#mdResults {
+font-size:.8em;
+}
+
+.mdImage {
+	width:120px;
+	-moz-box-shadow:    1px 1px 2px 3px #ccf;
+	-webkit-box-shadow: 1px 1px 2px 3px #ccf;
+	box-shadow:         1px 1px 2px 3px #ccf;
+}
+.mdTitle{
+	font-weight:bold;
+}
+
+.mdContact{
+	color:#9cf;
+	font-style:oblique;
+}
+
+ .ui-menu { position: absolute; width: 250px;z-index:99; }

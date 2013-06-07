@@ -82,37 +82,41 @@ $("#mdQuery").click(function(event) {
 		//now push the data to listview
 		var output ="";
 		$(result).each(function(){
-			output +="<div style=\"border-bottom:1px #ccc solid\">";
-			output +="<div style=\"float:left\"><img src='"+this.image+"' style=\"width:120px;\"/></div>";
-			output +="<div style=\"margin-left:125px\"><p><b>"+this.title+"</b><br/>";
-			if (this.oms) output +=""+this.oms.substring(0,270); + "<br/>";
-			if (this.contact) output+="<i>"+this.contact+"</i> ";
+			output +="<div class='mdBox'>";
+			output +="<div style=\"float:left\"><img src='"+this.image+"' class='mdImage' /></div>";
+			output +="<div style=\"margin-left:135px\"><p><span class='mdTitle'>"+this.title+"</span><br/>";
+			if (this.oms) output +=""+this.oms.substring(0,270) + "<br/>";
+			if (this.contact) output+="<span class='mdContact'>"+this.contact+"</span> ";
 			var bnds = "[]";
 			try {
 				bnds = "[["+this.bounds[1]+","+this.bounds[0]+"],["+this.bounds[3]+","+this.bounds[2]+"]]";
 			} catch(exp){}
-			$(this.wmslinks).each(function(){ 
-				if (this.url != "" && this.layerName != "") {
-					if (this.layerTitle=="") this.layerTitle = this.layerName;
-					
-					output +="<input type=\"button\" data-role=\"button\" onclick=\"add2map('"+this.url+"','"+this.layerName+"','"+this.layerTitle+"',"+bnds+");\" value=\"Add "+this.layerName+" to map\" style=\"float:right\"/>";
-				}
-			})
-			output +="</p></div>";
+			
+			if (this.wmslinks.length > 0){
+				output+="<div style=\"float:right\"><button class=\"mdBtn\">Voeg "+this.wmslinks[0].layerTitle+" toe aan kaart</button><button id=\"select\">Selecteer</button></div><ul>";
+				$(this.wmslinks).each(function(){ 
+					//if (this.url != "" && this.layerName != "") {
+						if (this.layerTitle=="") this.layerTitle = this.layerName;
+						output+="<li><a onclick=\"add2map('"+this.url+"','"+this.layerName+"','"+this.layerTitle+"',"+bnds+");\" href=\"#\">"+this.layerTitle+" links</a></li>";
+						output+="<li><a onclick=\"add2map('"+this.url+"','"+this.layerName+"','"+this.layerTitle+"',"+bnds+");\" href=\"#\">"+this.layerTitle+" rechts</a></li>";
+					//}
+				})
+				output+="</ul></div>";
+			}
+			output +="</p></div><div style=\"clear:both\"></div>";
 		});
-console.log(output);
+
 		$( "#mdResults" ).html(output).dialog({
 			autoOpen: true,
 			height: 500,
 			width: 750,
 			modal: true
 		});
+		setButtons();
 	}
 	});				
 	});					
 });
-
-
 
 function add2map(url,name,title,bounds){
 	alert('add2map '+ title);
@@ -153,4 +157,21 @@ function ValidUrl(str) {
   } else {
     return false;
   }
+}
+
+function setButtons() {
+	$( ".mdBtn" ).button().next().button({
+		text: false,
+		icons: { primary: "ui-icon-triangle-1-s" }
+	}).click(function() {
+			var menu = $( this ).parent().next().show().position({
+			my: "right top",
+			at: "right bottom",
+			of: this
+		});
+		$( document ).one( "click", function() {
+			menu.hide();
+		});
+		return false;
+	}).parent().buttonset().next().hide().menu()
 }
