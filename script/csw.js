@@ -93,12 +93,12 @@ $("#mdQuery").click(function(event) {
 			} catch(exp){}
 			
 			if (this.wmslinks.length > 0){
-				output+="<div style=\"float:right\"><button class=\"mdBtn\">Voeg "+this.wmslinks[0].layerTitle+" toe aan kaart</button><button id=\"select\">Selecteer</button></div><ul>";
+				output+="<div style=\"float:right\"><button class=\"mdBtn\" onclick=\"add2map('"+this.wmslinks[0].url+"','"+this.wmslinks[0].layerName+"','"+this.wmslinks[0].layerTitle+"',"+bnds+", client.kaart1);\">Voeg "+this.wmslinks[0].layerTitle+" toe aan kaart</button><button id=\"select\">Selecteer</button></div><ul>";
 				$(this.wmslinks).each(function(){ 
 					//if (this.url != "" && this.layerName != "") {
 						if (this.layerTitle=="") this.layerTitle = this.layerName;
-						output+="<li><a onclick=\"add2map('"+this.url+"','"+this.layerName+"','"+this.layerTitle+"',"+bnds+");\" href=\"#\">"+this.layerTitle+" links</a></li>";
-						output+="<li><a onclick=\"add2map('"+this.url+"','"+this.layerName+"','"+this.layerTitle+"',"+bnds+");\" href=\"#\">"+this.layerTitle+" rechts</a></li>";
+						output+="<li><a onclick=\"add2map('"+this.url+"','"+this.layerName+"','"+this.layerTitle+"',"+bnds+", client.kaart1);\" href=\"#\">"+this.layerTitle+" links</a></li>";
+						output+="<li><a onclick=\"add2map('"+this.url+"','"+this.layerName+"','"+this.layerTitle+"',"+bnds+", client.kaart2);\" href=\"#\">"+this.layerTitle+" rechts</a></li>";
 					//}
 				})
 				output+="</ul></div>";
@@ -118,23 +118,15 @@ $("#mdQuery").click(function(event) {
 	});					
 });
 
-function add2map(url,name,title,bounds){
-	alert('add2map '+ title);
-	return;
-	if (name==""){
-		alert('no layername');
-		return false;
-	}
-	var tmp = L.tileLayer.wms(url,{
-		layers: name,
-		format: 'image/png',
-		transparent: true,    
-		opacity: 0.7       
-	});
-	tmp.addTo(map);
-	layerControl.addOverlay(tmp,title);	
+function add2map(url,name,title,bounds,map){
+	
+	
+	
+	map.addLayer(new OpenLayers.Layer(title, {isBaseLayer:false,url:url,layers:name}));
+	
+	
 
-	if (bounds.length!=0) map.setView(new L.LatLngBounds(bounds[0],bounds[1]).getCenter(),map.getZoom());
+	//if (bounds.length!=0) map.zoomToExtent(bounds,1);
 
 }
 

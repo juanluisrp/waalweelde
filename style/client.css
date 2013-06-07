@@ -56,4 +56,4 @@ font-size:.8em;
 	font-style:oblique;
 }
 
- .ui-menu { position: absolute; width: 250px;z-index:99; }
+ .ui-menu { position: absolute;z-index:99; }
