@@ -82,10 +82,10 @@ $("#mdQuery").click(function(event) {
 		//now push the data to listview
 		var output ="";
 		$(result).each(function(){
-			output +="<div style=\"border-bottom:1px #ccc solid\"><b>";
-			output +="<img src='"+this.image+"' style=\"width:120px;z-index:2;vertical-align:middle;padding-right:3px\"/>";
-			output +=this.title+"</b><br/>";
-			if (this.oms) output +="<p>"+this.oms.substring(0,270); + "<br/>";
+			output +="<div style=\"border-bottom:1px #ccc solid\">";
+			output +="<div style=\"float:left\"><img src='"+this.image+"' style=\"width:120px;\"/></div>";
+			output +="<div style=\"margin-left:125px\"><p><b>"+this.title+"</b><br/>";
+			if (this.oms) output +=""+this.oms.substring(0,270); + "<br/>";
 			if (this.contact) output+="<i>"+this.contact+"</i> ";
 			var bnds = "[]";
 			try {
