@@ -23,6 +23,7 @@
   <script type="text/javascript" src="./script/layout.js"></script>
   <!--<script type="text/javascript" src="./script/kaarten.js"></script>-->
   <script type="text/javascript" src="./script/urd.js"></script>
+  <script type="text/javascript" src="./script/csw.js"></script>
   
   </head>
 <body>
@@ -42,7 +43,9 @@
 <div class="ui-layout-west">
   <div class="panel-header">Informatie bronnen</div>
   <div id="search">
-  <input type="text" value="zoekuh"/>
+	<input type="text" id="mdSuggest" value=""/>
+	<input type="button" id="mdQuery" class="button" value="Zoek"/>
+	<div id="mdResults" title="Zoekresultaat"></div>
   </div>
   <div id="layers">
     <div class="panel-header">Lagen</div>
