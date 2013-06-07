@@ -5,11 +5,11 @@ A research project to configure proven mapping technology to create innovative i
 
 To install
 - copy files to a web folder
-- download latest verions of following projects, build and place in externals
+- download latest verions of following projects, build and place in libs
 	- Openlayers 2.x.x
-	- Extjs 3.x.x
-	- GeoExt 1.x.x
-	- GXP master
+	- jquery 1.9.x
+	- jquery-ui 
+	- jquery-layout
 - introduce some webproxy and configure it in config.js (for example https://github.com/mapserver/ms-ogc-workshop/blob/master/util/proxy.php)
 
 
