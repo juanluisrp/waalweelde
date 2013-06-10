@@ -469,7 +469,23 @@ $.fn.urd = function(options) {
 };
 $.extend($.URD.Layer, {
     types: {
-        
+        wms: function(options) {
+            var o = $.extend(true, {}, $.fn.urd.defaults.layer.all,
+                    $.fn.urd.defaults.layer.raster,
+                    options);
+            var params = {
+                layers: o.layers,
+                transparent: o.transparent,
+                format: o.format
+            };
+            if(typeof o.wms_parameters != "undefined"){
+                params = $.extend(params, o.wms_parameters);
+            }
+            return {
+                layer: new OpenLayers.Layer.WMS(o.label, o.url, params, o),
+                options: o
+            };
+        },
         wmts: function(options) {
             var o = $.extend(true, {}, $.fn.urd.defaults.layer.all,
                     $.fn.urd.defaults.layer.wmts);            
@@ -502,6 +518,10 @@ $.fn.urd.defaults = {
         all: {
             isBaseLayer: false,
 
+        },
+        raster: {
+            // options for raster layers
+            transparent: true
         },
         wmts: {
             extent: [-13650159, 4534735, -13609227, 4554724],

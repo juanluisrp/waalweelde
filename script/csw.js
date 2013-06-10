@@ -120,9 +120,9 @@ $("#mdQuery").click(function(event) {
 
 function add2map(url,name,title,bounds,map){
 	
+	client.layers({type:'wms', url: url, layers: name});
 	
-	
-	map.addLayer(new OpenLayers.Layer(title, {isBaseLayer:false,url:url,layers:name}));
+	//map.addLayer(new OpenLayers.Layer(title, {isBaseLayer:false,url:url,layers:name}));
 	
 	
 

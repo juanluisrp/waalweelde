@@ -1,14 +1,10 @@
 (function($) {
-var layerElementTmpl = $(
-'<script type="text/html" id="template"> \
-    <img data-src="authorPicture" data-alt="author" data-link-wrap="authorPicture"/>\
-    <div class="post-container"> \
-        <div data-content="author"></div> \
-        <div data-content="date"></div> \
-        <div data-content="post" data-format="sameCaseFormatter" data-format-template="upper"></div> \
-    </div> \
-</script>'
-);
+$.template('urdLayerTree',
+'<div class="urd_layertree">layertree</div>');
+
+$.template('urdLayer',
+'<div class="urd_layer">${name}</div>');
+
 
 $.widget("urd.urdLayerTree", {
   options: {
@@ -28,7 +24,8 @@ $.widget("urd.urdLayerTree", {
   },
   _layerAdded: function(widget, layer) {
     var self = this;
-    widget.loadTemplate(layerElementTmpl);
+    var name = layer.olLayer.name;
+    $.tmpl('urdLayer',{name:name}).appendTo(widget);
   },
   _destroy: function() {
   }
