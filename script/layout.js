@@ -51,7 +51,7 @@ var matrixIds = new Array(26);
   for (var i=0; i<26; ++i) {
     matrixIds[i] = 'EPSG:28992'+':' + i;
 }     
-client = $('#layertree').urd({center: {zoom: 5,position: [5,52]
+client = $('#center').urd({center: {zoom: 5,position: [5,52]
   },
   layers:[{
      type: 'wmts',
@@ -66,5 +66,5 @@ client = $('#layertree').urd({center: {zoom: 5,position: [5,52]
      format: "image/png8"
   }]
 }).data('urd');
-
+$('#layertree').urdLayerTree({urd:'#center'});
 });

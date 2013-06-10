@@ -41,48 +41,6 @@ $.URD.Client = function(element, options) {
     this.selectFeatureControl = null;
   
   
-  /* this bit should be more dynamic*/
-  /* var matrixIds2 = new Array(26);
-  for (var i=0; i<26; ++i) {
-  matrixIds2[i] = 'EPSG:28992'+':' + i;
-  }        
-  var matrixIds3 = new Array(26);
-  for (var i=0; i<10; ++i) {
-  matrixIds3[i] = '0' + i;
-  }  
-  for (var i=10; i<26; ++i) {
-  matrixIds3[i] = '' + i;
-  }
-  var brt = new OpenLayers.Layer.WMTS({
-  layertype: 'WMTS',
-  name: 'BRT Achtergrondkaart (WMTS)',
-  url: 'http://geodata.nationaalgeoregister.nl/wmts/',
-  layer: 'brtachtergrondkaart',
-  style: null,
-  matrixSet: "EPSG:28992",
-  matrixIds:  matrixIds2,
-  visibility: true,
-  attribution: '(c) OSM & Kadaster',
-  format: "image/png8"
-  })      
-  var brt2 = new OpenLayers.Layer.WMTS({
-  layertype: 'WMTS',
-  name: 'BRT Achtergrondkaart (WMTS)',
-  url: 'http://geodata.nationaalgeoregister.nl/wmts/',
-  layer: 'brtachtergrondkaart',
-  style: null,
-  matrixSet: "EPSG:28992",
-  matrixIds:  matrixIds2,
-  visibility: true,
-  attribution: '(c) OSM & Kadaster',
-  format: "image/png8"
-  }) 
-
-  this.kaart1.addLayer(brt);
-  this.kaart2.addLayer(brt2);
-
-  this.kaart1.zoomToMaxExtent();
-  this.kaart2.zoomToMaxExtent();*/
   this.idCounter = 0;
   this.layersList = {};
   this.events = $({});
@@ -118,7 +76,7 @@ $.URD.Client = function(element, options) {
   }
   this.kaart1.events.on({"move":this.move1Listener});
   this.kaart2.events.on({"moveend":this.move2Listener});
-   /*until here that is */
+
   
     
 
