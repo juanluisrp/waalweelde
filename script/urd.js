@@ -128,7 +128,7 @@ $.URD.Client.prototype = {
             return false;
         }*/
         this.kaart1.addLayer(layer.olLayer);
-        this.kaart2.addLayer(layer.olLayer.clone());
+        this.kaart2.addLayer(layer.olLayer2);
         
         this.layersList[id] = layer;
         if (layer.isVector) {
@@ -334,6 +334,7 @@ $.URD.Layer = function(map, id, options) {
     var res = $.URD.Layer.types[options.type.toLowerCase()].call(
         this, options);
     this.olLayer = res.layer;
+    this.olLayer2 = this.olLayer.clone();
     this.options = res.options;
 
     // Some good documentation for the events is needed. Here is a short
@@ -397,10 +398,11 @@ $.URD.Layer.prototype = {
     },
     visible: function(vis) {
         if (vis===undefined) {
-            return this.olLayer.getVisibility();
+            return [this.olLayer.getVisibility(),this.olLayer2.getVisibility()];
         }
-        else {
-            this.olLayer.setVisibility(vis);
+        else if (vis.length == 2){
+            this.olLayer.setVisibility(vis[0]);
+            this.olLayer2.setVisibility(vis[1]);
             this.trigger('changelayer', ['visibility']);
             return this;
         }
