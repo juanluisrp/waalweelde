@@ -17,7 +17,7 @@ $.widget("urd.urdLayerTree", {
     urd: undefined
   },
   _create: function(){
-    var map;
+    var urd;
     var self = this;
     var element = this.element;
     var lmElement = $.tmpl('urdLayerTree').appendTo(element);
@@ -43,8 +43,13 @@ $.widget("urd.urdLayerTree", {
             }
             layer.visible(visible);
          });
-  
+     urd.bind("addlayer",
+            {widget:self,control:lmElement},
+            self._onLayerAdd);
   },
+  _onLayerAdd: function(evt, layer) {
+        evt.data.widget._layerAdded(evt.data.control,layer);
+    },
   _layerAdded: function(widget, layer) {
     var self = this;    
     $.tmpl('urdLayer',{
@@ -52,7 +57,7 @@ $.widget("urd.urdLayerTree", {
       position: layer.position(),
       visible: layer.visible()[0],
       visible2: layer.visible()[1],      
-      name:layer.olLayer.name
+      name:layer.label
     }).data('layer', layer)
       .data('self',self)
       .prependTo(widget);

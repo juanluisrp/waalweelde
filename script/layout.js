@@ -55,7 +55,7 @@ client = $('#center').urd({center: {zoom: 5,position: [5,52]
   },
   layers:[{
      type: 'wmts',
-     name: 'BRT Achtergrondkaart (WMTS)',
+     label: 'BRT Achtergrondkaart',
      url: 'http://geodata.nationaalgeoregister.nl/wmts/',
      layer: 'brtachtergrondkaart',
      style: null,
