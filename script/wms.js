@@ -24,9 +24,7 @@ OpenLayers.Request.GET({
         var capabilities = format.read(doc);
 		
 		var matchedLayer = "";
-		
-        
-		console.log(capabilities);
+
 		
 			var layerNames = [];
 			//does the layer exist
