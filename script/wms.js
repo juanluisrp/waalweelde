@@ -31,7 +31,7 @@ OpenLayers.Request.GET({
 			var layerNames = [];
 			//does the layer exist
 			$(capabilities.capability.layers).each(function(){
-				if (this.name==layer || this.name.split(":")[1]==layer) {
+				if (this.name==layer || (this.name.indexOf(":")>0 && this.name.split(":")[1]==layer)) {
 					 var lyrOpts = {
 					 type:"wms",
 					 url: capabilities.service.href||server, 
@@ -45,8 +45,7 @@ OpenLayers.Request.GET({
 					 bounds:this.bounds,
 					 attribution: this.attribution
 					}
-					console.log(opts);
-					client.layers(opts);
+					client.layers(lyrOpts);
 					matchedLayer = this.name;
 					layerNames.push(this.name);
 				}
