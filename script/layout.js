@@ -63,8 +63,10 @@ client = $('#center').urd({center: {zoom: 5,position: [5,52]
      matrixIds:  matrixIds,
      visibility: true,
      attribution: '(c) OSM & Kadaster',
-     format: "image/png8"
+     format: "image/png8",
+     legend: {url: 'http://kaart.pdok.nl/img/PDOK-logo.png'}
   }]
 }).data('urd');
 $('#layertree').urdLayerTree({urd:'#center'});
+$('#legend').urdLegend({urd:'#center'});
 });

@@ -7,7 +7,7 @@ $.template('urdLayer',
 <div class="mq-urd-layertree-element-header"> \
 <input type="checkbox" class="urd-layermanager-element-vischeckbox 1" id="${id}-visibility-1" {{if visible}}checked="${visible}"{{/if}} />\
 <input type="checkbox" class="urd-layermanager-element-vischeckbox 2" id="${id}-visibility-2" {{if visible2}}checked="${visible2}"{{/if}} />\
-${name}  \
+<span class="urd-layertree-element-name">${name}</span>\
 </div> \
 </div>');
 
@@ -43,6 +43,15 @@ $.widget("urd.urdLayerTree", {
             }
             layer.visible(visible);
          });
+    element.delegate('span.urd-layertree-element-name',
+            'click',function() {
+            var element = $(this).parents('.urd-layer');
+            var layer = element.data('layer');
+            var self = element.data('self');
+            var urd = $(self.options.urd).data('urd');
+            urd.trigger('updateLegend',layer);
+            
+    });
      urd.bind("addlayer",
             {widget:self,control:lmElement},
             self._onLayerAdd);
