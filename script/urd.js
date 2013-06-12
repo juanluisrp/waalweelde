@@ -400,7 +400,7 @@ $.URD.Layer.prototype = {
         }
         else {
             this.map.kaart1.setLayerIndex(this.olLayer, pos+1);
-            this.map.kaart2.setLayerIndex(this.olLayer, pos+1);
+            this.map.kaart2.setLayerIndex(this.olLayer2, pos+1);
             this.trigger('changelayer', ['position']);
             return this;
         }

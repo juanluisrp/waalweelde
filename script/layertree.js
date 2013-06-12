@@ -24,6 +24,20 @@ $.widget("urd.urdLayerTree", {
     var lmElement = $.tmpl('urdLayerTree').appendTo(element);
     //get the mapquery object
     urd = $(this.options.urd).data('urd');
+    
+    lmElement.sortable({
+            axis:'y',
+            handle: '.urd-layertree-element-header',
+            update: function(event, ui) {
+                var layerNodes = ui.item.siblings().andSelf();
+                var num = layerNodes.length-1;
+                layerNodes.each(function(i) {
+                    var layer = $(this).data('layer');
+                    var pos = num-i;
+                    layer.position(pos);
+                });
+            }
+        });
     $.each(urd.layers().reverse(), function(){
       self._layerAdded(lmElement, this);
     });
