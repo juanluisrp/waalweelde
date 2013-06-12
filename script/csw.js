@@ -35,13 +35,18 @@ $("#mdSuggest").autocomplete({
 				
 				
 $("#mdQuery").click(function(event) {
-            		
+	getMDResults(0);
+});	 
+
+});
+
+function getMDResults(page){
 	result=[];
 	var vl = $("#mdSuggest").val();
 	if (typeof(vl)=='undefined') vl="";
-
+	//dynamic = true only results in datasets having a wms link
 	$.ajax({	type:"GET", 
-				url:proxyurl+gnserver+"q?fast=index%26from=1%26to=25%26any="+vl+"*%26dynamic=true", 
+				url:proxyurl+gnserver+"q?fast=index%26from="+(1+page*25)+"%26to="+((25+page*25))+"%26any="+vl+"*%26dynamic=true", 
 				datatype:"xml", 
 				success: function(data){
 
@@ -85,29 +90,43 @@ $("#mdQuery").click(function(event) {
 			output +="<div style=\"float:left\"><img src='"+this.image+"' class='mdImage' /></div>";
 			output +="<div style=\"margin-left:135px\"><p><span class='mdTitle'>"+this.title+"</span><br/>";
 			if (this.oms) output +=""+this.oms.substring(0,270) + "<br/>";
-			if (this.contact) output+="<span class='mdContact'>"+this.contact+"</span> ";
-
 			
+			//todo: onderscheid maken tussen 1 laag en meerdere lagen, meerdere lagen als split button
+			if (this.wmslinks.length == 1) {
+				output+="<button style=\"float:right\" onclick=\"$.URD.addWMS('"+this.wmslinks[0].url+"','"+this.wmslinks[0].layerName+"','"+this.wmslinks[0].layerTitle+"');\">Voeg toe aan kaart</button>";
+			} else if (this.wmslinks.length > 1) {
+				output+="<select style=\"float:right\" id=\"svLayers\" onchange=\"$.URD.addWMS('"+this.wmslinks[0].url+"',$('#svLayers').val(),$('#svLayers option:selected').text())\">";
 				$(this.wmslinks).each(function(){ 
 						if (this.layerTitle=="") this.layerTitle = this.layerName;
-						output+="<button style=\"float:right\" onclick=\"$.URD.addWMS('"+this.url+"','"+this.layerName+"','"+this.layerTitle+"');\">Voeg "+this.layerTitle+" toe aan kaart</button>";
+						output+="<option value='"+this.layerName+"'>"+(this.layerTitle||this.layerName)+"</option>";
 				})
-				
+				output+="</select>";
+			} else {
+				//geen kaart beschikbaar
+			}
 			
+			if (this.contact) output+="<span class='mdContact'>"+this.contact+"</span> ";
+
 			output +="</p></div><div style=\"clear:both\"></div>";
 		});
 
+			
+		
 		$( "#mdResults" ).html(output).dialog({
 			autoOpen: true,
 			height: 500,
 			width: 750,
-			modal: true
+			modal: true,
+			buttons:  [
+				{text:"Vorige",click: function(){ getMDResults(page-1) }, disabled: (page==0) },
+				{text:"Volgende",click: function(){ getMDResults(page+1) } }	
+			]
 		});
 
 	}
 	});				
-	});					
-});
+};					
+
 
 function splitLink(linkNode){
 	var data=linkNode.split("|");
