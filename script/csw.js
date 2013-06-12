@@ -35,8 +35,7 @@ $("#mdSuggest").autocomplete({
 				
 				
 $("#mdQuery").click(function(event) {
-            
-        			
+            		
 	result=[];
 	var vl = $("#mdSuggest").val();
 	if (typeof(vl)=='undefined') vl="";
@@ -87,22 +86,14 @@ $("#mdQuery").click(function(event) {
 			output +="<div style=\"margin-left:135px\"><p><span class='mdTitle'>"+this.title+"</span><br/>";
 			if (this.oms) output +=""+this.oms.substring(0,270) + "<br/>";
 			if (this.contact) output+="<span class='mdContact'>"+this.contact+"</span> ";
-			var bnds = "[]";
-			try {
-				bnds = "[["+this.bounds[1]+","+this.bounds[0]+"],["+this.bounds[3]+","+this.bounds[2]+"]]";
-			} catch(exp){}
-			
-			if (this.wmslinks.length > 0){
-				output+="<div style=\"float:right\"><button class=\"mdBtn\" onclick=\"add2map('"+this.wmslinks[0].url+"','"+this.wmslinks[0].layerName+"','"+this.wmslinks[0].layerTitle+"',"+bnds+", client.kaart1);\">Voeg "+this.wmslinks[0].layerTitle+" toe aan kaart</button><button id=\"select\">Selecteer</button></div><ul>";
+
+				output+="<div stlye=\"float:right\">";
 				$(this.wmslinks).each(function(){ 
-					//if (this.url != "" && this.layerName != "") {
 						if (this.layerTitle=="") this.layerTitle = this.layerName;
-						output+="<li><a onclick=\"add2map('"+this.url+"','"+this.layerName+"','"+this.layerTitle+"',"+bnds+", client.kaart1);\" href=\"#\">"+this.layerTitle+" links</a></li>";
-						output+="<li><a onclick=\"add2map('"+this.url+"','"+this.layerName+"','"+this.layerTitle+"',"+bnds+", client.kaart2);\" href=\"#\">"+this.layerTitle+" rechts</a></li>";
-					//}
+						output+="<button onclick=\"$.URD.addWMS('"+this.url+"','"+this.layerName+"','"+this.layerTitle+"');\">"+this.layerTitle+"</button>";
 				})
-				output+="</ul></div>";
-			}
+				output+="</div>";
+			
 			output +="</p></div><div style=\"clear:both\"></div>";
 		});
 
@@ -112,23 +103,11 @@ $("#mdQuery").click(function(event) {
 			width: 750,
 			modal: true
 		});
-		setButtons();
+
 	}
 	});				
 	});					
 });
-
-function add2map(url,name,title,bounds,map){
-	
-	client.layers({type:'wms', url: url, layers: name, label: title});
-	
-	//map.addLayer(new OpenLayers.Layer(title, {isBaseLayer:false,url:url,layers:name}));
-	
-	
-
-	//if (bounds.length!=0) map.zoomToExtent(bounds,1);
-
-}
 
 function splitLink(linkNode){
 	var data=linkNode.split("|");
