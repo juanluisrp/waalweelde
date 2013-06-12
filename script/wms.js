@@ -1,19 +1,19 @@
 
 OpenLayers.ProxyHost="proxy.php?url=";
 
-(function($) {
+
 $.URD = $.URD || {};
 
 $.URD.addWMS = function (server,layer,title) {
 
 
-var format = new OpenLayers.Format.WMSCapabilities({versiom:"1.1.1"});
+var format = new OpenLayers.Format.WMSCapabilities({versiom:"1.3.0"});
 
 OpenLayers.Request.GET({
     url: server,
     params: {
         SERVICE: "WMS",
-        VERSION: "1.1.1", //should check for availability of 1.3.0 also?
+        VERSION: "1.3.0", //should check for availability of 1.3.0 also?
         REQUEST: "GetCapabilities"
     },
     success: function(request) {
@@ -23,27 +23,44 @@ OpenLayers.Request.GET({
         }
         var capabilities = format.read(doc);
 		
-        var OLlayer = format.createLayer(capabilities, {
-            layer: layer,
-            format: "image/png",
-            opacity: 0.7,
-            isBaseLayer: false
-        });	
+		var matchedLayer = "";
 		
-		if (typeof(OLlayer)=="undefined"){
+        
+		console.log(capabilities);
+		
 			var layerNames = [];
 			//does the layer exist
 			$(capabilities.capability.layers).each(function(){
-				layerNames.push(this.name);
+				if (this.name==layer || this.name.split(":")[1]==layer) {
+					 var lyrOpts = {
+					 type:"wms",
+					 url: capabilities.service.href||server, 
+					 layers: this.name, 
+					 title: this.title, 
+					 styles:this.styles,
+					 legend: {url:this.styles[0].legend.href,title:this.styles[0].legend.title},
+					 queryable:this.queryable,
+					 metadataURLs: this.metadataURLs,
+					 formats: this.formats,
+					 bounds:this.bounds,
+					 attribution: this.attribution
+					}
+					console.log(opts);
+					client.layers(opts);
+					matchedLayer = this.name;
+					layerNames.push(this.name);
+				}
 			})
+		
+		if (matchedLayer=="") {
+		
 			alert("Layer '"+layer+"' not in  "+layerNames.join(",")+".");
 			//here open a panel to let the user select a layer from the list
 			//note that layer can contain a comma separated list of layers
-		} else {
 		
-			map.addLayer(OLlayer);
+		};
 
-		}
+		
     },
     failure: function() {
         alert("Trouble getting capabilities doc");
@@ -51,5 +68,5 @@ OpenLayers.Request.GET({
     }
 });
 }
-})
+
    

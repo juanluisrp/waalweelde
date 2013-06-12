@@ -87,12 +87,12 @@ $("#mdQuery").click(function(event) {
 			if (this.oms) output +=""+this.oms.substring(0,270) + "<br/>";
 			if (this.contact) output+="<span class='mdContact'>"+this.contact+"</span> ";
 
-				output+="<div stlye=\"float:right\">";
+			
 				$(this.wmslinks).each(function(){ 
 						if (this.layerTitle=="") this.layerTitle = this.layerName;
-						output+="<button onclick=\"$.URD.addWMS('"+this.url+"','"+this.layerName+"','"+this.layerTitle+"');\">"+this.layerTitle+"</button>";
+						output+="<button style=\"float:right\" onclick=\"$.URD.addWMS('"+this.url+"','"+this.layerName+"','"+this.layerTitle+"');\">Voeg "+this.layerTitle+" toe aan kaart</button>";
 				})
-				output+="</div>";
+				
 			
 			output +="</p></div><div style=\"clear:both\"></div>";
 		});
