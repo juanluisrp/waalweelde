@@ -156,7 +156,7 @@ $.URD.Client.prototype = {
         this._updateSelectFeatureControl(this.vectorLayers);
         this.kaart1.removeLayer(layer.olLayer);
         //TODO: dit gaat vast niet werken
-        this.kaart2.removeLayer(layer.olLayer);
+        this.kaart2.removeLayer(layer.olLayer2);
         
         // XXX vmx: shouldn't the layer be destroyed() properly?
         delete this.layersList[id];
@@ -229,6 +229,22 @@ $.URD.Client.prototype = {
             this.kaart1.setCenter(position, options.zoom);
             this.kaart2.setCenter(position, options.zoom);
         }
+    },
+    _updateSelectFeatureControl: function(layerIds) {
+        var vectorLayers = [];
+        var layersList = this.layersList;
+        if (this.selectFeatureControl!==null) {
+            this.selectFeatureControl.deactivate();
+            this.selectFeatureControl.destroy();
+        }
+        $.each(layerIds, function() {
+            vectorLayers.push(layersList[this].olLayer);
+        });
+        this.selectFeatureControl = new OpenLayers.Control.SelectFeature(
+            vectorLayers);
+        this.kaart1.addControl(this.selectFeatureControl);
+        this.kaart2.addControl(this.selectFeatureControl);
+        this.selectFeatureControl.activate();
     },
     bind: function(types, data, fn) {
         var self = this;

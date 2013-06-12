@@ -37,6 +37,16 @@ background-repeat: no-repeat;
  background: #157fcc;
 }
 
+.hidden {
+  display: none;
+}
+.urd-layertree-layer-remove {
+text-align: right;
+}
+.urd-layer-verwijder {
+  color: #ff0000;
+  cursor: pointer;
+}
 #mdResults {
 font-size:.8em;
 }

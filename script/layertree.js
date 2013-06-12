@@ -4,11 +4,12 @@ $.template('urdLayerTree',
 
 $.template('urdLayer',
 '<div class="urd-layer" id="urd-layertree-element-${id}"> \
-<div class="mq-urd-layertree-element-header"> \
+<div class="urd-layertree-element-header"> \
 <input type="checkbox" class="urd-layermanager-element-vischeckbox 1" id="${id}-visibility-1" {{if visible}}checked="${visible}"{{/if}} />\
 <input type="checkbox" class="urd-layermanager-element-vischeckbox 2" id="${id}-visibility-2" {{if visible2}}checked="${visible2}"{{/if}} />\
 <span class="urd-layertree-element-name">${name}</span>\
 </div> \
+<div class="urd-layertree-layer-remove hidden"><span class="urd-layer-verwijder">verwijder</span></div>\
 </div>');
 
 
@@ -52,12 +53,36 @@ $.widget("urd.urdLayerTree", {
             urd.trigger('updateLegend',layer);
             
     });
+    element.delegate('.urd-layer',
+            'mouseover',function() {
+            $(this).find('.urd-layertree-layer-remove').removeClass('hidden');
+    });
+    element.delegate('.urd-layer',
+            'mouseout',function() {
+           // var element = $(this).parents('.urd-layer');
+            $(this).find('.urd-layertree-layer-remove').addClass('hidden');
+    });
+    element.delegate('.urd-layer-verwijder',
+            'click',function() {
+            var element = $(this).parents('.urd-layer');
+            var layer = element.data('layer');
+            layer.remove();
+    });
+   
+   
      urd.bind("addlayer",
             {widget:self,control:lmElement},
             self._onLayerAdd);
+     urd.bind("removelayer",
+            {widget:self,control:lmElement},
+            self._onLayerRemove);
+                   
   },
   _onLayerAdd: function(evt, layer) {
         evt.data.widget._layerAdded(evt.data.control,layer);
+    },
+  _onLayerRemove: function(evt, layer) {
+        evt.data.widget._layerRemoved(evt.data.control,layer.id);
     },
   _layerAdded: function(widget, layer) {
     var self = this;    
@@ -71,6 +96,12 @@ $.widget("urd.urdLayerTree", {
       .data('self',self)
       .prependTo(widget);
   },
+  _layerRemoved: function(widget, id) {
+        var control = $("#urd-layertree-element-"+id);
+        control.fadeOut(function() {
+            $(this).remove();
+        });
+    },
   _destroy: function() {
   }
   
