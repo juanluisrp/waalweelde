@@ -69,4 +69,15 @@ client = $('#center').urd({center: {zoom: 5,position: [5,52]
 }).data('urd');
 $('#layertree').urdLayerTree({urd:'#center'});
 $('#legend').urdLegend({urd:'#center'});
+
+var kaart1move = function(e) {
+  var xy = e.xy;
+  $('#pointer2').css({top: xy.y-4, left: xy.x-4})
+}
+var kaart2move = function(e) {
+  var xy = e.xy;
+  $('#pointer1').css({top: xy.y-4, left: xy.x-4})
+}
+client.kaart1.events.register('mousemove', {}, kaart1move);
+client.kaart2.events.register('mousemove', {}, kaart2move);
 });
