@@ -5,11 +5,11 @@ $.template('urdLayerTree',
 $.template('urdLayer',
 '<div class="urd-layer" id="urd-layertree-element-${id}"> \
 <div class="urd-layertree-element-header"> \
-<input type="checkbox" class="urd-layermanager-element-vischeckbox 1" id="${id}-visibility-1" {{if visible}}checked="${visible}"{{/if}} />\
-<input type="checkbox" class="urd-layermanager-element-vischeckbox 2" id="${id}-visibility-2" {{if visible2}}checked="${visible2}"{{/if}} />\
-<span class="urd-layertree-element-name">${name}</span>\
+<input type="checkbox" title="Verander zichtbaarheid van deze laag op de linker kaart" class="urd-layermanager-element-vischeckbox 1" id="${id}-visibility-1" {{if visible}}checked="${visible}"{{/if}} />\
+<input type="checkbox" title="Verander zichtbaarheid van deze laag op de rechter kaart" class="urd-layermanager-element-vischeckbox 2" id="${id}-visibility-2" {{if visible2}}checked="${visible2}"{{/if}} />\
+<span title="klik om de legenda te tonen, sleep om de laag-volgorde op de kaarten te veranderen" class="urd-layertree-element-name">${name}</span>\
 </div> \
-<div class="urd-layertree-layer-remove hidden"><span class="urd-layer-verwijder">verwijder</span></div>\
+<div class="urd-layertree-layer-remove "><span title="klik om deze laag van de kaarten te verwijderen" class="urd-layer-verwijder hidden">verwijder</span></div>\
 </div>');
 
 
@@ -69,12 +69,12 @@ $.widget("urd.urdLayerTree", {
     });
     element.delegate('.urd-layer',
             'mouseover',function() {
-            $(this).find('.urd-layertree-layer-remove').removeClass('hidden');
+            $(this).find('.urd-layer-verwijder').removeClass('hidden');
     });
     element.delegate('.urd-layer',
             'mouseout',function() {
            // var element = $(this).parents('.urd-layer');
-            $(this).find('.urd-layertree-layer-remove').addClass('hidden');
+            $(this).find('.urd-layer-verwijder').addClass('hidden');
     });
     element.delegate('.urd-layer-verwijder',
             'click',function() {

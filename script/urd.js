@@ -534,7 +534,7 @@ $.fn.urd.defaults = {
   },
     layer: {
         all: {
-            isBaseLayer: false,
+            isBaseLayer: false
 
         },
         raster: {

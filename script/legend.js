@@ -3,7 +3,7 @@ $.template('urdLegend',
 '<div class="urd-legend  ui-widget-content"></div>');
 
 $.template('urdLegendImage', 
-'<img src="${url}"/>');
+'<div class="urd-legend-title">${title}</div><img src="${url}"/>');
 
 
 $.widget("urd.urdLegend", {
@@ -25,7 +25,7 @@ $.widget("urd.urdLegend", {
     if (legend && legend.url) {
       url = legend.url;
     }
-     widget.element.empty().append($.tmpl('urdLegendImage',{url:url}));
+     widget.element.find('.urd-legend').empty().append($.tmpl('urdLegendImage',{url:url, title: layer.label}));
     
   },
   _destroy: function() {

@@ -3,7 +3,7 @@ $(document).ready(function() {
 var half = ($(document).width() - 230 ) /2;
 
 /* bind panel resize event to map resize function*/
-var eastResize = function(e,element) {
+var eastResize = function() {
   client.kaart1.updateSize();
   client.kaart2.updateSize();
 }
