@@ -4,12 +4,11 @@ $.template('urdLayerTree',
 
 $.template('urdLayer',
 '<div class="urd-layer" id="urd-layertree-element-${id}"> \
-<div class="urd-layertree-element-header"> \
+<div class="urd-layertree-element-header hasmenu"> \
 <input type="checkbox" title="Verander zichtbaarheid van deze laag op de linker kaart" class="urd-layermanager-element-vischeckbox 1" id="${id}-visibility-1" {{if visible}}checked="${visible}"{{/if}} />\
 <input type="checkbox" title="Verander zichtbaarheid van deze laag op de rechter kaart" class="urd-layermanager-element-vischeckbox 2" id="${id}-visibility-2" {{if visible2}}checked="${visible2}"{{/if}} />\
-<span title="klik om de legenda te tonen, sleep om de laag-volgorde op de kaarten te veranderen" class="urd-layertree-element-name">${name}</span>\
+<span title="rechts klik voor context opties, sleep om de laag-volgorde op de kaarten te veranderen" class="urd-layertree-element-name">${name}</span>\
 </div> \
-<div class="urd-layertree-layer-remove "><span title="klik om deze laag van de kaarten te verwijderen" class="urd-layer-verwijder hidden">verwijder</span></div>\
 </div>');
 
 
@@ -67,6 +66,60 @@ $.widget("urd.urdLayerTree", {
             urd.trigger('updateLegend',layer);
             
     });
+	
+	element.contextmenu({
+		delegate: ".urd-layer",
+		preventSelect: true,
+		taphold: true,
+		menu: [
+			{title: "Zoom", cmd: "zoom", uiIcon: "ui-icon-zoom"},
+			{title: "Remove", cmd: "remove", uiIcon: "ui-icon-delete"},
+			{title: "Style", cmd: "style", uiIcon: "ui-icon-style" },
+			{title: "Opacity", cmd: "opacity", uiIcon: "ui-icon-style" },
+			{title: "Metadata", cmd: "metadata", uiIcon: "ui-icon-style" },
+			{title: "Legenda", cmd: "legend", uiIcon: "ui-icon-style" }
+			],
+		select: function(event, ui) {
+			var $target = ui.target;
+			var element = $target.parents('.urd-layer');
+			var layer = element.data('layer');
+			var self = element.data('self');
+			switch(ui.cmd){
+			case "zoom":
+				console.log(layer);
+				
+				break
+			case "remove":
+				layer.remove();
+				break
+			case "style":
+				//open a dialog here and present available styles to choose from
+				//urd.trigger('updateStyle',layer);
+				break
+			case "opacity":
+				//open a dialog here and present an opacity slider
+				//urd.trigger('updateOpacity',layer);
+				break
+			case "legend":
+				var urd = $(self.options.urd).data('urd');
+				urd.trigger('updateLegend',layer);
+				break
+			case "metadata":
+				//open a dialog to present the metadata, if metadata url is available (else could present title/abstract)
+				break
+			}
+		},
+		beforeOpen: function(event, ui) {
+			var $menu = ui.menu,
+				$target = ui.target;
+			$(document)
+//				.contextmenu("replaceMenu", [{title: "aaa"}, {title: "bbb"}])
+//				.contextmenu("setEntry", "copy", "Copy '" + $target.text() + "'")
+//				.contextmenu("enableEntry", "paste", (CLIPBOARD !== ""));
+			// Optionally return false, to prevent opening the menu now
+		}
+	});
+	/* now in context menu
     element.delegate('.urd-layer',
             'mouseover',function() {
             $(this).find('.urd-layer-verwijder').removeClass('hidden');
@@ -81,7 +134,7 @@ $.widget("urd.urdLayerTree", {
             var element = $(this).parents('.urd-layer');
             var layer = element.data('layer');
             layer.remove();
-    });
+    }); */
    
    
      urd.bind("addlayer",

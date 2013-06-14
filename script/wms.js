@@ -42,11 +42,11 @@ OpenLayers.Request.GET({
 					 layers: this.name, 
 					 label: this.title, 
 					 styles: this.styles,
-					 legend: {url:this.styles[0].legend.href,title:this.styles[0].legend.title},
+					 legend: {url:(this.styles[0]?this.styles[0].legend.href:""),title:(this.styles[0]?this.styles[0].legend.title:"")},
 					 queryable:this.queryable,
 					 metadataURLs: this.metadataURLs,
 					 formats: this.formats,
-					 bounds:this.bounds,
+					 maxExtent:this.bounds,
 					 attribution: this.attribution
 					}
 					client.layers(lyrOpts);
