@@ -87,7 +87,7 @@ $.widget("urd.urdLayerTree", {
 			switch(ui.cmd){
 			case "zoom":
 				console.log(layer);
-				
+				//todo: maxExtent is now always set to bglayer
 				break
 			case "remove":
 				layer.remove();
@@ -106,6 +106,10 @@ $.widget("urd.urdLayerTree", {
 				break
 			case "metadata":
 				//open a dialog to present the metadata, if metadata url is available (else could present title/abstract)
+				if (layer.olLayer.metadataURLs[0].href)
+					new window('md',layer.olLayer.metadataURLs[0].href,'height=600,width=800');
+				else
+					alert(options.label+". "+options.desc);
 				break
 			}
 		},

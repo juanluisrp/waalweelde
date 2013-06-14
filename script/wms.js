@@ -12,8 +12,7 @@ var format = new OpenLayers.Format.WMSCapabilities({versiom:"1.3.0"});
 OpenLayers.Request.GET({
     url: server,
     params: {
-        SERVICE: "WMS",
-        VERSION: "1.3.0", //should check for availability of 1.3.0 also?
+        SERVICE: "WMS", //should check for availability of 1.3.0 also?
         REQUEST: "GetCapabilities"
     },
     success: function(request) {
@@ -46,7 +45,7 @@ OpenLayers.Request.GET({
 					 queryable:this.queryable,
 					 metadataURLs: this.metadataURLs,
 					 formats: this.formats,
-					 maxExtent:this.bounds,
+					 maxExtent:this.bounds?this.bounds.tostring().split(","):null,
 					 attribution: this.attribution
 					}
 					client.layers(lyrOpts);
