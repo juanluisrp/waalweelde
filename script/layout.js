@@ -71,11 +71,14 @@ $('#layertree').urdLayerTree({urd:'#center'});
 $('#legend').urdLegend({urd:'#center'});
 
 var kaart1move = function(e) {
-  var xy = e.xy;
+
+  var lonlat = client.kaart1.getLonLatFromPixel(e.xy);
+  var xy = client.kaart2.getPixelFromLonLat(lonlat);
   $('#pointer2').css({top: xy.y-4, left: xy.x-4})
 }
 var kaart2move = function(e) {
-  var xy = e.xy;
+
+  var xy = client.kaart1.getPixelFromLonLat(client.kaart2.getLonLatFromPixel(e.xy));
   $('#pointer1').css({top: xy.y-4, left: xy.x-4})
 }
 client.kaart1.events.register('mousemove', {}, kaart1move);
