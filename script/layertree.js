@@ -86,7 +86,8 @@ $.widget("urd.urdLayerTree", {
 			var self = element.data('self');
 			switch(ui.cmd){
 			case "zoom":
-				console.log(layer);
+				var urd = $(self.options.urd).data('urd');
+        urd.center(layer.extent());
 				//todo: maxExtent is now always set to bglayer
 				break
 			case "remove":
