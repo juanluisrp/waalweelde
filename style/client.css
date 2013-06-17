@@ -14,6 +14,9 @@ font-family: 'Arimo', sans-serif;
   height: 100%;
   
 }
+.ui-layout-south, .ui-layout-west {
+  background: white;
+}
 .ui-layout-resizer {
 background: #3892d3;
 }

@@ -41,6 +41,16 @@ var map_options = {
     resizable: false,
     spacing_open : 0,
     size: 32
+   },
+   south: {
+   initClosed: true,
+   resizable: false,
+   size: 230,
+   fxName:               "slide"
+   ,  fxSpeed:               "slow",
+   onresize: eastResize,
+   onopen: eastResize,
+    onclose: eastResize
    }
 }
 
