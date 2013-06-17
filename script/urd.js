@@ -21,7 +21,6 @@ $.URD.Client = function(element, options) {
   this.olMapOptions.maxExtent = new OpenLayers.Bounds(
   this.maxExtent[0],this.maxExtent[1],this.maxExtent[2],this.maxExtent[3]);
 
-
   this.projection = this.options.projection;
   this.displayProjection = this.options.displayProjection;
 

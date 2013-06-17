@@ -6,7 +6,6 @@ $.URD = $.URD || {};
 
 $.URD.addWMS = function (server,layer,title) {
 
-
 var format = new OpenLayers.Format.WMSCapabilities({versiom:"1.3.0"});
 
 OpenLayers.Request.GET({
@@ -45,7 +44,7 @@ OpenLayers.Request.GET({
 					 queryable:this.queryable,
 					 metadataURLs: this.metadataURLs,
 					 formats: this.formats,
-					 maxExtent:this.bounds?this.bounds.tostring().split(","):null,
+					 extent:{box:this.llbbox},
 					 attribution: this.attribution
 					}
 					client.layers(lyrOpts);
@@ -56,8 +55,6 @@ OpenLayers.Request.GET({
 		
 		if (matchedLayer=="") {
 
-	console.log(layerNames);
-		
 			//here open a panel to let the user select a layer from the list
 			//note that layer can contain a comma separated list of layers
 			
