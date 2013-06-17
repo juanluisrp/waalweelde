@@ -35,7 +35,7 @@ OpenLayers.Request.GET({
 				if (this.name==layer || (this.name.indexOf(":")>0 && this.name.split(":")[1]==layer) || capabilities.capability.layers.length == 1) {
 					 var lyrOpts = {
 					 type:"wms",
-					 url: capabilities.service.href||server, 
+					 url: capabilities.capability.request.getmap.get.href||server, 
 					 desc: this.abstract,
 					 layers: this.name, 
 					 label: this.title, 
