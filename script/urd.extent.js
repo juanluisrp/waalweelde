@@ -31,7 +31,7 @@ $.extend(URD.Layer.prototype, {
           maxExtent = this.options.extent;
         }
         else {
-          maxExtent.box = this.options.maxExtent;
+          maxExtent.box = this.map.maxExtent;
         }
         return maxExtent;
     }
