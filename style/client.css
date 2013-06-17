@@ -98,3 +98,7 @@ font-size:.8em;
 }
 
  .ui-menu { position: absolute;z-index:99; }
+ 
+#styleSelector {
+ max-width: 550px;
+}
