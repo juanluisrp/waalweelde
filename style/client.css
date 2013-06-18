@@ -1,4 +1,4 @@
-body {
+body, .ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
 font-family: 'Arimo', sans-serif;
 }
 /* layout stuff*/
@@ -78,6 +78,10 @@ text-align: right;
 .urd-legend {
   overflow: auto;
 }
+
+.urd-graphpopup {
+  display: inline;
+}
 #mdResults {
 font-size:.8em;
 }
@@ -100,11 +104,25 @@ font-size:.8em;
  .ui-menu { position: absolute;z-index:99; }
  
 
- .line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-}
 #styleSelector {
  max-width: 550px;
+}
+
+
+
+/* jquery-ui stuff*/
+
+.ui-widget-content  {
+  border: solid 1px #69adde;
+}
+
+.ui-widget-header {
+background: #157fcc;
+color: white;
+font-weight: normal;
+
+}
+.ui-dialog .ui-dialog-titlebar {
+  padding: 1px;
+  padding-left: 5px;
 }
