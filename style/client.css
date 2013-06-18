@@ -98,3 +98,9 @@ font-size:.8em;
 }
 
  .ui-menu { position: absolute;z-index:99; }
+ 
+ .line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}

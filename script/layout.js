@@ -79,6 +79,7 @@ client = $('#center').urd({center: {zoom: 5,position: [5,52]
 }).data('urd');
 $('#layertree').urdLayerTree({urd:'#center'});
 $('#legend').urdLegend({urd:'#center'});
+$('#grafiek').urdGraphs({urd:'#center'});
 
 var kaart1move = function(e) {
 
