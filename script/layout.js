@@ -1,6 +1,10 @@
 var client;
+OpenLayers.Util.onImageLoadErrorColor = 'transparent';
+
 $(document).ready(function() {
 var half = ($(document).width() - 230 ) /2;
+
+$( "#tabs" ).tabs();
 
 /* bind panel resize event to map resize function*/
 var eastResize = function() {
@@ -21,7 +25,7 @@ var layout_options = {
    },
    west: {
     resizable: false,
-    size: 230
+    size: 350
    }
 };
 
@@ -75,7 +79,32 @@ client = $('#center').urd({center: {zoom: 5,position: [5,52]
      attribution: '(c) OSM & Kadaster',
      format: "image/png8",
      legend: {url: 'http://kaart.pdok.nl/img/PDOK-logo.png'}
-  }]
+  }/*,
+  {
+        type: 'wms',
+		label: 'MaptableMixer (vlak)',
+        url: 'http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WMSServer?service=WMS',
+        layers: '1',
+		version:'1.3.0',
+		extent:[175671.750000,307278.468750,178303.453125,318462.781250],
+        style: null,
+        visibility: true,
+        //format: "image/png",
+		legend: {url: 'http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=1'}
+    },
+{
+        type: 'wms',
+		version:"1.3.0",
+		extent:[175671.750000,307278.468750,178303.453125,318462.781250],
+        label: 'MaptableMixer (punt)',
+        url: 'http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WMSServer?service=WMS',
+        layers: '0',
+        style: null,
+        visibility: false,
+        //format: "image/png",
+		legend: {url: 'http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=0'}
+    }*/
+  ]
 }).data('urd');
 $('#layertree').urdLayerTree({urd:'#center'});
 $('#legend').urdLegend({urd:'#center'});

@@ -71,13 +71,35 @@
 </div>
 <div class="ui-layout-west">
   <div class="panel-header">Informatie bronnen</div>
-  <div id="search">
-	<input type="text" id="mdSuggest" value=""/>
+  <div id="tabs" style="padding:none">
+<ul>
+<li><a href="#tabs-1">Catalogus</a></li>
+<li><a href="#tabs-2">Kaarten</a></li>
+<li><a href="#tabs-3">WMS</a></li>
+</ul>
+<div id="tabs-1">
+	<input type="text" id="mdSuggest" value="" style="width:180px"/>
 	<input type="button" id="mdQuery" class="button" value="Zoek"/>
-	<!-- <input type="button" id="addWMS" class="button" value="+" onclick="client.addWMS($('#mdSuggest').val())" /> -->
+	
 	<div id="mdResults" title="Zoekresultaat"></div>
 	<div id="wmsSelectLayer" title="Selecteer kaartlaag"></div>
-  </div>
+</div>
+<div id="tabs-2">
+<select id="ddMaps"></select><input type="button" id="addWMS" class="button" value="open" onclick="" />
+</div>
+<div id="tabs-3">
+Geef een WMS server adres op:<br/><br/>
+<input type="text" id="tbWMS" style="width:180px" value=""/> 
+<input type="button" id="addWMS" class="button" value="verbind" onclick="$.URD.addWMS($('#tbWMS').val())" />
+<br/>
+<select id="ddWMS" onchange="$('#tbWMS').val($('#ddWMS').val())"  style="width:180px">
+<option value="">Of selecteer uit lijst</option>
+<option value="http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WMSServer">Maptable mixer</option>
+<option value="http://ec2-184-73-66-219.compute-1.amazonaws.com:8080/geoserver/ecotopen/wms">Ecotopen</option>
+</select>
+</div>
+</div>
+  
   <div id="layers">
     <div class="west-element"><div class="panel-header"><span class="ui-panel-title">Lagen </span>
     <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="minify"><span class="ui-button-icon-primary ui-icon ui-icon-minus"></span><span class="ui-button-text">minify</span></button>

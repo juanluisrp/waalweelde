@@ -1,10 +1,13 @@
 
 OpenLayers.ProxyHost="proxy.php?url=";
 
+var wmsServer;
 
 $.URD = $.URD || {};
 
 $.URD.addWMS = function (server,layer,title) {
+
+wmsServer = server;//todo: should be used by click event only, not global
 
 var format = new OpenLayers.Format.WMSCapabilities({versiom:"1.3.0"});
 
@@ -15,8 +18,6 @@ OpenLayers.Request.GET({
         REQUEST: "GetCapabilities"
     },
     success: function(request) {
-		console.log(request);
-		console.log(arguments);
         var doc = request.responseXML;
         if (!doc || !doc.documentElement) {
             doc = request.responseText;
@@ -39,6 +40,7 @@ OpenLayers.Request.GET({
 			//does the layer exist
 			$(capabilities.capability.layers).each(function(){
 				//als laag is de geselecteerde laag, of laag is geselecteerd maar dan zonder prefix, of er is maar 1 laag in service
+				//todo: addwms should check if layer is already available in toc
 				if (this.name==layer || (this.name.indexOf(":")>0 && this.name.split(":")[1]==layer) || capabilities.capability.layers.length == 1) {
 					 var lyrOpts = {
 					 type:"wms",
@@ -65,30 +67,42 @@ OpenLayers.Request.GET({
 			//here open a panel to let the user select a layer from the list
 			//note that layer can contain a comma separated list of layers
 			
-			var html = "<select id='selLayer'>";
+			var html = "<select id='selLayer' multiple='true' size='6'>";
 			$(layerNames).each(function(){
-				console.log(this);
 				html += "<option value="+this.name+">"+(this.title||this.name)+"</option>";
 			})
-			html+= "</select><button onclick=\"$.URD.addWMS('"+ server+ "',$('#selLayer').val(),$('#selLayer option:selected').text());$('#wmsSelectLayer').dialog( 'close');\">Selecteer</button>";
+			html+= "</select>";
 		$( "#wmsSelectLayer" ).html(html).dialog({
 			autoOpen: true,
 			height: 500,
 			width: 750,
-			modal: true
+			modal: true,
+			buttons:[{
+				text:"Voeg toe",
+				id:"btLayersSubmit",
+				click: function( event, ui ) {}
+			}]
 		});
-		
-		};
+		$("#btLayersSubmit").on("click", function(e){
+			$('#selLayer option:selected').each(function(){
+				$.URD.addWMS( wmsServer,$(this).val(),$(this).text());
+			});
+			$('#wmsSelectLayer').dialog( 'close');
+		});
+	};
 
 		
     },
     failure: function(req) {
-		console.log(req);
-		console.log(arguments);
 		alert("Trouble getting capabilities doc");
         OpenLayers.Console.error.apply(OpenLayers.Console, arguments);
     }
 });
+
+	
+
 }
 
-   
+$(document).ready(function() {
+
+   });

@@ -108,6 +108,10 @@ font-size:.8em;
  max-width: 550px;
 }
 
+#selLayer {
+	width: 550px;
+}
+
 /* openlayers stuff */
 
 div.olControlZoom a {
