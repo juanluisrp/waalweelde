@@ -94,4 +94,18 @@ var kaart2move = function(e) {
 }
 client.kaart1.events.register('mousemove', {}, kaart1move);
 client.kaart2.events.register('mousemove', {}, kaart2move);
+
+/* west-menu harminonica logic*/
+$('#layers').delegate('.ui-icon-minus','click',function(){
+  var button = $(this);
+  button.removeClass('ui-icon-minus').addClass('ui-icon-plus');
+  $(this).parents('.west-element').find('.west-element-content').hide('blind');
+});
+
+$('#layers').delegate('.ui-icon-plus','click',function(){
+  var button = $(this);
+  button.removeClass('ui-icon-plus').addClass('ui-icon-minus');
+  $(this).parents('.west-element').find('.west-element-content').show('blind');
+});
+
 });

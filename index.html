@@ -8,7 +8,7 @@
    <!-- jquery -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" type="text/css" href="style/jquery-ui-1.10.3.custom/css/custom-theme/jquery-ui-1.10.3.custom.css" />
 
   <!--  jquery.layout from:  http://layout.jquery-dev.net/  -->
   <script type="text/javascript" src="./libs/jquery.layout-latest.js"></script>
@@ -78,15 +78,24 @@
 	<div id="wmsSelectLayer" title="Selecteer kaartlaag"></div>
   </div>
   <div id="layers">
-    <div class="panel-header">Lagen</div>
-    <div id="layertree">
+    <div class="west-element"><div class="panel-header"><span class="ui-panel-title">Lagen </span>
+    <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="minify"><span class="ui-button-icon-primary ui-icon ui-icon-minus"></span><span class="ui-button-text">minify</span></button>
     </div>
-    <div class="panel-header">Legenda</div>
-    <div id="legend">
+    <div id="layertree" class="west-element-content">
     </div>
-    <div class="panel-header">Grafieken</div>
-    <div id="grafiek">
     </div>
+    <div class="west-element">
+    <div class="panel-header"><span class="ui-panel-title">Legenda </span>
+    <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="minify"><span class="ui-button-icon-primary ui-icon ui-icon-minus"></span><span class="ui-button-text">minify</span></button></div>
+    <div id="legend"  class="west-element-content">
+    </div>
+    </div>
+    <div class="west-element">
+    <div class="panel-header"><span class="ui-panel-title">Grafieken </span>
+    <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="minify"><span class="ui-button-icon-primary ui-icon ui-icon-minus"></span><span class="ui-button-text">minify</span></button></div>
+    <div id="grafiek" class="west-element-content">
+    </div>
+    
   </div>
 </div>
 

@@ -108,21 +108,54 @@ font-size:.8em;
  max-width: 550px;
 }
 
+/* openlayers stuff */
 
-
+div.olControlZoom a {
+  background: #157fcc !important;
+}
+a.olControlZoomOut, a.olControlZoomIn {
+  border-radius: 0 !important;
+}
 /* jquery-ui stuff*/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+border: solid 1px #4f9fd9;
+background: #4f9fd9;
+}
 
 .ui-widget-content  {
   border: solid 1px #69adde;
 }
-
+.ui-dialog {
+padding: 0 !important;
+}
+.ui-corner-all {
+  border-radius: 2px !important;
+}
 .ui-widget-header {
 background: #157fcc;
+border: solid 1px #157fcc;
 color: white;
 font-weight: normal;
-
+border-bottom-left-radius: 0 !important;
+border-bottom-right-radius: 0 !important;
 }
+
 .ui-dialog .ui-dialog-titlebar {
   padding: 1px;
   padding-left: 5px;
+}
+
+.ui-button-icon-only {
+  border-radius: 10px !important;  
+}
+.ui-icon {
+border-radius: 10px !important;
+}
+.ui-button-icon-only {
+width: 20px !important;
+height: 20px !important;
+}
+.ui-panel-title {
+  width: 190px;
+display: inline-block;
 }
