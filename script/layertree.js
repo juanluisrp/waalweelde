@@ -106,8 +106,17 @@ $.widget("urd.urdLayerTree", {
 				})	
 				break
 			case "opacity":
-				//open a dialog here and present an opacity slider
-				//urd.trigger('updateOpacity',layer);
+				//open a dialog here and present an opacity slider, todo: on slider-drag change opacity
+				layer.opacityChoice();
+				
+				$("#btOpacitySubmit").on("click", function(e){
+					//todo: move this somewhere
+					layer.options.opacityChoice.opacity = $("#opacitySlider").slider("value")/100;
+					layer.olLayer.setOpacity(layer.options.opacityChoice.opacity);
+					layer.olLayer2.setOpacity(layer.options.opacityChoice.opacity);
+					//todo: change the layer legend to the new style legend
+					$("#wmsSelectOpacity").dialog('close');
+				})	
 				break
 			case "legend":
 				var urd = $(self.options.urd).data('urd');

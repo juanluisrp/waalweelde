@@ -161,7 +161,7 @@ function send_request() {
   if(!($response = $lines)) {
     echo "Unable to retrieve file '$service_request'";
   }
-  $response = implode("",$response);
+  $response = implode("\n",$response);
   return $response;
 }
 ?> 

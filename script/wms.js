@@ -15,6 +15,8 @@ OpenLayers.Request.GET({
         REQUEST: "GetCapabilities"
     },
     success: function(request) {
+		console.log(request);
+		console.log(arguments);
         var doc = request.responseXML;
         if (!doc || !doc.documentElement) {
             doc = request.responseText;
@@ -24,8 +26,13 @@ OpenLayers.Request.GET({
 		var matchedLayer = "";
 
 		if (typeof(capabilities.capability)=="undefined"){
-			alert("Excuses, er is een fout opgetreden bij het verbinden met "+server+".");
-			return;
+			if (doc.indexOf("403")>0){
+			alert("Excuses, u heeft onvoldoende rechten om te verbinden met "+server+".");
+			return false;
+			}
+		
+			alert("Excuses, er is een onbekende fout opgetreden bij het verbinden met "+server+".");
+			return false;
 		}
 		
 			var layerNames = [];
@@ -75,8 +82,10 @@ OpenLayers.Request.GET({
 
 		
     },
-    failure: function() {
-        alert("Trouble getting capabilities doc");
+    failure: function(req) {
+		console.log(req);
+		console.log(arguments);
+		alert("Trouble getting capabilities doc");
         OpenLayers.Console.error.apply(OpenLayers.Console, arguments);
     }
 });
