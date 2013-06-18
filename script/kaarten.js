@@ -48,10 +48,35 @@ var brt = new OpenLayers.Layer.WMTS(
   ) 
 kaart1 = new OpenLayers.Map('map1-map', options);
 kaart2 = new OpenLayers.Map('map2-map', options);
+var MaptableMixer  = new OpenLayers.Layer.WMS(
+{
+        layertype: 'WMS',
+        name:'mtmx_pl',
+		title: 'MaptableMixer (vlak)',
+        url: 'http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WMSServer?service=WMS',
+        layer: 'Definitief Ontwerp_results_pl',
+        style: null,
+        visibility: true,
+        format: "image/png"
+    }
+  ) 
+var MaptableMixer2  = new OpenLayers.Layer.WMS(
+{
+        layertype: 'WMS',
+		name:'mtmx_pt',
+        title: 'MaptableMixer (punt)',
+        url: 'http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WMSServer?service=WMS',
+        layer: 'Definitief Ontwerp_results_pt',
+        style: null,
+        visibility: true,
+        format: "image/png"
+    }
+  ) 
+
 kaart1.zoomTo(2);
-kaart1.addLayer(brt);
-kaart2.addLayer(brt2);
- kaart1.zoomToMaxExtent();
+kaart1.addLayers([brt,MaptableMixer,MaptableMixer2]);
+kaart2.addLayers([brt2,MaptableMixer.clone(),MaptableMixer2.clone()]);
+kaart1.zoomToMaxExtent();
 kaart2.zoomToMaxExtent();
 kaart1.events.on({"move":move1Listener});
 kaart2.events.on({"moveend":move2Listener});
