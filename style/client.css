@@ -99,8 +99,13 @@ font-size:.8em;
 
  .ui-menu { position: absolute;z-index:99; }
  
+<<<<<<< HEAD
  .line {
   fill: none;
   stroke: steelblue;
   stroke-width: 1.5px;
+=======
+#styleSelector {
+ max-width: 550px;
+>>>>>>> e2b3029ebb450b7a055e0c5a57c298a74fc27a76
 }

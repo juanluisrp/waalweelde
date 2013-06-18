@@ -87,7 +87,7 @@ $.widget("urd.urdLayerTree", {
 			switch(ui.cmd){
 			case "zoom":
 				var urd = $(self.options.urd).data('urd');
-        urd.center(layer.extent());
+				urd.center(layer.extent());
 				//todo: maxExtent is now always set to bglayer
 				break
 			case "remove":
@@ -95,7 +95,15 @@ $.widget("urd.urdLayerTree", {
 				break
 			case "style":
 				//open a dialog here and present available styles to choose from
-				//urd.trigger('updateStyle',layer);
+				layer.styleChoice()
+				$("#btStyleSubmit").on("click", function(e){
+					//todo: move this somewhere
+					layer.options.styleChoice.style = $("#styleSelector").val();
+					layer.olLayer.mergeNewParams({styles:$("#styleSelector").val()});
+					layer.olLayer2.mergeNewParams({styles:$("#styleSelector").val()});
+					//todo: change the layer legend to the new style legend
+					$("#wmsSelectStyle").dialog('close');
+				})	
 				break
 			case "opacity":
 				//open a dialog here and present an opacity slider
