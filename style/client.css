@@ -96,6 +96,10 @@ text-align: right;
 .urd-graphpopup {
   display: inline;
 }
+.urd-graphelement {
+padding: 5px;
+cursor: pointer;
+}
 #mdResults {
 font-size:.8em;
 }

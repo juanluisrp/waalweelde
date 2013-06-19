@@ -3,7 +3,7 @@ $.template('urdGraphTree',
 '<div class="urd-graphtree  ui-widget-content"></div>');
 
 $.template('urdGraphElement',
-'<div class="urd-graphelement">${title}</div>');
+'<div class="urd-graphelement"><button class="ui-button ui-state-default ui-button-icon-only" role="button" aria-disabled="false" title="toggle grafiek"><span class="ui-button-icon-primary ui-icon ui-icon-bullet"  ></span><span class="ui-button-text">open</span></button>${title}</div>');
 
 $.template('urdGraphPopup',
 '<div class="urd-graphpopup" id="${id}"><svg></svg></div>');
@@ -17,7 +17,7 @@ $.widget("urd.urdGraphs", {
     var urd;
     var self = this;
     var element = this.element;
-    var lmElement = $.tmpl('urdGraphTree').appendTo(element);
+    var lmElement = $.tmpl('urdGraphTree').appendTo(element); 
     urd = $(this.options.urd).data('urd');
     //TODO: hier moet dus aan de hand van de model run grafieken worden gegenereerd ofzo
        
@@ -25,7 +25,7 @@ $.widget("urd.urdGraphs", {
   },
   _createWaterGraph: function(options) {
     var widget = options.widget;
-    var title= 'Definitief Ontwerp';
+    var title= 'Relatieve waterstand';
     var button = $.tmpl('urdGraphElement', {title: title}).appendTo(widget);
     
     var id = "urdGraph-" + new Date().getTime();
@@ -34,6 +34,7 @@ $.widget("urd.urdGraphs", {
     
     var dialog =  $('<div id="btn-'+id+'"></div>').html(html).dialog({title: title});
      widget.delegate('.urd-graphelement', 'click', function() {
+            $(this).find('.ui-icon').toggleClass('ui-icon-bullet').toggleClass('ui-icon-radio-on');
             dialog.dialog('isOpen')?dialog.dialog('close'):dialog.dialog('open')
            
             return false;
