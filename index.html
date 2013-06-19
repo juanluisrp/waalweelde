@@ -75,28 +75,43 @@
     <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="minify"><span class="ui-button-icon-primary ui-icon ui-icon-minus"></span><span class="ui-button-text">minify</span></button></div>
   <div id="tabs" class="west-element-content" style="padding:none">
 <ul>
-<li><a href="#tabs-2">Project</a></li>
+<li><a href="#tabs-1">Project</a></li>
 
-<li><a href="#tabs-1">Extra</a></li>
+<li><a href="#tabs-2">Extra</a></li>
 </ul>
+
+
 <div id="tabs-1">
-	<input type="text" id="mdSuggest" value="" style="width:180px"/>
-	<input type="button" id="mdQuery" class="button" value="Zoek"/>
-	Geef een WMS server adres op:<br/><br/>
-<input type="text" id="tbWMS" style="width:180px" value=""/> 
-<input type="button" id="addWMS" class="button" value="verbind" onclick="$.URD.addWMS($('#tbWMS').val())" />
+
+<div class="project-content ui-helper-clearfix" onclick="$.URD.addWMS('http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WMSServer')"><button id="addWMS" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only " role="button" aria-disabled="false" title="Bekijk lagen"><span class="ui-button-icon-primary ui-icon ui-icon-carat-1-e"  onclick="$.URD.addWMS($('#tbWMS').val())"></span></button><span>WaterVeiligheid </span>
+<div class="project-layers"></div>
+</div>
+<div class="project-content ui-helper-clearfix" onclick="$.URD.addWMS('http://ec2-184-73-66-219.compute-1.amazonaws.com:8080/geoserver/ecotopen/wms')"><button id="addWMS" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only " role="button" aria-disabled="false" title="Bekijk lagen"><span class="ui-button-icon-primary ui-icon ui-icon-carat-1-e"  onclick="$.URD.addWMS($('#tbWMS').val())"></span></button><span>Ecotopen </span>
+<div class="project-layers"></div>
+</div>
+
+
+<!--<li onclick="$.URD.addWMS('http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/ecotopen/MapServer/WMSServer')">Vegetatie klassen</li>-->
+</ul>
+</div>
+<div id="tabs-2">
+<div class="extra-content">
+Zoek in de landelijke databank:
+	<input type="text" id="mdSuggest" value="" style="width:160px"/>
+	 <button id="mdQuery" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="zoek"><span class="ui-button-icon-primary ui-icon ui-icon-search"></span><span class="ui-button-text">zoek</span></button>
+  
+  </div>
+  <hr/>
+  <div class="extra-content">
+	Een specifiek WMS server adres:<br/>
+<input type="text" id="tbWMS" style="width:160px" value="http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WMSServer"/>  <button id="addWMS" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="verbind met de server"><span class="ui-button-icon-primary ui-icon ui-icon-transferthick-e-w"  onclick="$.URD.addWMS($('#tbWMS').val())"></span><span class="ui-button-text">verbind</span></button>
+
 <br/>
 	<div id="mdResults" title="Zoekresultaat"></div>
 	<div id="wmsSelectLayer" title="Selecteer kaartlaag"></div>
 </div>
-
-<div id="tabs-2">
-<ul>
-<li onclick="$.URD.addWMS('http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WMSServer')">Waterveiligheid</li>
-<li onclick="$.URD.addWMS('http://ec2-184-73-66-219.compute-1.amazonaws.com:8080/geoserver/ecotopen/wms')">Ecotopen</li>
-<!--<li onclick="$.URD.addWMS('http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/ecotopen/MapServer/WMSServer')">Vegetatie klassen</li>-->
-</ul>
 </div>
+
 </div>
   </div>
 

@@ -17,6 +17,7 @@ font-family: 'Arimo', sans-serif;
 .ui-layout-south, .ui-layout-west {
   background: white;
   overflow: auto;
+  font-size: 0.8em;
 }
 .ui-layout-resizer {
 background: #3892d3;
@@ -32,6 +33,7 @@ background: #3892d3;
   color: white;
   padding-left: 6px;
 line-height: 29px;
+font-size: 1.1em;
 }
 .map-panel {
   width: 100%;
@@ -57,6 +59,16 @@ background-repeat: no-repeat;
 
 .hidden {
   visibility: hidden;
+}
+.extra-content {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.project-content {
+  margin-top: 10px;
+  margin-bottom: 5px;
+ border-bottom: solid 1px #eeeecc;
+ cursor: pointer;
 }
 .urd-layer {
   border-bottom: solid 1px #eeeecc;
@@ -182,4 +194,7 @@ font-size: 0.9em;
 }
 .ui-tabs-active {
 background: white !important;
+}
+.ui-tabs .ui-tabs-panel {
+  padding: 0.1em;
 }
