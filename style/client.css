@@ -163,3 +163,13 @@ height: 20px !important;
   width: 190px;
 display: inline-block;
 }
+.ui-tabs {
+padding: 0;
+}
+.ui-tabs .ui-tabs-nav li a {
+padding: 2px;
+font-size: 0.9em;
+}
+.ui-tabs-active {
+background: white !important;
+}

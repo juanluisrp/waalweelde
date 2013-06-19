@@ -25,7 +25,7 @@ var layout_options = {
    },
    west: {
     resizable: false,
-    size: 350
+    size: 230
    }
 };
 
