@@ -16,6 +16,7 @@ font-family: 'Arimo', sans-serif;
 }
 .ui-layout-south, .ui-layout-west {
   background: white;
+  overflow: auto;
 }
 .ui-layout-resizer {
 background: #3892d3;
@@ -59,6 +60,7 @@ background-repeat: no-repeat;
 }
 .urd-layer {
   border-bottom: solid 1px #eeeecc;
+  font-size: 0.8em;
 }
 .urd-layertree-element-header {
   margin-top: 5px;
@@ -127,13 +129,16 @@ background: #4f9fd9;
 }
 
 .ui-widget-content  {
-  border: solid 1px #69adde;
+  border: solid 1px #157fcc;
 }
 .ui-dialog {
 padding: 0 !important;
 }
 .ui-corner-all {
   border-radius: 2px !important;
+}
+.ui-tabs-nav {
+  border-radius: 0px !important;  
 }
 .ui-widget-header {
 background: #157fcc;
@@ -160,8 +165,13 @@ width: 20px !important;
 height: 20px !important;
 }
 .ui-panel-title {
-  width: 190px;
+  
 display: inline-block;
+}
+.panel-header button {
+  float: right;
+  margin: 5px;
+  margin-right: 15px;
 }
 .ui-tabs {
 padding: 0;

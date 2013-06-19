@@ -65,7 +65,7 @@ var matrixIds = new Array(26);
   for (var i=0; i<26; ++i) {
     matrixIds[i] = 'EPSG:28992'+':' + i;
 }     
-client = $('#center').urd({center: {zoom: 5,position: [5,52]
+client = $('#center').urd({center: {box: [5.989178,51.853822,6.103160,51.914010]
   },
   layers:[{
      type: 'wmts',
@@ -79,7 +79,13 @@ client = $('#center').urd({center: {zoom: 5,position: [5,52]
      attribution: '(c) OSM & Kadaster',
      format: "image/png8",
      legend: {url: 'http://kaart.pdok.nl/img/PDOK-logo.png'}
-  }/*,
+  },
+  {"type":"wms","url":"http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WmsServer?","desc":"A02_VegStruct_Rijnwaarden","layers":"2","label":"Vegetatie: 0 jaar","styles":[{"name":"default","title":"2","legend":{"width":"124","height":"112","format":"image/png","href":"http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=2"}}],"legend":{"url":"http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=2"},"queryable":true,"metadataURLs":[],"formats":["image/bmp","image/jpeg","image/tiff","image/png","image/png8","image/png24","image/png32","image/gif","image/svg+xml"],"extent":{"box":["5.989178","51.853822","6.103160","51.914010"]}},
+  {"type":"wms","url":"http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WmsServer?","desc":"A03_VegStruct_Rijnwaarden_5_jaar_geen_beheer","layers":"3","label":"Vegetatie: 5 jaar geen beheer","styles":[{"name":"default","title":"3","legend":{"width":"124","height":"112","format":"image/png","href":"http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=3"}}],"legend":{"url":"http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=3"},"queryable":true,"metadataURLs":[],"formats":["image/bmp","image/jpeg","image/tiff","image/png","image/png8","image/png24","image/png32","image/gif","image/svg+xml"],"extent":{"box":["5.989178","51.853822","6.103160","51.914010"]}},
+  {"type":"wms","url":"http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WmsServer?","desc":"A04_VegStruct_Rijnwaarden_5_jaar_extreem_beheer","layers":"4","label":"Vegetatie: 5 jaar extreem beheer","styles":[{"name":"default","title":"4","legend":{"width":"124","height":"112","format":"image/png","href":"http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=4"}}],"legend":{"url":"http://ec2-54-228-203-57.eu-west-1.compute.amazonaws.com:6080/arcgis/services/urd_oost/MaptableMixer/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=4"},"queryable":true,"metadataURLs":[],"formats":["image/bmp","image/jpeg","image/tiff","image/png","image/png8","image/png24","image/png32","image/gif","image/svg+xml"],"extent":{"box":["5.989178","51.853822","6.103160","51.914010"]}}
+  
+  
+  /*,
   {
         type: 'wms',
 		label: 'MaptableMixer (vlak)',
