@@ -3,7 +3,7 @@ $.template('urdGraphTree',
 '<div class="urd-graphtree  ui-widget-content"></div>');
 
 $.template('urdGraphElement',
-'<div class="urd-graphelement"><button class="ui-button ui-state-default ui-button-icon-only" role="button" aria-disabled="false" title="toggle grafiek"><span class="ui-button-icon-primary ui-icon ui-icon-bullet"  ></span><span class="ui-button-text">open</span></button>${title}</div>');
+'<div class="urd-graphelement" type="${id}"><button class="ui-button ui-state-default ui-button-icon-only" role="button" aria-disabled="false" title="toggle grafiek"><span class="ui-button-icon-primary ui-icon ui-icon-bullet"  ></span><span class="ui-button-text">open</span></button>${title}</div>');
 
 $.template('urdGraphPopup',
 '<div class="urd-graphpopup" id="${id}"><svg></svg></div>');
@@ -21,20 +21,26 @@ $.widget("urd.urdGraphs", {
     urd = $(this.options.urd).data('urd');
     //TODO: hier moet dus aan de hand van de model run grafieken worden gegenereerd ofzo
        
-    this._createWaterGraph({url:'Definitief Ontwerp_results_1D.csv', widget: lmElement});
+    this._createWaterGraph({url:'Definitief Ontwerp_results_1D.csv', widget: lmElement, title: 'Relatieve waterstand'});
+    
+  //  this._createWaterGraph({url:'totaal.csv', widget: lmElement, title: 'Absolute waterstand'});
   },
   _createWaterGraph: function(options) {
     var widget = options.widget;
-    var title= 'Relatieve waterstand';
-    var button = $.tmpl('urdGraphElement', {title: title}).appendTo(widget);
+    var title= options.title;
+     var id = "urdGraph-" + new Date().getTime();
+    var button = $.tmpl('urdGraphElement', {title: title, id: id}).appendTo(widget);
     
-    var id = "urdGraph-" + new Date().getTime();
+    
    
    var html = $.tmpl('urdGraphPopup', {id: id});
     
     var dialog =  $('<div id="btn-'+id+'"></div>').html(html).dialog({title: title});
+   
      widget.delegate('.urd-graphelement', 'click', function() {
             $(this).find('.ui-icon').toggleClass('ui-icon-bullet').toggleClass('ui-icon-radio-on');
+            var id = $(this).attr('type');
+           // var dialog2 = $('#btn-'+$(this).attr('type')).dialog();
             dialog.dialog('isOpen')?dialog.dialog('close'):dialog.dialog('open')
            
             return false;
