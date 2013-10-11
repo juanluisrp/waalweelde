@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <title>Waalweelde dashboard: Intro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+	  #header {
+		background: url("img/header-west.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+	  }
+	  .map { 	-webkit-box-shadow:  3px 3px 3px rgba(0, 0, 0, 0.45);
+				-moz-box-shadow:  3px 3px 3px rgba(0, 0, 0, 0.45);
+				box-shadow:  3px 3px 3px rgba(0, 0, 0, 0.45);
+		  }
+	  .hero-unit {background-color:#157FCC;color:white;border-radius: 0 0 6px 6px;}
+    </style>
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="bootstrap/js/html5shiv.js"></script>
+    <![endif]-->
+
+  
+    <link rel="shortcut icon" href="favicon.png">
+  </head>
+
+  <body>
+  
+	<div id="header"></div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Waalweelde</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">Over</a></li>
+              <li><a href="#contact">Contact</a></li>
+             
+            </ul>
+            <form class="navbar-form pull-right">
+              <input class="span2" type="text" placeholder="Gebruikersnaam">
+              <input class="span2" type="password" placeholder="Wachtwoord">
+              <button type="submit" class="btn">Log in</button>
+            </form>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+	  <div><img src="style/img/header-west.png" width="100%" /></div>
+      <div class="hero-unit">
+		
+        <h1>Dashboard</h1>
+        <p>Het programma WaalWeelde is er op gericht om de Waal en haar omgeving mooier, veiliger, natuurlijker en economisch sterker te maken. In het programma werken betrokken partijen onder regie van de provincie Gelderland nauw met elkaar samen.</p>
+        <p><a href="http://www.waalweelde.nl/" class="btn btn-large">Lees verder &raquo;</a></p>
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span4">
+          <h2>Recente kaarten</h2>
+          <p>Onderstaande kaarten zijn recent bewerkt in het dashboard</p>
+          <div class="row">
+		  <div class="span1"><img src="style/img/maps/images1.jpg" class=map /></div>
+		  <div class="span3"><p><b>Reconstructie haventerrein Ruweelde</b><br/>Doel van de reconstructie is om de bovenzijde van het haven terrein te ontgronden ... </p><p><a class="btn" href="dash.html?id=1">Open dashboard &raquo;</a></p></div>
+		  </div>
+		  <div class="row">
+		  <div class="span1"><img src="style/img/maps/images2.jpg" class=map /></div>
+		  <div class="span3"><p><b>Reconstructie haventerrein Ruweelde</b><br/>Doel van de reconstructie is om de bovenzijde van het haven terrein te ontgronden ... </p><p><a class="btn" href="dash.html?id=2">Open dashboard &raquo;</a></p></div>
+		  </div>
+		  <div class="row">
+		  <div class="span1"><img src="style/img/maps/images3.jpg" class=map /></div>
+		  <div class="span3"><p><b>Reconstructie haventerrein Ruweelde</b><br/>Doel van de reconstructie is om de bovenzijde van het haven terrein te ontgronden ... </p><p><a class="btn" href="dash.html?id=3">Open dashboard &raquo;</a></p></div>
+		  </div>
+		  <div class="row">
+		  <div class="span1"><img src="style/img/maps/images4.jpg" class=map /></div>
+		  <div class="span3"><p><b>Reconstructie haventerrein Ruweelde</b><br/>Doel van de reconstructie is om de bovenzijde van het haven terrein te ontgronden ... </p><p><a class="btn" href="dash.html?id=4">Open dashboard &raquo;</a></p></div>
+		  </div>
+		  
+		  
+		  
+        </div>
+        <div class="span4">
+          <h2>Per uiterwaard</h2>
+          <p>Selecteer een uiterwaard van het Waalweelde gebied om het dashboard van dat gebied te openen</p>
+          <p><img src="style/img/maps/KaartWaalWeelde.jpg" class="map" /></p>
+		  <div class="row">
+		  <div class=span2>
+		  <h3>Oost</h3>
+		  <ul>
+			<li>Overbetuwe</li>
+			<li>Lingewaard</li>
+			<li>Rijnwaarden</li>
+			<li>Millingen</li>
+			<li>Ubbergen</li>
+			<li>Nijmegen</li>
+			<li>Beuningen</li>
+		  </ul>
+		  </div>
+		  <div class=span2>
+		  <h3>West</h3>
+		  <ul>
+			<li>Lingewaal</li>
+			<li>Neerijnen</li>
+			<li>Zaltbommel</li>
+			<li>Maasdriel</li>
+		  </ul>
+		  <h3>Midden</h3>
+		  <ul>
+			<li>Tiel</li>
+			<li>Neder Betuwe</li>
+			<li>Druten</li>
+			<li>West Maas en Waal</li>
+		  </ul>
+		  </div>
+		  </div>
+
+		
+       </div>
+        <div class="span4">
+          <h2>Inloggen voor sessies</h2>
+          <p>
+			Als deelnemer of beheerder van inrichtings sessies kunt u inloggen en gebruik maken van geavanceerde functies van het dashboard. 
+			Een mogelijkheid om in te loggen vindt u bovenin dit scherm rechts. U kunt ook een verzoek indienen om uzelf te <a href="#">registreren</a> voor het deelnemen aan sessies. 
+		  </p>
+          <p><a class="btn" href="#">Lees verder &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Waalweelde is een project van Urban Regions in de Delta (NWO) ism de provincie Gelderland  2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="style/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap-transition.js"></script>
+    <script src="bootstrap/js/bootstrap-alert.js"></script>
+    <script src="bootstrap/js/bootstrap-modal.js"></script>
+    <script src="bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="bootstrap/js/bootstrap-tab.js"></script>
+    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="bootstrap/js/bootstrap-popover.js"></script>
+    <script src="bootstrap/js/bootstrap-button.js"></script>
+    <script src="bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="bootstrap/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>
