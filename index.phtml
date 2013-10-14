@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+$users = array(
+    "paul" => "appel",
+    "jan" => "peer",
+    "lammert" => "druif",
+    "steven" => "kiwi",
+    "ton" => "orange",
+);
+
+if (!isset($_SESSION["user"]) &&  isset($_POST["user"]) && $users[$_POST["user"]]==$_POST["pass"]){
+	$_SESSION["user"] = $_POST["user"];
+}
+?>
 <!DOCTYPE html>
 <html lang="nl">
   <head>
@@ -22,6 +37,13 @@
 				box-shadow:  3px 3px 3px rgba(0, 0, 0, 0.45);
 		  }
 	  .hero-unit {background-color:#157FCC;color:white;border-radius: 0 0 6px 6px;}
+	  
+	  .loggedin {
+	   margin:5px;
+	   color:#eee;
+	   float:right;
+	  }
+	  
     </style>
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -50,14 +72,24 @@
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
               <li><a href="#about">Over</a></li>
-              <li><a href="#contact">Contact</a></li>
-             
+              <li><a href="#contact">Contact</a></li> 
             </ul>
-            <form class="navbar-form pull-right">
-              <input class="span2" type="text" placeholder="Gebruikersnaam">
-              <input class="span2" type="password" placeholder="Wachtwoord">
+			<?php 
+			if (isset($_SESSION["user"])){
+				?>
+				<div class="loggedin">Ingelogd als <i><?= $_SESSION["user"] ?></i></div>
+				<?php
+				} else{
+			
+			?>
+            <form class="navbar-form pull-right" action="index.phtml" method="post">
+              <input class="span2" type="text" placeholder="Gebruikersnaam" name=user>
+              <input class="span2" type="password" placeholder="Wachtwoord" name=pass>
               <button type="submit" class="btn">Log in</button>
             </form>
+			<?php
+			}
+			?>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -69,7 +101,7 @@
 	  <div><img src="style/img/header-west.png" width="100%" /></div>
       <div class="hero-unit">
 		
-        <h1>Dashboard</h1>
+        <h1>Dashboard Uiterwaardenbeheer</h1>
         <p>Het programma WaalWeelde is er op gericht om de Waal en haar omgeving mooier, veiliger, natuurlijker en economisch sterker te maken. In het programma werken betrokken partijen onder regie van de provincie Gelderland nauw met elkaar samen.</p>
         <p><a href="http://www.waalweelde.nl/" class="btn btn-large">Lees verder &raquo;</a></p>
       </div>
