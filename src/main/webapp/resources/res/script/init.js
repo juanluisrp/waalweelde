@@ -1,8 +1,6 @@
- var app1, app2;
-  var viewer;
-  
+var app1, app2;
+var viewer;
 var portalsReady = 0;
-
  
 //WMTS uses TILEMATRIXes instead of Z, so we need to have an array of all the needed IDs  
 //For PDOK/BRT:

@@ -89,10 +89,10 @@ $.widget("urd.urdLayerTree", {
 				var urd = $(self.options.urd).data('urd');
 				urd.center(layer.extent());
 				//todo: maxExtent is now always set to bglayer
-				break
+				break;
 			case "remove":
 				layer.remove();
-				break
+				break;
 			case "style":
 				//open a dialog here and present available styles to choose from
 				layer.styleChoice()
@@ -104,7 +104,7 @@ $.widget("urd.urdLayerTree", {
 					//todo: change the layer legend to the new style legend
 					$("#wmsSelectStyle").dialog('close');
 				})	
-				break
+				break;
 			case "opacity":
 				//open a dialog here and present an opacity slider, todo: on slider-drag change opacity
 				layer.opacityChoice();
@@ -117,18 +117,18 @@ $.widget("urd.urdLayerTree", {
 					//todo: change the layer legend to the new style legend
 					$("#wmsSelectOpacity").dialog('close');
 				})	
-				break
+				break;
 			case "legend":
 				var urd = $(self.options.urd).data('urd');
 				urd.trigger('updateLegend',layer);
-				break
+				break;
 			case "metadata":
 				//open a dialog to present the metadata, if metadata url is available (else could present title/abstract)
 				if (layer.olLayer.metadataURLs&&layer.olLayer.metadataURLs[0].href)
 					new window('md',layer.olLayer.metadataURLs[0].href,'height=600,width=800');
 				else
 					alert(layer.options.label+". "+layer.options.desc);
-				break
+				break;
 			}
 		},
 		beforeOpen: function(event, ui) {

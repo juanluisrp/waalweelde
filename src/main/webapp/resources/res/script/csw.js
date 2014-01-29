@@ -1,6 +1,3 @@
-var gnserver = "http://www.nationaalgeoregister.nl/geonetwork/srv/dut/";	
-var proxyurl = "proxy.php?url=";
-var displayThumb = true;
 
 $(document).ready(function() {
 
@@ -8,7 +5,7 @@ $("#mdSuggest").autocomplete({
 				//define callback to format results  
 				source: function(request, response){  
 								$.ajax({
-									url: proxyurl+gnserver+"/main.search.suggest?field=any%26q="+request.term,
+									url: proxyurl+gnserver+"/main.search.suggest?field=any" + amp() + "q="+request.term,
 									dataType: "json",
 									success: function(data) {
 										//map the data into a response that will be understood by the autocomplete widget
@@ -44,9 +41,11 @@ function getMDResults(page){
 	result=[];
 	var vl = $("#mdSuggest").val();
 	if (typeof(vl)=='undefined') vl="";
+	tp = $("input[name='doctype']:checked").val();
+	if (!tp) tp="";
 	//dynamic = true only results in datasets having a wms link
 	$.ajax({	type:"GET", 
-				url:proxyurl+gnserver+"q?fast=index%26from="+(1+page*25)+"%26to="+((25+page*25))+"%26any="+vl+"*%26dynamic=true", 
+				url:proxyurl+gnserver+"q?fast=index" + amp() + "from="+(1+page*25) + amp() + "to="+((25+page*25))+ amp() + "any="+vl+"*" + amp() + "dynamic=true" + amp() + "type="+tp, 
 				datatype:"xml", 
 				success: function(data){
 

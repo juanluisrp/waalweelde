@@ -75,11 +75,7 @@ $.URD.Client = function(element, options) {
   }
   this.kaart1.events.on({"move":this.move1Listener});
   this.kaart2.events.on({"moveend":this.move2Listener});
-
-  
-    
-
-  
+ 
 };
 $.URD.Client.prototype = {
   layers: function(options) {
@@ -346,6 +342,8 @@ $.URD.Layer = function(map, id, options) {
     // create the actual layer based on the options
     // Returns layer and final options for the layer (for later re-use,
     // e.g. zoomToMaxExtent).
+    if(!options.type) options.type = "wms";
+    
     var res = $.URD.Layer.types[options.type.toLowerCase()].call(
         this, options);
     this.olLayer = res.layer;

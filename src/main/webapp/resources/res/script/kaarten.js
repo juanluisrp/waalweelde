@@ -7,7 +7,7 @@ var options = {
         resolutions: [3440.64, 1720.32, 860.16, 430.08, 215.04, 107.52, 53.76,
 					26.88, 13.44, 6.72, 3.36, 1.68, 0.84, 0.42, 0.21],
         maxExtent: new OpenLayers.Bounds(-285401.92,22598.08,595401.9199999999,903401.9199999999)
-}
+};
 var matrixIds2 = new Array(26);
 	    for (var i=0; i<26; ++i) {
 	        matrixIds2[i] = 'EPSG:28992'+':' + i;
@@ -18,39 +18,45 @@ var matrixIds3 = new Array(26);
 	    }  for (var i=10; i<26; ++i) {
 	        matrixIds3[i] = '' + i;
 	    }
+	    
 var brt = new OpenLayers.Layer.WMTS(
 {
         layertype: 'WMTS',
         name: 'BRT Achtergrondkaart (WMTS)',
-        url: 'http://geodata.nationaalgeoregister.nl/wmts/',
+        url: 'http://geodata.nationaalgeoregister.nl/wmts',
         layer: 'brtachtergrondkaart',
-        style: null,
+        style: "",
         matrixSet: "EPSG:28992",
         matrixIds:  matrixIds2,
         visibility: true,
         attribution: '(c) OSM & Kadaster',
         format: "image/png8"
     }
-  )      
-  var brt2 = new OpenLayers.Layer.WMTS(
-{
-        layertype: 'WMTS',
-        name: 'BRT Achtergrondkaart (WMTS)',
-        url: 'http://geodata.nationaalgeoregister.nl/wmts/',
-        layer: 'brtachtergrondkaart',
-        style: null,
-        matrixSet: "EPSG:28992",
-        matrixIds:  matrixIds2,
-        visibility: true,
-        attribution: '(c) OSM & Kadaster',
-        format: "image/png8"
-    }
-  ) 
+  );     
+brt2 = brt.clone();
+var lft = new OpenLayers.Layer.WMTS(
+		{
+		        layertype: 'WMTS',
+		        name: 'Luchtfoto 2009',
+		        url: 'http://geodata1.nationaalgeoregister.nl/luchtfoto/wmts',
+		        layer: 'luchtfoto',
+		        style: "",
+		        matrixSet: "nltilingschema",
+		        matrixIds:  matrixIds3,
+		        visibility: true,
+		        format: "image/jpeg"
+		    }
+		  );  
+ lft2 = lft.clone();
+
+ 
+ 
+
 kaart1 = new OpenLayers.Map('map1-map', options);
 kaart2 = new OpenLayers.Map('map2-map', options);
 kaart1.zoomTo(2);
-kaart1.addLayer(brt);
-kaart2.addLayer(brt2);
+kaart1.addLayers([brt,lft]);
+kaart2.addLayers([brt2,lft2]);
 kaart1.zoomToMaxExtent();
 kaart2.zoomToMaxExtent();
 kaart1.events.on({"move":move1Listener});
