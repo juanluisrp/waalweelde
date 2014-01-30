@@ -3,6 +3,7 @@ var client;
 //csw settings
 var gnserver = "http://waalweelde.geocat.net/geonetwork/srv/dut/";	
 var proxyurl = "";
+var liveurl = "/";
 var displayThumb = true;
 
 function amp(){

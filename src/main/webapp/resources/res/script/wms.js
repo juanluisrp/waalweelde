@@ -70,7 +70,7 @@ OpenLayers.Request.GET({
 			var html = "<select id='selLayer' multiple='true' size='6'>";
 			$(layerNames).each(function(){
 				html += "<option value="+this.name+">"+(this.title||this.name)+"</option>";
-			})
+			});
 			html+= "</select>";
 		$( "#wmsSelectLayer" ).html(html).dialog({
 			autoOpen: true,
@@ -101,8 +101,5 @@ OpenLayers.Request.GET({
 
 	
 
-}
+};
 
-$(document).ready(function() {
-
-   });

@@ -1,4 +1,4 @@
-(function() {
+function() {
 
     var jsfiles = new Array(
         "init.js",

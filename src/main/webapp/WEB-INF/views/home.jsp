@@ -45,7 +45,8 @@
   <script type="text/javascript" src="<c:url value="/resources/res/script/legend.js"/>"></script>
   <script type="text/javascript" src="<c:url value="/resources/res/script/layertree.js"/>"></script>
   <script type="text/javascript" src="<c:url value="/resources/res/script/csw.js"/>"></script>
-  <script type="text/javascript" src="<c:url value="/resources/res/script/wms.js"/>"></script> 
+  <script type="text/javascript" src="<c:url value="/resources/res/script/wms.js"/>"></script>
+  <script type="text/javascript" src="<c:url value="/resources/res/script/wmc.js"/>"></script>  
 <!--  
   <script type="text/javascript" src="<c:url value="/resources/res/script/graph.js"/>"></script> -->
 
@@ -58,7 +59,7 @@
 <body>
 <div id="header" class="ui-layout-north"></div>
 <div id="center" class="ui-layout-center">
-  <div id="toolbar" class="ui-layout-north"></div>
+  <div id="toolbar" class="ui-layout-north"> <button id="mdSave" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-panel-titlebar-minus" title="Sla de huidige kaartconfiguratie op, zodat deze in de catalogus vindbaar wordt" aria-disabled="false" style="float:right">Opslaan</button> </div>
   <div id="map1" class="ui-layout-center">
     <!--<div class="panel-header">kaart 1</div>-->
     <div id="map1-map" class="map-panel"><span id="pointer1" class="map-pointer"></span></div>
@@ -147,6 +148,16 @@
 
 <div id="wmsSelectStyle" title="Selecteer een tekenstijl"></div>
 <div id="wmsSelectOpacity" title="Wijzig het transparantie niveau"><div id="opacitySlider"></div></div>
+<div id="saveMap" title="Themakaart opslaan" style="display:none">
+<span style="width:200px">Titel:</span> <input type=text id="mapTitle" size="50"><br/>
+Omschrijving:</br>
+<textarea rows="5" cols="60" id="mapAbstract"></textarea><br/>
+Doel:<br/>
+<textarea rows="5" cols="60" id="mapPurpose"></textarea><br/>
+Trefwoorden (komma gescheiden):
+<textarea rows="3" cols="60" id="mapKeywords"></textarea><br/>
 
+
+</div>
 </body>
 </html>  

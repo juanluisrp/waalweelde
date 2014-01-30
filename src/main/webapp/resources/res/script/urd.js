@@ -27,7 +27,6 @@ $.URD.Client = function(element, options) {
   OpenLayers.IMAGE_RELOAD_ATTEMPTS = 3;
   OpenLayers.Util.onImageLoadErrorColor = "transparent";
   
-  
   this.kaart1 = new OpenLayers.Map('map1-map', this.olMapOptions);;
   this.kaart2 = new OpenLayers.Map('map2-map', this.olMapOptions);;
   //OpenLayers doesn't want to return a maxExtent when there is no baselayer
@@ -36,9 +35,8 @@ $.URD.Client = function(element, options) {
   this.kaart2.addLayer(new OpenLayers.Layer('fake1', {isBaseLayer: true}));
 
   // Keep IDs of vector layer for select feature control
-    this.vectorLayers = [];
-    this.selectFeatureControl = null;
-  
+  this.vectorLayers = [];
+  this.selectFeatureControl = null;
   
   this.idCounter = 0;
   this.layersList = {};
@@ -66,13 +64,13 @@ $.URD.Client = function(element, options) {
     var zoom = client.kaart1.getZoom();
     client.kaart2.setCenter(center);
     client.kaart2.zoomTo(zoom);
-  }
+  };
   this.move2Listener = function(e) {
     var center  = client.kaart2.getCenter();
     var zoom = client.kaart2.getZoom(); 
     client.kaart1.setCenter(center);
     client.kaart1.zoomTo(zoom);
-  }
+  };
   this.kaart1.events.on({"move":this.move1Listener});
   this.kaart2.events.on({"moveend":this.move2Listener});
  
