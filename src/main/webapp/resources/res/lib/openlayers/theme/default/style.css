@@ -482,3 +482,14 @@ a.olControlZoomOut {
     -o-transition: opacity 0.2s linear;
     transition: opacity 0.2s linear;
 }
+
+.toolbarButton {
+	border: 1px solid #FFFFFF;
+    float: right;
+    margin-top: 2px;
+    padding: 3px 8px;
+}
+
+.required {
+	color:red;font-weight:bold;
+}

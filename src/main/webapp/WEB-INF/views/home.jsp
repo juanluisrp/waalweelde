@@ -9,8 +9,8 @@
   <link href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   
    <!-- jquery -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="<c:url value="/resources/res/lib/jquery.js"/>"></script>
+  <script src="<c:url value="/resources/res/lib/jquery-ui.js"/>"></script>
   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/style/jquery-ui-1.10.3.custom/css/custom-theme/jquery-ui-1.10.3.custom.css"/>" />
 
   <!--  jquery.layout from:  http://layout.jquery-dev.net/  -->
@@ -19,7 +19,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/res/lib/jquery.ui-contextmenu.min.js"/>"></script>
   
   <!--https://github.com/codepb/jquery-template-->
-  <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+  <script src="<c:url value="/resources/res/lib/jquery.tmpl.js"/>"></script>
 
   <!-- openlayers -->
   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/lib/openlayers/theme/default/style.css"/>" />
@@ -59,7 +59,7 @@
 <body>
 <div id="header" class="ui-layout-north"></div>
 <div id="center" class="ui-layout-center">
-  <div id="toolbar" class="ui-layout-north"> <button id="mdSave" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-panel-titlebar-minus" title="Sla de huidige kaartconfiguratie op, zodat deze in de catalogus vindbaar wordt" aria-disabled="false" style="float:right">Opslaan</button> </div>
+  <div id="toolbar" class="ui-layout-north"> <button id="mdSave" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-panel-titlebar-minus toolbarButton" title="Sla de huidige kaartconfiguratie op, zodat deze in de catalogus vindbaar wordt" aria-disabled="false" style="float:right">Opslaan</button> </div>
   <div id="map1" class="ui-layout-center">
     <!--<div class="panel-header">kaart 1</div>-->
     <div id="map1-map" class="map-panel"><span id="pointer1" class="map-pointer"></span></div>
@@ -149,13 +149,13 @@
 <div id="wmsSelectStyle" title="Selecteer een tekenstijl"></div>
 <div id="wmsSelectOpacity" title="Wijzig het transparantie niveau"><div id="opacitySlider"></div></div>
 <div id="saveMap" title="Themakaart opslaan" style="display:none">
-<span style="width:200px">Titel:</span> <input type=text id="mapTitle" size="50"><br/>
+Titel:<br/> <input type=text id="mapTitle" size="50"><span class="required">*</span><br/>
 Omschrijving:</br>
-<textarea rows="5" cols="60" id="mapAbstract"></textarea><br/>
+<textarea rows="3" cols="60" id="mapAbstract"></textarea><br/>
 Doel:<br/>
-<textarea rows="5" cols="60" id="mapPurpose"></textarea><br/>
+<textarea rows="3" cols="60" id="mapPurpose"></textarea><br/>
 Trefwoorden (komma gescheiden):
-<textarea rows="3" cols="60" id="mapKeywords"></textarea><br/>
+<textarea rows="2" cols="60" id="mapKeywords"></textarea><br/>
 
 
 </div>

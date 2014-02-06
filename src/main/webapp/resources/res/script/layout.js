@@ -147,4 +147,19 @@ $('#layers').delegate('.ui-icon-plus','click',function(){
   $(this).parents('.west-element').find('.west-element-content').show('blind');
 });
 
+//if layer added via url, load it
+var wms = getURLParameter("wms");
+var layer = getURLParameter("layer");
+if (wms&&layer){
+$.URD.addWMS(wms,layer,layer);
+};
 });
+
+
+
+function getURLParameter(name) {
+	return decodeURIComponent((new RegExp('[?|&]' + name + '='
+	+ '([^&;]+?)(&|#|;|$)').exec(location.search) || [ , "" ])[1]
+	.replace(/\+/g, '%20'))
+	|| null;
+	}; 
