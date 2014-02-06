@@ -55,11 +55,13 @@ function getMDResults(page){
 			$(this).find("metadata").each(function(){
 				var md = {wmslinks:[],title:"",oms:"",image:"",bounds:[],contact:""};
 				md.wmslinks = [];
+				md.wmclinks = [];
 				// Check if link is defined
 
 				$(this).find("link").each(function(){
 					wmslink = splitLink($(this).text());
 					if (wmslink.isWMS) md.wmslinks.push(wmslink);
+					if (wmclink.isWMC) md.wmclinks.push(wmslink);
 					return false;
 				})
 				//Check if record has WMS url and layername defined >if so: create entry in table
@@ -89,6 +91,10 @@ function getMDResults(page){
 			output +="<div style=\"float:left\"><img src='"+this.image+"' class='mdImage' /></div>";
 			output +="<div style=\"margin-left:135px\"><p><span class='mdTitle'>"+this.title+"</span><br/>";
 			if (this.oms) output +=""+this.oms.substring(0,270) + "<br/>";
+			
+			if (this.wmclinks.length > 0) {
+				output+="<button style=\"float:right\" onclick=\"loadMap('"+this.wmclinks[0].url+"');\">Open themakaart</button>";
+			}
 			
 			//todo: onderscheid maken tussen 1 laag en meerdere lagen, meerdere lagen als split button
 			if (this.wmslinks.length == 1) {
@@ -134,6 +140,10 @@ function splitLink(linkNode){
 		var wmsString = data[3];
 		if (wmsString=="OGC:WMS") result.isWMS=true; else result.isWMS = false; 
 	} catch(err){result.isWMS=false;}
+	try{ 
+		var wmcString = data[3];
+		if (wmcString=="application/vnd.ogc.wmc") result.isWMC=true; else result.isWMC = false; 
+	} catch(err){result.isWMC=false;}
 	try{result.url= data[2];}catch(err){result.title="";}
 	try{result.layerName=data[0];} catch(err){result.layerName="";}
 	try{result.layerTitle=data[1];}catch(err){result.layerTitle="";}

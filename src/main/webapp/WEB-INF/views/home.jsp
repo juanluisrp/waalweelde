@@ -90,7 +90,7 @@
 	<input type="text" id="mdSuggest" value="" style="width:160px"/>
 	<button id="mdQuery" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="zoek">
 	<span class="ui-button-icon-primary ui-icon ui-icon-search"></span><span class="ui-button-text">zoek</span></button><br/>
-	<input type=radio id=doctype1 value=map name=doctype><label for="doctype1">Themakaart</label><br/>
+	<input type=radio id=doctype1 value=software name=doctype><label for="doctype1">Themakaart</label><br/>
 	<input type=radio id=doctype2 value=dataset name=doctype><label for="doctype2">Dataset</label>
 	
 	</div>

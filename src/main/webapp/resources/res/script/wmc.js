@@ -1,4 +1,6 @@
 
+var merge = true;
+
 
 $(document).ready(function() {
 	
@@ -63,13 +65,11 @@ function saveMap(){
 function loadMap(map){
 
 	//put a local temp wmc here
-	
-	map = "http://localhost:99/waalweelde/resources/res/wmc.xml";
+	//map = "http://localhost:99/waalweelde/resources/res/wmc.xml";
 	
 	$.ajax({url:map,
 		datatype:"xml", 
 		success: function(data){
-			console.log(data);
 			var format = new OpenLayers.Format.WMC({'layerOptions': {buffer: 0}});
 			if(merge) {
                 try {
