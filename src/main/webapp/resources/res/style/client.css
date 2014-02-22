@@ -205,3 +205,4 @@ background: white !important;
 .olImageLoadError {
     display: none !important;
 }
+#mapTitle { color:white;font-size:14px;font-weight:bold }

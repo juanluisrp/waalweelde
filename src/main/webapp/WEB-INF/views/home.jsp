@@ -59,7 +59,11 @@
 <body>
 <div id="header" class="ui-layout-north"></div>
 <div id="center" class="ui-layout-center">
-  <div id="toolbar" class="ui-layout-north"> <button id="mdSave" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-panel-titlebar-minus toolbarButton" title="Sla de huidige kaartconfiguratie op, zodat deze in de catalogus vindbaar wordt" aria-disabled="false" style="float:right">Opslaan</button> </div>
+  <div id="toolbar" class="ui-layout-north">
+  	<div id="mapTitle"></div> 
+    <a href="/" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-panel-titlebar-minus toolbarButton" title="Terug naar Waalweelde portaal" aria-disabled="false" style="float:right">Sluiten</a> 
+  	<button id="mdSave" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-panel-titlebar-minus toolbarButton" title="Sla de huidige kaartconfiguratie op, zodat deze in de catalogus vindbaar wordt" aria-disabled="false" style="float:right">Opslaan</button> 
+  </div>
   <div id="map1" class="ui-layout-center">
     <!--<div class="panel-header">kaart 1</div>-->
     <div id="map1-map" class="map-panel"><span id="pointer1" class="map-pointer"></span></div>

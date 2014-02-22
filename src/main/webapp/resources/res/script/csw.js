@@ -61,7 +61,7 @@ function getMDResults(page){
 				$(this).find("link").each(function(){
 					wmslink = splitLink($(this).text());
 					if (wmslink.isWMS) md.wmslinks.push(wmslink);
-					if (wmclink.isWMC) md.wmclinks.push(wmslink);
+					if (wmslink.isWMC) md.wmclinks.push(wmslink);
 					return false;
 				})
 				//Check if record has WMS url and layername defined >if so: create entry in table

@@ -155,7 +155,12 @@ $.URD.addWMS(wms,layer,layer);
 };
 });
 
-
+var wmc = getURLParameter("wmc");
+if (wmc){ 
+	loadMap(map);
+} else {
+	$("#mapTitle").html("Waalweelde basis kaart");	
+}
 
 function getURLParameter(name) {
 	return decodeURIComponent((new RegExp('[?|&]' + name + '='
