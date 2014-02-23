@@ -43,9 +43,11 @@ function getMDResults(page){
 	if (typeof(vl)=='undefined') vl="";
 	tp = $("input[name='doctype']:checked").val();
 	if (!tp) tp="";
+	//if map=software, can not add dynamic
+	if (tp!="software") tp= tp + amp() + "dynamic=true"
 	//dynamic = true only results in datasets having a wms link
 	$.ajax({	type:"GET", 
-				url:proxyurl+gnserver+"q?fast=index" + amp() + "from="+(1+page*25) + amp() + "to="+((25+page*25))+ amp() + "any="+vl+"*" + amp() + "dynamic=true" + amp() + "type="+tp, 
+				url:proxyurl+gnserver+"q?fast=index" + amp() + "from="+(1+page*25) + amp() + "to="+((25+page*25))+ amp() + "any="+vl+"*"  + amp() + "type="+tp, 
 				datatype:"xml", 
 				success: function(data){
 

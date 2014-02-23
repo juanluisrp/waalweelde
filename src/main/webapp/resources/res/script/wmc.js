@@ -67,6 +67,8 @@ function loadMap(map){
 	//put a local temp wmc here
 	//map = "http://localhost:99/waalweelde/resources/res/wmc.xml";
 	
+	
+	
 	$.ajax({url:map,
 		datatype:"xml", 
 		success: function(data){
@@ -88,7 +90,7 @@ function loadMap(map){
                    
                 }
             }
-			
+			//todo:set title
 			//todo for each layer, manage it's presence in toc, maybe need a capabilities
 		},
 		error:function(data,error,status){ alert("Het ophalen van de themakaart is helaas mislukt "+error+" "+status); }
