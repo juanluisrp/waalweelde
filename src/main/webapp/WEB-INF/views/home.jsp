@@ -153,15 +153,14 @@
 <div id="wmsSelectStyle" title="Selecteer een tekenstijl"></div>
 <div id="wmsSelectOpacity" title="Wijzig het transparantie niveau"><div id="opacitySlider"></div></div>
 <div id="saveMap" title="Themakaart opslaan" style="display:none">
-Titel:<br/> <input type=text id="mapTitle" size="50"><span class="required">*</span><br/>
+Titel:<br/> <input type=text id="mapTitel" size="50"><span class="required">*</span><br/>
 Omschrijving:</br>
 <textarea rows="3" cols="60" id="mapAbstract"></textarea><br/>
 Doel:<br/>
 <textarea rows="3" cols="60" id="mapPurpose"></textarea><br/>
-Trefwoorden (komma gescheiden):
-<textarea rows="2" cols="60" id="mapKeywords"></textarea><br/>
 
-
+<input type="radio" id="local" value="local" name="location" checked="true"><label for="local">Lokaal</label>
+<input type="radio" id="remote" value="remote" name="location"><label for="remote">Op de server</label>
 </div>
 </body>
 </html>  

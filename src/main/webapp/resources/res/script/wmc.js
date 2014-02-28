@@ -19,7 +19,7 @@ $(document).ready(function() {
 function saveMap(){
 	
 	//todo: when creating empty values, when editting existing map, introduce values
-	$("#mapTitle").val("");
+	$("#mapTitel").val("");
 	$("#mapAbstract").val("");
 	$("#mapKeywords").val("");
 	$("#mapPurpose").val("");
@@ -32,30 +32,51 @@ function saveMap(){
 		buttons:  [{
 				text:"Opslaan",click: function(){ 
 					
-					if ($("#mapTitle").val()==""){	
+					
+					
+					if ($("#mapTitel").val()==""){	
 						alert("U dient minimaal een titel voor deze kaart int e vullen");
 						return;
 					}
 					
 					var format = new OpenLayers.Format.WMC({'layerOptions': {buffer: 0}});
 					
-					$.ajax({	
-						type:"POST",
-						data:{
-							title:$("#mapTitle").val(),
-							desc:$("#mapAbstract").val(),
-							keywords:$("#mapKeywords").val(),
-							purpose:$("#mapPurpose").val(),
-							bounds:client.kaart1.getExtent().toString(),
-							map:format.write(client.kaart1) 
-						},
-						url:liveurl+"/metadata/create/domap", 
-						datatype:"xml", 
-						success: function(data){
-							$( "#saveMap" ).html("Themakaart succesvol opgeslagen");
-						},
-						error:function(data,error,status){ alert("Het opslaan van de themakaart is helaas mislukt "+error+" "+status); }
-				});
+					if ($("input[name='location']:checked").val()=="local"){
+						
+						$.ajax({
+							url : liveurl + "/proxy",
+							method : 'POST',
+							data : {
+								content : format.write(client.kaart1)
+							}
+						}).done(function(e) {
+							location = liveurl+"/proxy?fileName=" + e; 
+						});
+						
+					} else {
+			
+							bnds = client.kaart1.getExtent().toBBOX().split(",");
+							
+							$.ajax({	
+								type:"POST",
+								data:{
+									title:$("#mapTitel").val(),
+									description:$("#mapAbstract").val(),
+									purpose:$("#mapPurpose").val(),
+									west:bnds[0],
+									south:bnds[1],
+									east:bnds[2],
+									north:bnds[3],
+									map:format.write(client.kaart1) 
+								},
+								url:liveurl+"/metadata/create/domap", 
+								datatype:"xml", 
+								success: function(data){
+									$( "#saveMap" ).html("Themakaart succesvol opgeslagen");
+								},
+								error:function(data,error,status){ alert("Het opslaan van de themakaart is helaas mislukt "+error+" "+status); }
+							});
+					}
 			}
 		}]
 	}).show();
