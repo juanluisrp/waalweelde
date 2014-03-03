@@ -8,61 +8,28 @@
   <title>URD Delta Oost - dashboard</title>
   <link href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   
-   <!-- jquery -->
-  <script src="<c:url value="/resources/res/lib/jquery.js"/>"></script>
-  <script src="<c:url value="/resources/res/lib/jquery-ui.js"/>"></script>
-  <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/style/jquery-ui-1.10.3.custom/css/custom-theme/jquery-ui-1.10.3.custom.css"/>" />
+ 
 
-  <!--  jquery.layout from:  http://layout.jquery-dev.net/  -->
-  <script type="text/javascript" src="<c:url value="/resources/res/lib/jquery.layout-latest.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resources/res/lib/taphold.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resources/res/lib/jquery.ui-contextmenu.min.js"/>"></script>
-  
-  <!--https://github.com/codepb/jquery-template-->
-  <script src="<c:url value="/resources/res/lib/jquery.tmpl.js"/>"></script>
 
-  <!-- openlayers -->
-  <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/lib/openlayers/theme/default/style.css"/>" />
-
-	<script type="text/javascript" src="<c:url value="/resources/res/lib/openlayers/lib/OpenLayers.js"/>"></script>
   <!-- d3 
   <script src="http://d3js.org/d3.v3.js"></script>
   <script src="<c:url value="/resources/res/lib/novus-nvd3/nv.d3.min.js"/>"></script>
-  <link href="<c:url value="/resources/res/lib/novus-nvd3/src/nv.d3.css"/>" rel='stylesheet' type='text/css'>-->
-  <script type="text/javascript" src="<c:url value="/resources/res/lib/openlayers/OpenLayers.js"/>"></script>
+  <link href="<c:url value="/resources/res/lib/novus-nvd3/src/nv.d3.css"/>" rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="<c:url value="/resources/res/lib/openlayers/OpenLayers.js"/>"></script>-->
 
-
-  <!-- custom styles -->  
-  <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/style/client.css"/>" />
-  
-  <!-- custom scripts  -->  
-  <script type="text/javascript" src="<c:url value="/resources/res/script/layout.js"/>"></script>
-  <script type="text/javascript" src="<c:url value="/resources/res/script/urd.js"/>"></script>
-  <script type="text/javascript" src="<c:url value="/resources/res/script/urd.legend.js"/>"></script>
-  <script type="text/javascript" src="<c:url value="/resources/res/script/urd.stylechoice.js"/>"></script>
-  <script type="text/javascript" src="<c:url value="/resources/res/script/opacity.js"/>"></script>
-  <script type="text/javascript" src="<c:url value="/resources/res/script/urd.extent.js"/>"></script>
-  <script type="text/javascript" src="<c:url value="/resources/res/script/legend.js"/>"></script>
-  <script type="text/javascript" src="<c:url value="/resources/res/script/layertree.js"/>"></script>
-  <script type="text/javascript" src="<c:url value="/resources/res/script/csw.js"/>"></script>
-  <script type="text/javascript" src="<c:url value="/resources/res/script/wms.js"/>"></script>
-  <script type="text/javascript" src="<c:url value="/resources/res/script/wmc.js"/>"></script>  
-<!--  
-  <script type="text/javascript" src="<c:url value="/resources/res/script/graph.js"/>"></script> -->
-
-  <script type="text/javascript" src="<c:url value="/resources/res/lib/proj4js/lib/proj4js-compressed.js"/>"></script> 
-  <script>
-  Proj4js.defs["EPSG:28992"] = "+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +units=m +no_defs";
-  </script>
 
   </head>
 <body>
+
+
+
 <div id="header" class="ui-layout-north"></div>
 <div id="center" class="ui-layout-center">
-  <div id="toolbar" class="ui-layout-north">
-  	<div id="mapTitle"></div> 
+<div id="toolbar" class="ui-layout-north" style="display:none">
+    <!-- todo: button open kaart -->
     <a href="/" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-panel-titlebar-minus toolbarButton" title="Terug naar Waalweelde portaal" aria-disabled="false" style="float:right">Sluiten</a> 
   	<button id="mdSave" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-panel-titlebar-minus toolbarButton" title="Sla de huidige kaartconfiguratie op, zodat deze in de catalogus vindbaar wordt" aria-disabled="false" style="float:right">Opslaan</button> 
+  	<div id="mapTitle" style="padding:8px"></div> 
   </div>
   <div id="map1" class="ui-layout-center">
     <!--<div class="panel-header">kaart 1</div>-->
@@ -75,14 +42,14 @@
  
 <div class="ui-layout-south"></div>
 </div>
-<div class="ui-layout-west">
+<div class="ui-layout-west" style="display:none">
   <div id="layers">
   <div class="west-element"><div class="panel-header"><span class="ui-panel-title">Informatie bronnen</span>
     <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="minify"><span class="ui-button-icon-primary ui-icon ui-icon-minus"></span><span class="ui-button-text">minify</span></button></div>
 
 
 
-  <div id="tabs" class="west-element-content" style="padding:none">
+<div id="tabs" class="west-element-content" style="padding:none">
 <ul>
 <li><a href="#tabs-1">Catalogus</a></li>
 <li><a href="#tabs-2">Extra</a></li>
@@ -100,8 +67,6 @@
 	</div>
 </div>
 <div id="tabs-2"> 
-
-
  <div class="extra-content">
 
   <div class="project-content ui-helper-clearfix" onclick="$.URD.addWMS('http://waalweelde.geocat.net/geoserver/wms')"><button  class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only " role="button" aria-disabled="false" title="Bekijk lagen"><span class="ui-button-icon-primary ui-icon ui-icon-carat-1-e"  ></span></button><span>Waterveiligheid </span>
@@ -150,6 +115,9 @@
   </div>
 </div>
 
+
+
+
 <div id="wmsSelectStyle" title="Selecteer een tekenstijl"></div>
 <div id="wmsSelectOpacity" title="Wijzig het transparantie niveau"><div id="opacitySlider"></div></div>
 <div id="saveMap" title="Themakaart opslaan" style="display:none">
@@ -162,5 +130,51 @@ Doel:<br/>
 <input type="radio" id="local" value="local" name="location" checked="true"><label for="local">Lokaal</label>
 <input type="radio" id="remote" value="remote" name="location"><label for="remote">Op de server</label>
 </div>
+<div title="Feature info" id="fipanel" style="display:none"></div>
+
+  <!-- jquery -->
+  <script src="<c:url value="/resources/res/lib/jquery.js"/>"></script>
+  <script src="<c:url value="/resources/res/lib/jquery-ui.js"/>"></script>
+  <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/style/jquery-ui-1.10.3.custom/css/custom-theme/jquery-ui-1.10.3.custom.css"/>" />
+
+  <!--  jquery.layout from:  http://layout.jquery-dev.net/  -->
+  <script type="text/javascript" src="<c:url value="/resources/res/lib/jquery.layout-latest.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/res/lib/taphold.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/res/lib/jquery.ui-contextmenu.min.js"/>"></script>
+  
+  <!--https://github.com/codepb/jquery-template-->
+  <script src="<c:url value="/resources/res/lib/jquery.tmpl.js"/>"></script>
+
+  <!-- openlayers -->
+  <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/lib/openlayers/theme/default/style.css"/>" />
+
+
+  <script type="text/javascript" src="<c:url value="/resources/res/lib/openlayers/lib/OpenLayers.js"/>"></script>
+  
+  <!-- custom styles -->  
+  <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/style/client.css"/>" />
+  
+  <!-- custom scripts  -->  
+  <script type="text/javascript" src="<c:url value="/resources/res/script/config.jsp"/>"></script>
+  <script type="text/javascript" src="<c:url value="/resources/res/script/layout.js"/>"></script>
+  <script type="text/javascript" src="<c:url value="/resources/res/script/urd.js"/>"></script>
+  <script type="text/javascript" src="<c:url value="/resources/res/script/urd.legend.js"/>"></script>
+  <script type="text/javascript" src="<c:url value="/resources/res/script/urd.stylechoice.js"/>"></script>
+  <script type="text/javascript" src="<c:url value="/resources/res/script/opacity.js"/>"></script>
+  <script type="text/javascript" src="<c:url value="/resources/res/script/urd.extent.js"/>"></script>
+  <script type="text/javascript" src="<c:url value="/resources/res/script/legend.js"/>"></script>
+  <script type="text/javascript" src="<c:url value="/resources/res/script/layertree.js"/>"></script>
+  <script type="text/javascript" src="<c:url value="/resources/res/script/csw.js"/>"></script>
+  <script type="text/javascript" src="<c:url value="/resources/res/script/wms.js"/>"></script>
+  <script type="text/javascript" src="<c:url value="/resources/res/script/wmc.js"/>"></script>  
+  <script type="text/javascript" src="<c:url value="/resources/res/script/featureinfo.js"/>"></script>  
+<!--  
+  <script type="text/javascript" src="<c:url value="/resources/res/script/graph.js"/>"></script> -->
+
+  <script type="text/javascript" src="<c:url value="/resources/res/lib/proj4js/lib/proj4js-compressed.js"/>"></script> 
+  <script>
+  Proj4js.defs["EPSG:28992"] = "+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +units=m +no_defs";
+  </script>
+
 </body>
 </html>  

@@ -1,6 +1,4 @@
 
-OpenLayers.ProxyHost="proxy.php?url=";
-
 var wmsServer;
 
 $.URD = $.URD || {};

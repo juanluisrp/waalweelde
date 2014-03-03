@@ -1,10 +1,5 @@
 var client;
-
-//csw settings
-var gnserver = "http://waalweelde.geocat.net/geonetwork/srv/dut/";	
-var proxyurl = "http://waalweelde.geocat.net/proxy";
-var liveurl = "http://waalweelde.geocat.net/";
-var displayThumb = true;
+OpenLayers.ProxyHost=proxyurl;
 
 function amp(){
 	if (proxyurl!="") return "%26";
@@ -121,7 +116,6 @@ $('#legend').urdLegend({urd:'#center'});
 //$('#grafiek').urdGraphs({urd:'#center'});
 
 var kaart1move = function(e) {
-
   var lonlat = client.kaart1.getLonLatFromPixel(e.xy);
   var xy = client.kaart2.getPixelFromLonLat(lonlat);
   $('#pointer2').css({top: xy.y-4, left: xy.x-4});
@@ -133,6 +127,29 @@ var kaart2move = function(e) {
 };
 client.kaart1.events.register('mousemove', {}, kaart1move);
 client.kaart2.events.register('mousemove', {}, kaart2move);
+
+var kaart1click = function(e) {
+	//remove previous panels
+	$("#fipanel").dialog().hide();
+	//add panel: loading
+	$("#fipanel").dialog({width:"auto",height:"auto",position:{my:"center center",at:"center center",of:"#map1-map"}}).html("Even geduld...").show();
+	var lonlat = client.kaart1.getPixelFromLonLat(client.kaart1.getLonLatFromPixel(e.xy));
+	//featureinfo request
+	fi(client.kaart1,lonlat);
+};
+
+var kaart2click = function(e) {
+	//remove previous panels
+	$("#fipanel").hide();
+	//add panel: loading
+	$("#fipanel").dialog({width:"auto",height:"auto",position:{my:"center center",at:"center center",of:"#map2-map"}}).html("Even geduld...").show();
+	var lonlat = client.kaart2.getPixelFromLonLat(client.kaart2.getLonLatFromPixel(e.xy));
+	//featureinfo request
+	fi(client.kaart2,lonlat);
+};
+
+client.kaart1.events.register('click', {}, kaart1click);
+client.kaart2.events.register('click', {}, kaart2click);
 
 /* west-menu harminonica logic*/
 $('#layers').delegate('.ui-icon-minus','click',function(){
@@ -153,6 +170,8 @@ var layer = getURLParameter("layer");
 if (wms&&layer){
 $.URD.addWMS(wms,layer,layer);
 };
+
+$("#layout").show();
 });
 
 var wmc = getURLParameter("wmc");
