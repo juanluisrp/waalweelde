@@ -189,7 +189,7 @@ function getURLParameter(name) {
 	}; 
 	
 	
-function drawGeoJson(json){
+function drawResult(json){
 	var geojson_format = new OpenLayers.Format.GeoJSON();
     var vegmod_layer = new OpenLayers.Layer.Vector(); 
     client.kaart1.addLayer(vegmod_layer);
