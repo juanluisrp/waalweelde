@@ -187,3 +187,11 @@ function getURLParameter(name) {
 	.replace(/\+/g, '%20'))
 	|| null;
 	}; 
+	
+	
+function drawGeoJson(json){
+	var geojson_format = new OpenLayers.Format.GeoJSON();
+    var vegmod_layer = new OpenLayers.Layer.Vector(); 
+    client.kaart1.addLayer(vegmod_layer);
+    vector_layer.addFeatures(geojson_format.read(json));
+}	

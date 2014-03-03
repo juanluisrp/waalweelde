@@ -50,9 +50,6 @@ function getMDResults(page){
 				url:proxyurl+gnserver+"q?fast=index" + amp() + "from="+(1+page*25) + amp() + "to="+((25+page*25))+ amp() + "any="+vl+"*"  + amp() + "type="+tp, 
 				datatype:"xml", 
 				success: function(data){
-					
-						console.log($.parseXML(data));
-					
 						//For each record
 						$(data).find("metadata").each(function(){
 							var md = {wmslinks:[],title:"",oms:"",image:"",bounds:[],contact:""};
@@ -60,7 +57,6 @@ function getMDResults(page){
 							md.wmclinks = [];
 							// Check if link is defined
 							$(this).find("link").each(function(){
-								console.log($(this).text());
 								wmslink = splitLink($(this).text());
 								if (wmslink.isWMS) md.wmslinks.push(wmslink);
 								if (wmslink.isWMC) md.wmclinks.push(wmslink);
@@ -163,11 +159,11 @@ function splitLink(linkNode){
 	try{ 
 		var wmsString = data[3];
 		if (wmsString.toUpperCase().indexOf("OGC:WMS")>-1) result.isWMS=true; else result.isWMS = false; 
-	} catch(err){result.isWMS=false;console.log(err);}
+	} catch(err){result.isWMS=false;}
 	try{ 
 		var wmcString = data[3];
 		if (wmcString.toUpperCase().indexOf("OGC:WMC")>-1||wmcString.toUpperCase().indexOf("OGC.WMC")>-1) result.isWMC=true; else result.isWMC = false; 
-	} catch(err){result.isWMC=false;console.log(err);}
+	} catch(err){result.isWMC=false;}
 	try{result.url= data[2];}catch(err){result.title="";}
 	try{result.layerName=data[0];} catch(err){result.layerName="";}
 	try{result.layerTitle=data[1];}catch(err){result.layerTitle="";}
