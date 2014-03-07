@@ -155,7 +155,7 @@ function getMDResults(page){
 function splitLink(linkNode){
 	var data=linkNode.split("|");
 	var result={};
-	if(data&&data.length==4){
+	if(data&&data.length>3){
 	try{ 
 		var wmsString = data[3];
 		if (wmsString.toUpperCase().indexOf("OGC:WMS")>-1) result.isWMS=true; else result.isWMS = false; 
