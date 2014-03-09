@@ -44,10 +44,14 @@ function getMDResults(page){
 	tp = $("input[name='doctype']:checked").val();
 	if (!tp) tp="";
 	//if map=software, can not add dynamic
-	if (tp!="software") tp= tp + amp() + "dynamic=true"
+	if (tp!="software") tp= tp + amp() + "dynamic=true";
+	
+	//filter by map-bounds
+	var bnds = client.kaart1.getExtent().toGeometry().transform('epsg:28992','epsg:4326').toString();
+	
 	//dynamic = true only results in datasets having a wms link
 	$.ajax({	type:"GET", 
-				url:proxyurl+gnserver+"q?fast=index" + amp() + "from="+(1+page*25) + amp() + "to="+((25+page*25))+ amp() + "any="+vl+"*"  + amp() + "type="+tp, 
+				url:proxyurl+gnserver+"q?fast=index" + amp() + "from="+(1+page*25) + amp() + "to="+((25+page*25))+ amp() + "any="+vl+"*" + amp() + "geometry="+ bnds  + amp() + "type="+tp, 
 				datatype:"xml", 
 				success: function(data){
 						//For each record

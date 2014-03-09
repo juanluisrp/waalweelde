@@ -123,6 +123,16 @@ client = $('#center').urd({center: {box: [5.989178,51.853822,6.103160,51.914010]
   },
   {
       type: 'wms',
+      label: 'Natuurbeheerplan',
+      url: 'http://ags.prvgld.nl/ArcGIS/services/pgr_2/MapServer/WMSServer?',
+      layers: '8',
+      style: "",
+      visibility: false,
+      format: "image/png",
+      legend: {url: 'http://geoapp-pi.prvgld.nl/arcgisoutput/PGR_2_MapServer/wms/default8.png'}
+  },
+  {
+      type: 'wms',
       label: 'Ecotopenkaart',
       url: 'http://geodata.nationaalgeoregister.nl/ecotopen/ows?SERVICE=WMS&',
       layers: "cyclus_drie",
@@ -141,16 +151,18 @@ client = $('#center').urd({center: {box: [5.989178,51.853822,6.103160,51.914010]
       format: "image/png",
       legend: {url: 'http://geodata.nationaalgeoregister.nl/natura2000/wms?layer=natura2000&request=getlegendgraphic&format=image/png'}
   },
+
   {
       type: 'wms',
-      label: 'Natuurbeheerplan',
-      url: 'http://ags.prvgld.nl/ArcGIS/services/pgr_2/MapServer/WMSServer?',
-      layers: '8',
+      label: 'Waterkeringen',
+      url: 'http://geoservices.rijkswaterstaat.nl/primaire_waterkeringen_rws?',
+      layers: 'AAA200',
       style: "",
       visibility: false,
       format: "image/png",
-      legend: {url: 'http://geoapp-pi.prvgld.nl/arcgisoutput/PGR_2_MapServer/wms/default8.png'}
+      legend: {url: 'http://geoservices.rijkswaterstaat.nl/primaire_waterkeringen_rws?layer=AAA200&request=getlegendgraphic&format=image/png&service=wms&version=1.1.1'}
   }
+  
   
   ]
 }).data('urd');
