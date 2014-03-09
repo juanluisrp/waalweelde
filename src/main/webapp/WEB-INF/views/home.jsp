@@ -67,6 +67,7 @@
 	
 	</div>
 </div>
+<!--  
 <div id="tabs-2"> 
  <div class="extra-content">
 
@@ -93,6 +94,8 @@
 </div>
 
 </div>
+
+-->
   </div>
 
     <div class="west-element"><div class="panel-header"><span class="ui-panel-title">Lagen </span>

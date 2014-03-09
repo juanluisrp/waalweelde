@@ -108,7 +108,50 @@ client = $('#center').urd({center: {box: [5.989178,51.853822,6.103160,51.914010]
       visibility: false,
       format: "image/jpeg",
       legend: {url: 'http://kaart.pdok.nl/img/PDOK-logo.png'}
+  },
+  {
+      type: 'wmts',
+      label: 'Vegetatielegger',
+      url: 'http://168.63.99.2/arcgis/rest/services/Vegetatievlakken_plus/MapServer/WMTS?',
+      layer: 'Vegetatievlakken_plus',
+      style: "",
+      matrixSet: "default028mm",
+      matrixIds:  matrixIds3,
+      visibility: false,
+      format: "image/png",
+      legend: {url: 'http://168.63.99.2/arcgis/rest/services/Vegetatievlakken_plus/MapServer/WMTS?request=getlegendgraphic&format=image/png&layer=Vegetatievlakken_plus'}
+  },
+  {
+      type: 'wms',
+      label: 'Ecotopenkaart',
+      url: 'http://geodata.nationaalgeoregister.nl/ecotopen/ows?SERVICE=WMS&',
+      layers: "cyclus_drie",
+      style: "",
+      visibility: false,
+      format: "image/png",
+      legend: {url: 'http://geodata.nationaalgeoregister.nl/ecotopen/ows?SERVICE=WMS&request=getlegendgraphic&format=image/png&layer=cyclus_drie'}
+  },
+  {
+      type: 'wms',
+      label: 'Natura 2000',
+      url: 'http://geodata.nationaalgeoregister.nl/natura2000/wms?',
+      layers: 'natura2000',
+      style: "",
+      visibility: false,
+      format: "image/png",
+      legend: {url: 'http://geodata.nationaalgeoregister.nl/natura2000/wms?layer=natura2000&request=getlegendgraphic&format=image/png'}
+  },
+  {
+      type: 'wms',
+      label: 'Natuurbeheerplan',
+      url: 'http://ags.prvgld.nl/ArcGIS/services/pgr_2/MapServer/WMSServer?',
+      layers: '8',
+      style: "",
+      visibility: false,
+      format: "image/png",
+      legend: {url: 'http://geoapp-pi.prvgld.nl/arcgisoutput/PGR_2_MapServer/wms/default8.png'}
   }
+  
   ]
 }).data('urd');
 $('#layertree').urdLayerTree({urd:'#center'});
