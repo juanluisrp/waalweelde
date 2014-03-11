@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 
 
-var gnserver = "https://geonetwork-waalweelde.geocat.net/geonetwork/srv/dut/";	
+var gnserver = "https://geonetwork-waalweelde.geocat.net/srv/dut/";	
 var liveurl = "https://waalweelde.geocat.net/waalweelde";
 var proxyurl = liveurl + "/proxy?url=";
 var displayThumb = true;

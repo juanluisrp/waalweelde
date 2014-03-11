@@ -6,7 +6,7 @@
  <head>
   <meta charset="utf-8">
   <title>URD Delta Oost - dashboard</title>
-  <link href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   
  
 
