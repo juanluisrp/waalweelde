@@ -27,7 +27,7 @@
 <div id="center" class="ui-layout-center">
 <div id="toolbar" class="ui-layout-north" style="display:none">
     <!-- todo: button open kaart -->
-    <button onclick="window.open('http://research.geodan.nl/sites/waalweelde/service?canter='+client.kaart1.center.lon+','+client.kaart1.center.lat,'vegmod','width=1000,height=830')" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-panel-titlebar-minus toolbarButton" aria-disabled="false" title="Input voor vegetatiemodel" style="float:right">Vegetatiemodel</button>
+    <button onclick="window.open('http://research.geodan.nl/sites/waalweelde/service/#zoom='+client.kaart1.zoom+'&lat='+client.kaart1.center.lat+'&lon='+client.kaart1.center.lon+'&layers=BTTT','vegmod','width=1000,height=830')" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-panel-titlebar-minus toolbarButton" aria-disabled="false" title="Input voor vegetatiemodel" style="float:right">Vegetatiemodel</button>
     <a href="/" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-panel-titlebar-minus toolbarButton" title="Terug naar Waalweelde portaal" aria-disabled="false" style="float:right">Sluiten</a> 
   	<button id="mdSave" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-panel-titlebar-minus toolbarButton" title="Sla de huidige kaartconfiguratie op, zodat deze in de catalogus vindbaar wordt" aria-disabled="false" style="float:right">Opslaan</button> 
   	<div id="mapTitle" style="padding:8px"></div> 

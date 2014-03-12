@@ -46,8 +46,11 @@ function getMDResults(page){
 	//if map=software, can not add dynamic
 	if (tp!="software") tp= tp + amp() + "dynamic=true";
 	
+	//this fails for some reason in /proxy, maybe url too long?
 	//filter by map-bounds
-	var bnds = client.kaart1.getExtent().toGeometry().transform('epsg:28992','epsg:4326').toString();
+	//var bnds = client.kaart1.getExtent().toGeometry().transform('epsg:28992','epsg:4326').toString();
+	
+	var bnds="";
 	
 	//dynamic = true only results in datasets having a wms link
 	$.ajax({	type:"GET", 
