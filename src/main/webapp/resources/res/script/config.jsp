@@ -3,8 +3,8 @@
 
 
 var gnserver = "https://geonetwork-waalweelde.geocat.net/srv/dut/";	
-var liveurl = "https://waalweelde.geocat.net/waalweelde";
-var proxyurl = liveurl + "/proxy?url=";
+var liveurl = "https://waalweelde.geocat.net/";
+var proxyurl = "/proxy?url=";
 var displayThumb = true;
     
     
