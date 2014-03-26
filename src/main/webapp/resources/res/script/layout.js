@@ -37,7 +37,7 @@ var layout_options = {
    north: {
     closable: false,
     resizable: false,
-    size: 83,
+    size: 76,
     spacing_open : 0
    },
    west: {
@@ -110,16 +110,14 @@ client = $('#center').urd({center: {box: [5.989178,51.853822,6.103160,51.914010]
       legend: {url: 'http://kaart.pdok.nl/img/PDOK-logo.png'}
   },
   {
-      type: 'wmts',
+      type: 'wms',
       label: 'Vegetatielegger',
-      url: 'http://168.63.99.2/arcgis/rest/services/Vegetatievlakken_plus/MapServer/WMTS?',
-      layer: 'Vegetatievlakken_plus',
+      url: 'https://geoserver-waalweelde.geocat.net/wms?',
+      layers: 'Rijnwaarden:Vegetatievlakken',
       style: "",
-      matrixSet: "default028mm",
-      matrixIds:  matrixIds3,
       visibility: false,
       format: "image/png",
-      legend: {url: 'http://168.63.99.2/arcgis/rest/services/Vegetatievlakken_plus/MapServer/WMTS?request=getlegendgraphic&format=image/png&layer=Vegetatievlakken_plus'}
+      legend: {url: 'https://geoserver-waalweelde.geocat.net/wms?request=getlegendgraphic&format=image/png&layer=Rijnwaarden:Vegetatievlakken'}
   },
   {
       type: 'wms',
@@ -129,7 +127,7 @@ client = $('#center').urd({center: {box: [5.989178,51.853822,6.103160,51.914010]
       style: "",
       visibility: false,
       format: "image/png",
-      legend: {url: 'http://geoapp-pi.prvgld.nl/arcgisoutput/PGR_2_MapServer/wms/default8.png'}
+      legend: {url: 'http://ags.prvgld.nl/arcgisoutput/PGR_2_MapServer/wms/default8.png'}
   },
   {
       type: 'wms',

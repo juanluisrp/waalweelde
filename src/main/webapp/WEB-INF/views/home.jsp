@@ -5,19 +5,9 @@
 <html lang="nl">
  <head>
   <meta charset="utf-8">
-  <title>URD Delta Oost - dashboard</title>
+  <title>Waalweelde - dashboard - Provincie Gelderland</title>
   <link href='//fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  
  
-
-
-  <!-- d3 
-  <script src="http://d3js.org/d3.v3.js"></script>
-  <script src="<c:url value="/resources/res/lib/novus-nvd3/nv.d3.min.js"/>"></script>
-  <link href="<c:url value="/resources/res/lib/novus-nvd3/src/nv.d3.css"/>" rel='stylesheet' type='text/css'>
-  <script type="text/javascript" src="<c:url value="/resources/res/lib/openlayers/OpenLayers.js"/>"></script>-->
-
-
   </head>
 <body>
 
@@ -62,9 +52,17 @@
 	<input type="text" id="mdSuggest" value="" style="width:160px"/>
 	<button id="mdQuery" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="zoek">
 	<span class="ui-button-icon-primary ui-icon ui-icon-search"></span><span class="ui-button-text">zoek</span></button><br/>
+	<div><!--   style="float:left">-->
+	<i>Type</i><br/>
 	<input type=radio id=doctype1 value=software name=doctype><label for="doctype1">Themakaart</label><br/>
-	<input type=radio id=doctype2 value=dataset name=doctype><label for="doctype2">Dataset</label>
-	
+	<input type=radio id=doctype2 value=dataset name=doctype><label for="doctype2">Dataset</label><br/>
+	<input type=radio id=doctype3 value=any name=doctype><label for="doctype3">Allen</label>
+	</div><!--<div>
+	<i>Locatie</i><br/>
+	<input type=radio id=loctype1 value=map name=loctype><label for="loctype1">Kaart</label><br/>
+	<input type=radio id=loctype2 value=waalweelde name=loctype><label for="loctype2">Waalweelde</label><br/>
+	<input type=radio id=loctype3 value=global name=loctype><label for="loctype3">Landelijk</label>
+	</div>-->
 	</div>
 </div>
 <!--  
@@ -134,8 +132,9 @@ Doel:<br/>
 </div>
 <div title="Feature info" id="fipanel" style="display:none"></div>
 
-  <!-- jquery -->
-  <script src="<c:url value="/resources/res/lib/jquery.js"/>"></script>
+  <!-- jquery 
+  <script src="<c:url value="/resources/res/lib/jquery.js"/>"></script>-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="<c:url value="/resources/res/lib/jquery-ui.js"/>"></script>
   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/style/jquery-ui-1.10.3.custom/css/custom-theme/jquery-ui-1.10.3.custom.css"/>" />
 

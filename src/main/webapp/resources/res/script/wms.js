@@ -92,7 +92,7 @@ OpenLayers.Request.GET({
 		
     },
     failure: function(req) {
-		alert("Trouble getting capabilities doc");
+		alert("Problemen met het benaderen van de externe server, controleer of de server (tijdelijk) onbereikbaar is");
         OpenLayers.Console.error.apply(OpenLayers.Console, arguments);
     }
 });

@@ -90,15 +90,44 @@ function loadMap(map){
 	
 	
 	
-	$.ajax({url:map,
+	$.ajax({url:proxyurl+escape(map),
 		datatype:"xml", 
 		success: function(data){
 			var format = new OpenLayers.Format.WMC({'layerOptions': {buffer: 0}});
 			if(merge) {
                 try {
-                    map = format.read(text, {map: client.kaart1});
+                	//remove all layers (except bg) to prevent duplicates
+                	//$(client.kaart1.layers).each(function(j,i){ if (j>1) this.destroy(); });
+                	map = format.read(data);             	
+                	$(map.layersContext).each( 
+                			function (){ 
+                				//if (this.type == "wms") { -- type is always wms, wmts is not available in wmc, later for ows_context
+                					var hasLayer = false;
+                					//todo: a layer can be added multiple times, each with a different style for example
+                					//todo: opacity is not used
+                					var lyrs = this.name;
+                					var server = this.url;
+                					var lbl = this.title;
+                					//check if layer already exists in map
+                					$(client.kaart1.layers).each(function(){		
+                						if (this.layers == lyrs && this.url == server){ 
+                							hasLayer = true;
+                						}
+                					});
+                					//todo: add a param for visisbility
+                					if (!hasLayer) $.URD.addWMS(server,lyrs,lbl);
+                					//}
+                				});
+                	
+                	client.kaart1.zoomToExtent(map.bounds);		
+                		
+                		
+                	//now update the toc...
+                	
+                	
+                	
                 } catch(err) {
-                   
+                	alert("Helaas was het niet mogelijk de kaart te openen, controleer of het document valide is: " + err.message);
                 }
             } else {
                 client.kaart1.destroy();//might not be good, better to remove all layers (except backgrounds)
@@ -108,7 +137,7 @@ function loadMap(map){
                     map = format.read(text, {map: mapOptions});
                     map.addControl(new OpenLayers.Control.LayerSwitcher());
                 } catch(err) {
-                   
+                	alert("Helaas was het niet mogelijk de kaart te openen, controleer aub of het document valide is: " + err.message);
                 }
             }
 			//todo:set title
