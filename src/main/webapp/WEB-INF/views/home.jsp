@@ -87,14 +87,12 @@
 	Een specifieke WMS server:<br/>
 <input type="text" id="tbWMS" style="width:160px" value="http://waalweelde.geocat.net/geoserver/wms"/>  <button id="addWMS" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="verbind met de server"><span class="ui-button-icon-primary ui-icon ui-icon-transferthick-e-w"  onclick="$.URD.addWMS($('#tbWMS').val())"></span><span class="ui-button-text">verbind</span></button>
 
-<br/>
+<br/>-->
 	<div id="mdResults" title="Zoekresultaat"></div>
 	<div id="wmsSelectLayer" title="Selecteer kaartlaag"></div>
+<!-- </div>
 </div>
 </div>
-
-</div>
-
 -->
   </div>
 
