@@ -63,8 +63,11 @@ function getMDResults(page){
 				url:proxyurl+gnserver+"q?fast=index" + amp() + "from="+(1+page*25) + amp() + "to="+((25+page*25))+ amp() + "any="+vl+"*" + amp() + "geometry="+ bnds  + amp() + "type="+tp, 
 				datatype:"xml", 
 				success: function(data){
+					
+					xmlDoc = $.parseXML( data );
+					
 						//For each record
-						$(data).find("metadata").each(function(){
+						$(xmlDoc).find("metadata").each(function(){
 							
 							var md = {wmslinks:[],title:"",oms:"",image:"",bounds:[],contact:""};
 							md.wmslinks = [];
@@ -115,7 +118,7 @@ function getMDResults(page){
 							if (this.oms) output +=""+this.oms.substring(0,270) + "<br/>";
 							
 							if (this.wmclinks.length > 0) {
-								output+="<button style=\"float:right\" onclick=\"loadMap('"+this.wmclinks[0].url+"');\">Open themakaart</button>";
+								output+="<button style=\"float:right\" onclick=\"loadMap('"+this.wmclinks[0].url+"','"+this.title+"');\">Open themakaart</button>";
 							}
 							
 							//todo: onderscheid maken tussen 1 laag en meerdere lagen, meerdere lagen als split button

@@ -83,12 +83,23 @@ function saveMap(){
 	
 }
 
-function loadMap(map){
+function resetMap(){
+	$(client._allLayers()).each(function(){
+			skiplayers = ["Vegetatielegger","Natuurbeheerplan","Ecotopenkaart","Natura 2000","Waterkeringen"];
+			if (this.olLayer.type=="wms" && skiplayers.indexOf(this.olLayer.label)==-1){
+				client._removeLayer(this.id);
+			}
+			});
+		}
 
+function loadMap(map,ttl){
+
+	if (!ttl||ttl=="") ttl="";
+	
 	//put a local temp wmc here
 	//map = "http://localhost:99/waalweelde/resources/res/wmc.xml";
 	
-	
+	$("#mapTitle").html(ttl);
 	
 	$.ajax({url:proxyurl+escape(map),
 		datatype:"xml", 
@@ -101,6 +112,9 @@ function loadMap(map){
                 	map = format.read(data);             	
                 	$(map.layersContext).each( 
                 			function (){ 
+                				
+                				resetMap();
+                				
                 				//if (this.type == "wms") { -- type is always wms, wmts is not available in wmc, later for ows_context
                 					var hasLayer = false;
                 					//todo: a layer can be added multiple times, each with a different style for example
@@ -108,6 +122,7 @@ function loadMap(map){
                 					var lyrs = this.name;
                 					var server = this.url;
                 					var lbl = this.title;
+                					var vis = this.visibility;
                 					//check if layer already exists in map
                 					$(client.kaart1.layers).each(function(){		
                 						if (this.layers == lyrs && this.url == server){ 
@@ -115,15 +130,11 @@ function loadMap(map){
                 						}
                 					});
                 					//todo: add a param for visisbility
-                					if (!hasLayer) $.URD.addWMS(server,lyrs,lbl);
+                					if (!hasLayer) $.URD.addWMS(server,lyrs,lbl,vis);
                 					//}
                 				});
                 	
                 	client.kaart1.zoomToExtent(map.bounds);		
-                		
-                		
-                	//now update the toc...
-                	
                 	
                 	
                 } catch(err) {

@@ -134,7 +134,7 @@ Doel:<br/>
 
   <!-- jquery 
   <script src="<c:url value="/resources/res/lib/jquery.js"/>"></script>-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="<c:url value="/resources/res/lib/jquery-ui.js"/>"></script>
   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/style/jquery-ui-1.10.3.custom/css/custom-theme/jquery-ui-1.10.3.custom.css"/>" />
 
@@ -148,7 +148,6 @@ Doel:<br/>
 
   <!-- openlayers -->
   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/lib/openlayers/theme/default/style.css"/>" />
-
 
   <script type="text/javascript" src="<c:url value="/resources/res/lib/openlayers/lib/OpenLayers.js"/>"></script>
   
@@ -176,6 +175,15 @@ Doel:<br/>
   <script>
   Proj4js.defs["EPSG:28992"] = "+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +units=m +no_defs";
   </script>
-
+  <style>
+  .olControlAttribution{
+  	font-size:8px;
+  	bottom:2px;
+  }
+  #fipanel{
+  max-width:800px !important;
+  max-height:600px !important;
+  }
+  </style>
 </body>
 </html>  

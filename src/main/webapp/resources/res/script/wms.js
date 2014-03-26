@@ -3,8 +3,10 @@ var wmsServer;
 
 $.URD = $.URD || {};
 
-$.URD.addWMS = function (server,layer,title) {
+$.URD.addWMS = function (server,layer,title,vis) {
 
+if (typeof(vis)=='undefined') vis=true;	
+	
 wmsServer = server;//todo: should be used by click event only, not global
 
 var format = new OpenLayers.Format.WMSCapabilities({versiom:"1.3.0"});
@@ -52,7 +54,8 @@ OpenLayers.Request.GET({
 					 metadataURLs: this.metadataURLs,
 					 formats: this.formats,
 					 extent:{box:this.llbbox},
-					 attribution: this.attribution
+					 attribution: this.attribution,
+					 visibility:vis
 					}
 					client.layers(lyrOpts);
 					matchedLayer = this.name;	

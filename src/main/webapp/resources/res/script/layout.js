@@ -185,7 +185,7 @@ var kaart1click = function(e) {
 	//remove previous panels
 	$("#fipanel").dialog().hide();
 	//add panel: loading
-	$("#fipanel").dialog({width:"auto",height:"auto",position:{my:"center center",at:"center center",of:"#map1-map"}}).html("Even geduld...").show();
+	$("#fipanel").dialog({width:"auto",height:"auto",maxWidth:"800",maxHeight:"600",position:{my:"center center",at:"center center",of:"#map1-map"}}).html("Even geduld...").show();
 	var lonlat = client.kaart1.getPixelFromLonLat(client.kaart1.getLonLatFromPixel(e.xy));
 	//featureinfo request
 	fi(client.kaart1,lonlat);
@@ -195,7 +195,7 @@ var kaart2click = function(e) {
 	//remove previous panels
 	$("#fipanel").hide();
 	//add panel: loading
-	$("#fipanel").dialog({width:"auto",height:"auto",position:{my:"center center",at:"center center",of:"#map2-map"}}).html("Even geduld...").show();
+	$("#fipanel").dialog({width:"auto",height:"auto",maxWidth:"800",maxHeight:"600",position:{my:"center center",at:"center center",of:"#map2-map"}}).html("Even geduld...").show();
 	var lonlat = client.kaart2.getPixelFromLonLat(client.kaart2.getLonLatFromPixel(e.xy));
 	//featureinfo request
 	fi(client.kaart2,lonlat);
@@ -221,15 +221,16 @@ $('#layers').delegate('.ui-icon-plus','click',function(){
 var wms = getURLParameter("wms");
 var layer = getURLParameter("layer");
 if (wms&&layer){
-$.URD.addWMS(wms,layer,layer);
+$.URD.addWMS(wms,layer,layer,true);
 };
 
 $("#layout").show();
 });
 
 var wmc = getURLParameter("wmc");
+var layer = getURLParameter("layer");
 if (wmc){ 
-	loadMap(map);
+	loadMap(map,layer);
 } else {
 	$("#mapTitle").html("Waalweelde basis kaart");	
 }
