@@ -121,14 +121,16 @@
 <div id="wmsSelectStyle" title="Selecteer een tekenstijl"></div>
 <div id="wmsSelectOpacity" title="Wijzig het transparantie niveau"><div id="opacitySlider"></div></div>
 <div id="saveMap" title="Themakaart opslaan" style="display:none">
+<form id="wmcForm">
 Titel:<br/> <input type=text id="mapTitel" size="50"><span class="required">*</span><br/>
 Omschrijving:</br>
 <textarea rows="3" cols="60" id="mapAbstract"></textarea><br/>
 Doel:<br/>
 <textarea rows="3" cols="60" id="mapPurpose"></textarea><br/>
-
+<input type="hidden" id="wmc" name="content" />
 <input type="radio" id="local" value="local" name="location" checked="true"><label for="local">Lokaal</label>
 <input type="radio" id="remote" value="remote" name="location"><label for="remote">Op de server</label>
+</form>
 </div>
 <div title="Feature info" id="fipanel" style="display:none"></div>
 

@@ -38,7 +38,7 @@ var fi = function(map,lonlat){
          }
             
          
-         url = url.replace(/request/ig,"").replace(/version/ig,"").replace(/service/ig,"");
+         url = url.replace(/request=/ig,"=").replace(/version=/ig,"=").replace(/service=/ig,"=");
          
          OpenLayers.Request.GET({
         		 url:url,

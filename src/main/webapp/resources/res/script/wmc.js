@@ -35,7 +35,7 @@ function saveMap(){
 					
 					
 					if ($("#mapTitel").val()==""){	
-						alert("U dient minimaal een titel voor deze kaart int e vullen");
+						alert("U dient minimaal een titel voor deze kaart in te vullen");
 						return;
 					}
 					
@@ -45,12 +45,14 @@ function saveMap(){
 						
 						$.ajax({
 							url : liveurl + "/proxy",
-							method : 'POST',
+							type : 'POST',
 							data : {
 								content : format.write(client.kaart1)
 							}
 						}).done(function(e) {
 							location = liveurl+"/proxy?fileName=" + e; 
+						}).fail(function(e) {
+							alert("Het opslaan van de themakaart is helaas mislukt.");
 						});
 						
 					} else {
