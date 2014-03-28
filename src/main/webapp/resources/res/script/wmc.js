@@ -74,7 +74,18 @@ function saveMap(){
 								url:liveurl+"/metadata/create/domap", 
 								datatype:"xml", 
 								success: function(data){
-									$( "#saveMap" ).html("Themakaart succesvol opgeslagen");
+									
+									console.log(data);
+									
+									if (data.indexOf("<title>Login Page</title>") > -1 ) {
+										
+										$( "#saveMap" ).html("U bent niet ingelogd of uw sessie is verlopen. Log opnieuw in in het portaal en sla opnieuw op.");
+									} else {
+										$( "#saveMap" ).html("Themakaart succesvol opgeslagen");
+										
+									}
+									
+									
 								},
 								error:function(data,error,status){ alert("Het opslaan van de themakaart is helaas mislukt "+error+" "+status); }
 							});
