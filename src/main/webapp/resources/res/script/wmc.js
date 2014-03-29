@@ -35,7 +35,8 @@ function saveMap(){
 					
 					
 					if ($("#mapTitel").val()==""){	
-						alert("U dient minimaal een titel voor deze kaart in te vullen");
+						
+						$( "#MapSaveMsg" ).html("U dient minimaal een titel voor deze kaart in te vullen").css({"background-color":"#f99"}).show().delay(2000).hide('slow');
 						return;
 					}
 					
@@ -52,7 +53,8 @@ function saveMap(){
 						}).done(function(e) {
 							location = liveurl+"/proxy?fileName=" + e; 
 						}).fail(function(e) {
-							alert("Het opslaan van de themakaart is helaas mislukt.");
+							$( "#MapSaveMsg" ).html("Het opslaan van de themakaart is helaas mislukt").css({"background-color":"#f99"}).show().delay(2000).hide('slow');
+							
 						});
 						
 					} else {
@@ -65,6 +67,7 @@ function saveMap(){
 									title:$("#mapTitel").val(),
 									description:$("#mapAbstract").val(),
 									purpose:$("#mapPurpose").val(),
+									group:0,
 									west:bnds[0],
 									south:bnds[1],
 									east:bnds[2],
@@ -79,15 +82,13 @@ function saveMap(){
 									
 									if (data.indexOf("<title>Login Page</title>") > -1 ) {
 										
-										$( "#saveMap" ).html("U bent niet ingelogd of uw sessie is verlopen. Log opnieuw in in het portaal en sla opnieuw op.");
+										$( "#MapSaveMsg" ).html("U bent niet ingelogd of uw sessie is verlopen. Log opnieuw in in het portaal en sla opnieuw op.").css({"background-color":"#f99"}).show().delay(2000).hide('slow');
 									} else {
-										$( "#saveMap" ).html("Themakaart succesvol opgeslagen");
+										$( "#MapSaveMsg" ).html("Themakaart succesvol opgeslagen").css({"background-color":"#9ff"}).show().delay(2000).hide('slow');
 										
 									}
-									
-									
 								},
-								error:function(data,error,status){ alert("Het opslaan van de themakaart is helaas mislukt "+error+" "+status); }
+								error:function(data,error,status){ $( "#MapSaveMsg" ).html("Het opslaan van de themakaart is helaas mislukt "+error+" "+status).css({"background-color":"#f99"}).show().delay(2000).hide('slow'); }
 							});
 					}
 			}
