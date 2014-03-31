@@ -5,19 +5,9 @@
 <html lang="nl">
  <head>
   <meta charset="utf-8">
-  <title>URD Delta Oost - dashboard</title>
+  <title>Waalweelde - dashboard - Provincie Gelderland</title>
   <link href='//fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  
  
-
-
-  <!-- d3 
-  <script src="http://d3js.org/d3.v3.js"></script>
-  <script src="<c:url value="/resources/res/lib/novus-nvd3/nv.d3.min.js"/>"></script>
-  <link href="<c:url value="/resources/res/lib/novus-nvd3/src/nv.d3.css"/>" rel='stylesheet' type='text/css'>
-  <script type="text/javascript" src="<c:url value="/resources/res/lib/openlayers/OpenLayers.js"/>"></script>-->
-
-
   </head>
 <body>
 
@@ -62,9 +52,17 @@
 	<input type="text" id="mdSuggest" value="" style="width:160px"/>
 	<button id="mdQuery" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="zoek">
 	<span class="ui-button-icon-primary ui-icon ui-icon-search"></span><span class="ui-button-text">zoek</span></button><br/>
+	<div><!--   style="float:left">-->
+	<i>Type</i><br/>
 	<input type=radio id=doctype1 value=software name=doctype><label for="doctype1">Themakaart</label><br/>
-	<input type=radio id=doctype2 value=dataset name=doctype><label for="doctype2">Dataset</label>
-	
+	<input type=radio id=doctype2 value=dataset name=doctype><label for="doctype2">Dataset</label><br/>
+	<input type=radio id=doctype3 value=any name=doctype><label for="doctype3">Allen</label>
+	</div><!--<div>
+	<i>Locatie</i><br/>
+	<input type=radio id=loctype1 value=map name=loctype><label for="loctype1">Kaart</label><br/>
+	<input type=radio id=loctype2 value=waalweelde name=loctype><label for="loctype2">Waalweelde</label><br/>
+	<input type=radio id=loctype3 value=global name=loctype><label for="loctype3">Landelijk</label>
+	</div>-->
 	</div>
 </div>
 <!--  
@@ -87,14 +85,12 @@
 	Een specifieke WMS server:<br/>
 <input type="text" id="tbWMS" style="width:160px" value="http://waalweelde.geocat.net/geoserver/wms"/>  <button id="addWMS" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="verbind met de server"><span class="ui-button-icon-primary ui-icon ui-icon-transferthick-e-w"  onclick="$.URD.addWMS($('#tbWMS').val())"></span><span class="ui-button-text">verbind</span></button>
 
-<br/>
+<br/>-->
 	<div id="mdResults" title="Zoekresultaat"></div>
 	<div id="wmsSelectLayer" title="Selecteer kaartlaag"></div>
+<!-- </div>
 </div>
 </div>
-
-</div>
-
 -->
   </div>
 
@@ -125,19 +121,25 @@
 <div id="wmsSelectStyle" title="Selecteer een tekenstijl"></div>
 <div id="wmsSelectOpacity" title="Wijzig het transparantie niveau"><div id="opacitySlider"></div></div>
 <div id="saveMap" title="Themakaart opslaan" style="display:none">
+<form id="wmcForm">
+
+<div id="MapSaveMsg" style="padding:15px;display:none;border-radius:15px"></div>
+
 Titel:<br/> <input type=text id="mapTitel" size="50"><span class="required">*</span><br/>
 Omschrijving:</br>
 <textarea rows="3" cols="60" id="mapAbstract"></textarea><br/>
 Doel:<br/>
 <textarea rows="3" cols="60" id="mapPurpose"></textarea><br/>
-
+<input type="hidden" id="wmc" name="content" />
 <input type="radio" id="local" value="local" name="location" checked="true"><label for="local">Lokaal</label>
 <input type="radio" id="remote" value="remote" name="location"><label for="remote">Op de server</label>
+</form>
 </div>
 <div title="Feature info" id="fipanel" style="display:none"></div>
 
-  <!-- jquery -->
-  <script src="<c:url value="/resources/res/lib/jquery.js"/>"></script>
+  <!-- jquery 
+  <script src="<c:url value="/resources/res/lib/jquery.js"/>"></script>-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="<c:url value="/resources/res/lib/jquery-ui.js"/>"></script>
   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/style/jquery-ui-1.10.3.custom/css/custom-theme/jquery-ui-1.10.3.custom.css"/>" />
 
@@ -151,7 +153,6 @@ Doel:<br/>
 
   <!-- openlayers -->
   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/lib/openlayers/theme/default/style.css"/>" />
-
 
   <script type="text/javascript" src="<c:url value="/resources/res/lib/openlayers/lib/OpenLayers.js"/>"></script>
   
@@ -179,6 +180,15 @@ Doel:<br/>
   <script>
   Proj4js.defs["EPSG:28992"] = "+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +units=m +no_defs";
   </script>
-
+  <style>
+  .olControlAttribution{
+  	font-size:8px;
+  	bottom:2px;
+  }
+  #fipanel{
+  max-width:800px !important;
+  max-height:600px !important;
+  }
+  </style>
 </body>
 </html>  

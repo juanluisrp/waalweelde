@@ -37,7 +37,7 @@ var layout_options = {
    north: {
     closable: false,
     resizable: false,
-    size: 83,
+    size: 76,
     spacing_open : 0
    },
    west: {
@@ -110,16 +110,14 @@ client = $('#center').urd({center: {box: [5.989178,51.853822,6.103160,51.914010]
       legend: {url: 'http://kaart.pdok.nl/img/PDOK-logo.png'}
   },
   {
-      type: 'wmts',
+      type: 'wms',
       label: 'Vegetatielegger',
-      url: 'http://168.63.99.2/arcgis/rest/services/Vegetatievlakken_plus/MapServer/WMTS?',
-      layer: 'Vegetatievlakken_plus',
+      url: 'https://geoserver-waalweelde.geocat.net/wms?',
+      layers: 'Rijnwaarden:Vegetatievlakken',
       style: "",
-      matrixSet: "default028mm",
-      matrixIds:  matrixIds3,
       visibility: false,
       format: "image/png",
-      legend: {url: 'http://168.63.99.2/arcgis/rest/services/Vegetatievlakken_plus/MapServer/WMTS?request=getlegendgraphic&format=image/png&layer=Vegetatievlakken_plus'}
+      legend: {url: 'https://geoserver-waalweelde.geocat.net/wms?request=getlegendgraphic&format=image/png&layer=Rijnwaarden:Vegetatievlakken'}
   },
   {
       type: 'wms',
@@ -129,7 +127,7 @@ client = $('#center').urd({center: {box: [5.989178,51.853822,6.103160,51.914010]
       style: "",
       visibility: false,
       format: "image/png",
-      legend: {url: 'http://geoapp-pi.prvgld.nl/arcgisoutput/PGR_2_MapServer/wms/default8.png'}
+      legend: {url: 'http://ags.prvgld.nl/arcgisoutput/PGR_2_MapServer/wms/default8.png'}
   },
   {
       type: 'wms',
@@ -187,7 +185,7 @@ var kaart1click = function(e) {
 	//remove previous panels
 	$("#fipanel").dialog().hide();
 	//add panel: loading
-	$("#fipanel").dialog({width:"auto",height:"auto",position:{my:"center center",at:"center center",of:"#map1-map"}}).html("Even geduld...").show();
+	$("#fipanel").dialog({width:"auto",height:"auto",maxWidth:"800",maxHeight:"600",position:{my:"center center",at:"center center",of:"#map1-map"}}).html("Even geduld...").show();
 	var lonlat = client.kaart1.getPixelFromLonLat(client.kaart1.getLonLatFromPixel(e.xy));
 	//featureinfo request
 	fi(client.kaart1,lonlat);
@@ -197,7 +195,7 @@ var kaart2click = function(e) {
 	//remove previous panels
 	$("#fipanel").hide();
 	//add panel: loading
-	$("#fipanel").dialog({width:"auto",height:"auto",position:{my:"center center",at:"center center",of:"#map2-map"}}).html("Even geduld...").show();
+	$("#fipanel").dialog({width:"auto",height:"auto",maxWidth:"800",maxHeight:"600",position:{my:"center center",at:"center center",of:"#map2-map"}}).html("Even geduld...").show();
 	var lonlat = client.kaart2.getPixelFromLonLat(client.kaart2.getLonLatFromPixel(e.xy));
 	//featureinfo request
 	fi(client.kaart2,lonlat);
@@ -223,15 +221,16 @@ $('#layers').delegate('.ui-icon-plus','click',function(){
 var wms = getURLParameter("wms");
 var layer = getURLParameter("layer");
 if (wms&&layer){
-$.URD.addWMS(wms,layer,layer);
+$.URD.addWMS(wms,layer,layer,true);
 };
 
 $("#layout").show();
 });
 
 var wmc = getURLParameter("wmc");
+var layer = getURLParameter("layer");
 if (wmc){ 
-	loadMap(map);
+	loadMap(map,layer);
 } else {
 	$("#mapTitle").html("Waalweelde basis kaart");	
 }

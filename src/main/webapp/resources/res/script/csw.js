@@ -10,7 +10,7 @@ $("#mdSuggest").autocomplete({
 									success: function(data) {
 										//map the data into a response that will be understood by the autocomplete widget
 										response($.map(data[1], function(item) {
-											return {label: item,value: item}
+											return {label: item,value: item};
 										}));
 
 									}}
@@ -20,7 +20,7 @@ $("#mdSuggest").autocomplete({
 						minLength: 3,
 						//when you have selected something
 						select: function(event, ui) {
-							this.close
+							this.close;
 						},
 						open: function() {
 							$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
@@ -42,32 +42,45 @@ function getMDResults(page){
 	var vl = $("#mdSuggest").val();
 	if (typeof(vl)=='undefined') vl="";
 	tp = $("input[name='doctype']:checked").val();
-	if (!tp) tp="";
+	if (!tp||tp=="any") tp="";
 	//if map=software, can not add dynamic
 	if (tp!="software") tp= tp + amp() + "dynamic=true";
 	
-	//this fails for some reason in /proxy, maybe url too long?
-	//filter by map-bounds
-	//var bnds = client.kaart1.getExtent().toGeometry().transform('epsg:28992','epsg:4326').toString();
-	
 	var bnds="";
+	
+	/*
+	lp = $("input[name='loctype']:checked").val();	
+
+	if (lp=="waalweelde") {
+		bnds = "POLYGON((5.0850%2051.8276%2C5.0850%2051.9565%2C6.1260%2051.9565%2C6.1260%2051.8276%2C5.0850%2051.8276))";
+	} else if (lp=="map"){
+		bnds = client.kaart1.getExtent().toGeometry().transform('epsg:28992','epsg:4326').toString();
+	}
+	*/
 	
 	//dynamic = true only results in datasets having a wms link
 	$.ajax({	type:"GET", 
 				url:proxyurl+gnserver+"q?fast=index" + amp() + "from="+(1+page*25) + amp() + "to="+((25+page*25))+ amp() + "any="+vl+"*" + amp() + "geometry="+ bnds  + amp() + "type="+tp, 
 				datatype:"xml", 
 				success: function(data){
+					
+					xmlDoc = $.parseXML( data );
+					
 						//For each record
-						$(data).find("metadata").each(function(){
+						$(xmlDoc).find("metadata").each(function(){
+							
 							var md = {wmslinks:[],title:"",oms:"",image:"",bounds:[],contact:""};
 							md.wmslinks = [];
 							md.wmclinks = [];
 							// Check if link is defined
+							
 							$(this).find("link").each(function(){
 								wmslink = splitLink($(this).text());
-								if (wmslink.isWMS) md.wmslinks.push(wmslink);
-								if (wmslink.isWMC) md.wmclinks.push(wmslink);
-								return false;
+								if (wmslink.isWMS){
+									md.wmslinks.push(wmslink);
+								} else if (wmslink.isWMC) {
+									md.wmclinks.push(wmslink);
+								}
 							});
 							//Check if record has WMS url and layername defined >if so: create entry in table
 							md.title=$(this).find("title").text();
@@ -77,9 +90,9 @@ function getMDResults(page){
 							if (displayThumb){
 							md.image="resources/res/style/img/no_thumbnail.png";
 							try{//check all images, get the first valid one
-								$(this).find("img").each(function(){
+								$(this).find("image").each(function(){
 									if (ValidUrl($(this).text().split("|")[1])){
-										md.img=$(this).text().split("|")[1];
+										md.image=$(this).text().split("|")[1];
 										return false;
 									}
 								});
@@ -105,7 +118,7 @@ function getMDResults(page){
 							if (this.oms) output +=""+this.oms.substring(0,270) + "<br/>";
 							
 							if (this.wmclinks.length > 0) {
-								output+="<button style=\"float:right\" onclick=\"loadMap('"+this.wmclinks[0].url+"');\">Open themakaart</button>";
+								output+="<button style=\"float:right\" onclick=\"loadMap('"+this.wmclinks[0].url+"','"+this.title+"');\">Open themakaart</button>";
 							}
 							
 							//todo: onderscheid maken tussen 1 laag en meerdere lagen, meerdere lagen als split button
@@ -200,5 +213,5 @@ function setButtons() {
 			menu.hide();
 		});
 		return false;
-	}).parent().buttonset().next().hide().menu()
+	}).parent().buttonset().next().hide().menu();
 }
