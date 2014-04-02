@@ -35,75 +35,46 @@
 </div>
 <div class="ui-layout-west" style="display:none">
   <div id="layers">
-  <div class="west-element"><div class="panel-header"><span class="ui-panel-title">Informatie bronnen</span>
-    <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="minify"><span class="ui-button-icon-primary ui-icon ui-icon-minus"></span><span class="ui-button-text">minify</span></button></div>
-
-
-
-<div id="tabs" class="west-element-content" style="padding:none">
-<ul>
-<li><a href="#tabs-1">Catalogus</a></li>
-<!-- <a href="#tabs-2">Extra</a></li> --><li>
-</ul>
-
+  <div class="west-element">
+  <div class="panel-header">
+  <span class="ui-panel-title">Catalogus</span>
+  </div>
  
-<div id="tabs-1">
-	<div class="extra-content">
+  <div class="extra-content">
 	<input type="text" id="mdSuggest" value="" style="width:160px"/>
 	<button id="mdQuery" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="zoek">
 	<span class="ui-button-icon-primary ui-icon ui-icon-search"></span><span class="ui-button-text">zoek</span></button><br/>
-	<div><!--   style="float:left">-->
+	<div style="float:left">
 	<i>Type</i><br/>
 	<input type=radio id=doctype1 value=software name=doctype><label for="doctype1">Themakaart</label><br/>
 	<input type=radio id=doctype2 value=dataset name=doctype><label for="doctype2">Dataset</label><br/>
-	<input type=radio id=doctype3 value=any name=doctype><label for="doctype3">Allen</label>
-	</div><!--<div>
+	<input type=radio id=doctype3 value=any name=doctype checked="true"><label for="doctype3">Allen</label>
+	</div>
+	<div>
 	<i>Locatie</i><br/>
 	<input type=radio id=loctype1 value=map name=loctype><label for="loctype1">Kaart</label><br/>
-	<input type=radio id=loctype2 value=waalweelde name=loctype><label for="loctype2">Waalweelde</label><br/>
+	<input type=radio id=loctype2 value=waalweelde name=loctype checked="checked"><label for="loctype2">Waalweelde</label><br/>
 	<input type=radio id=loctype3 value=global name=loctype><label for="loctype3">Landelijk</label>
-	</div>-->
 	</div>
-</div>
-<!--  
-<div id="tabs-2"> 
- <div class="extra-content">
+	</div>
 
-  <div class="project-content ui-helper-clearfix" onclick="$.URD.addWMS('http://waalweelde.geocat.net/geoserver/wms')"><button  class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only " role="button" aria-disabled="false" title="Bekijk lagen"><span class="ui-button-icon-primary ui-icon ui-icon-carat-1-e"  ></span></button><span>Waterveiligheid </span>
-<div class="project-layers"></div>
-</div>
-<div class="project-content ui-helper-clearfix" onclick="$.URD.addWMS('http://waalweelde.geocat.net/geoserver/wms')"><button  class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only " role="button" aria-disabled="false" title="Bekijk lagen"><span class="ui-button-icon-primary ui-icon ui-icon-carat-1-e"  ></span></button><span>Vegetatiestructuur</span>
-<div class="project-layers"></div>
-</div>
-<div class="project-content ui-helper-clearfix" onclick="$.URD.addWMS('http://waalweelde.geocat.net/geoserver/wms')"><button  class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only " role="button" aria-disabled="false" title="Bekijk lagen"><span class="ui-button-icon-primary ui-icon ui-icon-carat-1-e" ></span></button><span>Natuur </span>
-<div class="project-layers"></div>
-</div>
-</ul>
-  </div>
-  
-  <div class="extra-content">
-	Een specifieke WMS server:<br/>
-<input type="text" id="tbWMS" style="width:160px" value="http://waalweelde.geocat.net/geoserver/wms"/>  <button id="addWMS" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="verbind met de server"><span class="ui-button-icon-primary ui-icon ui-icon-transferthick-e-w"  onclick="$.URD.addWMS($('#tbWMS').val())"></span><span class="ui-button-text">verbind</span></button>
 
-<br/>-->
 	<div id="mdResults" title="Zoekresultaat"></div>
 	<div id="wmsSelectLayer" title="Selecteer kaartlaag"></div>
-<!-- </div>
-</div>
-</div>
--->
+
   </div>
 
-    <div class="west-element"><div class="panel-header"><span class="ui-panel-title">Lagen </span>
-    <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="minify"><span class="ui-button-icon-primary ui-icon ui-icon-minus"></span><span class="ui-button-text">minify</span></button>
+    <div class="west-element"><div class="panel-header">
+    	<span class="ui-panel-title">Lagen </span>
     </div>
     <div id="layertree" class="west-element-content">
     </div>
     </div>
     <div class="west-element">
-    <div class="panel-header"><span class="ui-panel-title">Legenda </span>
-    <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-panel-titlebar-minus" role="button" aria-disabled="false" title="minify"><span class="ui-button-icon-primary ui-icon ui-icon-minus"></span><span class="ui-button-text">minify</span></button></div>
-    <div id="legend"  class="west-element-content">
+    <div class="panel-header">
+    	<span class="ui-panel-title">Legenda </span>
+    </div>
+    <div id="legend" class="west-element-content">
     </div>
     </div>
     <!--<div class="west-element">
@@ -154,7 +125,7 @@ Doel:<br/>
   <!-- openlayers -->
   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/lib/openlayers/theme/default/style.css"/>" />
 
-  <script type="text/javascript" src="<c:url value="/resources/res/lib/openlayers/lib/OpenLayers.js"/>"></script>
+  <script type="text/javascript" src="<c:url value="/resources/res/lib/openlayers/OpenLayers.js"/>"></script>
   
   <!-- custom styles -->  
   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/res/style/client.css"/>" />

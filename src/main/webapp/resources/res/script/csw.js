@@ -48,7 +48,7 @@ function getMDResults(page){
 	
 	var bnds="";
 	
-	/*
+
 	lp = $("input[name='loctype']:checked").val();	
 
 	if (lp=="waalweelde") {
@@ -56,7 +56,7 @@ function getMDResults(page){
 	} else if (lp=="map"){
 		bnds = client.kaart1.getExtent().toGeometry().transform('epsg:28992','epsg:4326').toString();
 	}
-	*/
+
 	
 	//dynamic = true only results in datasets having a wms link
 	$.ajax({	type:"GET", 
