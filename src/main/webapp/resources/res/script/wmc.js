@@ -76,19 +76,29 @@ function saveMap(){
 								},
 								url:liveurl+"/metadata/create/domap", 
 								datatype:"xml", 
-								success: function(data){
+								success: function(data, textStatus, jqXHR){
 									
 									console.log(data);
 									
-									if (data.indexOf("<title>Login Page</title>") > -1 ) {
-										
-										$( "#MapSaveMsg" ).html("U bent niet ingelogd of uw sessie is verlopen. Log opnieuw in in het portaal en sla opnieuw op.").css({"background-color":"#f99"}).show().delay(2000).hide('slow');
-									} else {
-										$( "#MapSaveMsg" ).html("Themakaart succesvol opgeslagen").css({"background-color":"#9ff"}).show().delay(2000).hide('slow');
-										
+									if (jqXHR.responseText.indexOf("<title>Login") > -1 ) {
+                                        // User is not logged into live website.
+										$( "#MapSaveMsg" ).html("U bent niet ingelogd of uw sessie is verlopen. Log opnieuw in in het portaal en sla opnieuw op.")
+                                            .removeClass().addClass("alert alert-danger").show().delay(2000).hide('slow');
+									} else if (!data.success) {
+                                        // server couldn't create metadata or upload WMC to GN
+                                        $( "#MapSaveMsg" ).html("Het opslaan van de themakaart is helaas mislukt"
+                                            + (data.reason != null ? reason: "") )
+                                            .removeClass().addClass("alert alert-danger").show().delay(2000).hide('slow');
+                                    } else {
+                                        // Success. Server has created metadata and uploaded WMC to GN
+                                        $( "#MapSaveMsg" ).html("U bent niet ingelogd of uw sessie is verlopen. Log opnieuw in in het portaal en sla opnieuw op.")
+                                            .removeClass().addClass("alert alert-success").show().delay(2000).hide('slow');
 									}
 								},
-								error:function(data,error,status){ $( "#MapSaveMsg" ).html("Het opslaan van de themakaart is helaas mislukt "+error+" "+status).css({"background-color":"#f99"}).show().delay(2000).hide('slow'); }
+								error:function(data, error, status){
+                                    $( "#MapSaveMsg" ).html("Het opslaan van de themakaart is helaas mislukt " + error
+                                        + " " +status)
+                                        .removeClass().addClass("alert alert-danger").show().delay(2000).hide('slow'); }
 							});
 					}
 			}
