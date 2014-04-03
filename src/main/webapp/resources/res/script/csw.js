@@ -48,7 +48,7 @@ function getMDResults(page){
 	
 	var bnds="";
 	
-	/*
+
 	lp = $("input[name='loctype']:checked").val();	
 
 	if (lp=="waalweelde") {
@@ -56,7 +56,7 @@ function getMDResults(page){
 	} else if (lp=="map"){
 		bnds = client.kaart1.getExtent().toGeometry().transform('epsg:28992','epsg:4326').toString();
 	}
-	*/
+
 	
 	//dynamic = true only results in datasets having a wms link
 	$.ajax({	type:"GET", 
@@ -108,6 +108,8 @@ function getMDResults(page){
 						
 					} else {
 					
+						var sid=0; //multiple selects can exist in the page, add unique id
+						
 						//now push the data to listview
 						var output ="";
 						$(result).each(function(){
@@ -120,28 +122,30 @@ function getMDResults(page){
 							if (this.wmclinks.length > 0) {
 								output+="<button style=\"float:right\" onclick=\"loadMap('"+this.wmclinks[0].url+"','"+this.title+"');\">Open themakaart</button>";
 							}
+							sid++;
 							
-							//todo: onderscheid maken tussen 1 laag en meerdere lagen, meerdere lagen als split button
 							if (this.wmslinks.length == 1) {
 								output+="<button style=\"float:right\" onclick=\"$.URD.addWMS('"+this.wmslinks[0].url+"','"+this.wmslinks[0].layerName+"','"+this.wmslinks[0].layerTitle+"');\">Voeg toe aan kaart</button>";
 							} else if (this.wmslinks.length > 1) {
-								output+="<select style=\"float:right\" id=\"svLayers\" onchange=\"$.URD.addWMS('"+this.wmslinks[0].url+"',$('#svLayers').val(),$('#svLayers option:selected').text())\">";
+								output+= "<div style=\"float:right\">";
+								output+="<select  id=\"svLayers"+sid+"\">";
 								$(this.wmslinks).each(function(){ 
 										if (this.layerTitle=="") this.layerTitle = this.layerName;
-										output+="<option value='"+this.layerName+"'>"+(this.layerTitle||this.layerName)+"</option>";
+										output+="<option value='"+this.layerName+"'>"+this.layerTitle+"</option>";
 								});
-								output+="</select>";
+								output+="</select><button onclick=\"$.URD.addWMS('"+this.wmslinks[0].url+"',$('#svLayers"+sid+"').val(),$('#svLayers"+sid+" option:selected').text());\">Voeg toe aan kaart</button></div>";
 							}
 							
 							if (this.wmclinks.length == 1) {
 								output+="<button style=\"float:right\" onclick=\"loadMap('"+this.wmclinks[0].url+"');\">Voeg toe aan kaart</button>";
 							} else if (this.wmclinks.length > 1) {
-								output+="<select style=\"float:right\" id=\"wmcLayers\" onchange=\"loadMap($('#wmcLayers option:selected').value())\">";
+								output+= "<div style=\"float:right\">";
+								output+="<select id=\"wmcLayers"+sid+"\" onchange=\"\">";
 								$(this.wmclinks).each(function(){ 
 										if (this.layerTitle=="") this.layerTitle = this.layerName;
-										output+="<option value='"+this.url+"'>"+(this.layerTitle||this.layerName)+"</option>";
+										output+="<option value='"+this.url+"'>"+(this.layerTitle)+"</option>";
 								});
-								output+="</select>";
+								output+="</select><button onclick=\"loadMap($('#wmcLayers"+sid+" option:selected').value());\">Voeg toe aan kaart</button></div>";
 							}
 							
 							if (this.contact) output+="<span class='mdContact'>"+this.contact+"</span> ";

@@ -144,7 +144,8 @@ background: #4f9fd9;
 }
 
 .ui-widget-content  {
-  border: solid 1px #157fcc;
+  border: none;
+  padding:3px;
 }
 .ui-dialog {
 padding: 0 !important;

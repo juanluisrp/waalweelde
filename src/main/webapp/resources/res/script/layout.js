@@ -87,8 +87,8 @@ client = $('#center').urd({center: {box: [5.989178,51.853822,6.103160,51.914010]
   layers:[{
      type: 'wmts',
      label: 'BRT Achtergrondkaart',
-     url: 'http://geodata.nationaalgeoregister.nl/wmts/',
-     layer: 'brtachtergrondkaart',
+     url: 'https://geodata.nationaalgeoregister.nl/wmts/',
+     layer: 'brtachtergrondkaartgrijs',
      style: "",
      matrixSet: "EPSG:28992",
      matrixIds:  matrixIds,
@@ -132,7 +132,7 @@ client = $('#center').urd({center: {box: [5.989178,51.853822,6.103160,51.914010]
   {
       type: 'wms',
       label: 'Ecotopenkaart',
-      url: 'http://geodata.nationaalgeoregister.nl/ecotopen/ows?SERVICE=WMS&',
+      url: 'https://geodata.nationaalgeoregister.nl/ecotopen/ows?SERVICE=WMS&',
       layers: "cyclus_drie",
       style: "",
       visibility: false,
@@ -142,7 +142,7 @@ client = $('#center').urd({center: {box: [5.989178,51.853822,6.103160,51.914010]
   {
       type: 'wms',
       label: 'Natura 2000',
-      url: 'http://geodata.nationaalgeoregister.nl/natura2000/wms?',
+      url: 'https://geodata.nationaalgeoregister.nl/natura2000/wms?',
       layers: 'natura2000',
       style: "",
       visibility: false,
