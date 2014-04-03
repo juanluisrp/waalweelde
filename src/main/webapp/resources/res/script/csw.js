@@ -119,9 +119,9 @@ function getMDResults(page){
 							output +="<div style=\"margin-left:135px\"><p><span class='mdTitle'>"+this.title+"</span><br/>";
 							if (this.oms) output +=""+this.oms.substring(0,270) + "<br/>";
 							
-							if (this.wmclinks.length > 0) {
-								output+="<button style=\"float:right\" onclick=\"loadMap('"+this.wmclinks[0].url+"','"+this.title+"');\">Open themakaart</button>";
-							}
+							//if (this.wmclinks.length > 0) {
+							//	output+="<button style=\"float:right\" onclick=\"loadMap('"+this.wmclinks[0].url+"','"+this.title+"');\">Open themakaart</button>";
+							//}
 							sid++;
 							
 							if (this.wmslinks.length == 1) {
@@ -137,15 +137,15 @@ function getMDResults(page){
 							}
 							
 							if (this.wmclinks.length == 1) {
-								output+="<button style=\"float:right\" onclick=\"loadMap('"+this.wmclinks[0].url+"');\">Voeg toe aan kaart</button>";
+								output+="<button style=\"float:right\" onclick=\"loadMap('"+this.wmclinks[0].url+"');\">Open themakaart</button>";
 							} else if (this.wmclinks.length > 1) {
 								output+= "<div style=\"float:right\">";
-								output+="<select id=\"wmcLayers"+sid+"\" onchange=\"\">";
+								output+="<select id=\"wmcLayers"+sid+"\">";
 								$(this.wmclinks).each(function(){ 
 										if (this.layerTitle=="") this.layerTitle = this.layerName;
 										output+="<option value='"+this.url+"'>"+(this.layerTitle)+"</option>";
 								});
-								output+="</select><button onclick=\"loadMap($('#wmcLayers"+sid+" option:selected').value());\">Voeg toe aan kaart</button></div>";
+								output+="</select><button onclick=\"loadMap($('#wmcLayers"+sid+" option:selected').val());\">Open themakaart</button></div>";
 							}
 							
 							if (this.contact) output+="<span class='mdContact'>"+this.contact+"</span> ";
