@@ -67,14 +67,14 @@ function saveMap(){
 									title:$("#mapTitel").val(),
 									description:$("#mapAbstract").val(),
 									purpose:$("#mapPurpose").val(),
-									group:0,
+									group:1,
 									west:bnds[0],
 									south:bnds[1],
 									east:bnds[2],
 									north:bnds[3],
 									map:format.write(client.kaart1) 
 								},
-								url:liveurl+"/metadata/create/domap", 
+								url:liveurl+"metadata/create/domap",
 								datatype:"xml", 
 								success: function(data, textStatus, jqXHR){
 									
@@ -87,7 +87,7 @@ function saveMap(){
 									} else if (!data.success) {
                                         // server couldn't create metadata or upload WMC to GN
                                         $( "#MapSaveMsg" ).html("Het opslaan van de themakaart is helaas mislukt"
-                                            + (data.reason != null ? reason: "") )
+                                            + (data.reason != null ? ": " + data.reason : "") )
                                             .removeClass().addClass("alert alert-danger").show().delay(2000).hide('slow');
                                     } else {
                                         // Success. Server has created metadata and uploaded WMC to GN
